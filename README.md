@@ -123,14 +123,14 @@ navigation:               # An object specifying the header, footer, and table o
   toc: example_toc            # The table of contents config file 
   header_active: Guides       # The link in the header to highlight as activated
 
-summary: >                  # A summary of the page displayed in search results.  
+summary: >                  # A summary of the page displayed in search results.
   An example page showing   # Typically the first sentence(s) of the page serve as a good summary.
-  frontmatter configuration. 
+  frontmatter configuration.
 
-# Optional fields 
+# Optional fields
 breadcrumbs: false
 
-# Page includes           
+# Page includes
 includes:                 # You can define and import sub-pages in top level pages to separate content.
   - web/checkout          # You will need to add the actual file to the source/includes/ directory and  
   - web/hosted_fields     # prefix it with an underscore, but make sure to leave that out when adding 
@@ -138,17 +138,17 @@ includes:                 # You can define and import sub-pages in top level pag
 ---
 ```
 
-For the YAML fields specific to each layout, see the [layouts](#layouts) section. 
+For the YAML fields specific to each layout, see the [layouts](#layouts) section.`
 
-#### Navigation 
+#### Navigation
 
-The configuration for the header, footer, and table of contents for each page are defined in separate files in the `data/` folder of the site. This way a header and footer can be shared site wide, or a table of contents can be used on a series of related pages. 
+The configuration for the header, footer, and table of contents for each page are defined in separate files in the `data/` folder of the site. This way a header and footer can be shared site wide, or a table of contents can be used on a series of related pages.
 
-"Dot notation" is used to specify the path to the data files. The data folder and the file's extension are not used. For example to use a header config located at `data/navigation/site_header.yaml` set the header key of the navigation to `header: navigation.site_header`. 
+"Dot notation" is used to specify the path to the data files. The data folder and the file's extension are not used. For example to use a header config located at `data/navigation/site_header.yaml` set the header key of the navigation to `header: navigation.site_header`.
 
 ##### Header files
 
-The header config file referenced in the navigation object defines the header for the page. It's written in YAML. A header config file looks like this (`data/example_nav.yaml`): 
+The header config file referenced in the navigation object defines the header for the page. It's written in YAML. A header config file looks like this (`data/example_nav.yaml`):
 
 ```yaml
 logo:         # Defines the logo for the header 
