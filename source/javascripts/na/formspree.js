@@ -56,7 +56,7 @@ $(function() {
                 $statusDiv.removeClass('hidden notice error');
                 $statusDiv.addClass('success');
 
-                $currentForm.find(":input").val("");
+                $currentForm.find(":input").not(".btn").val("");
             },
             error: function(err) {
                 $statusParagraph.html("Oops, there was an error.");
