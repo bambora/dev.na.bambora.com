@@ -25,6 +25,10 @@ The API allows the partner to specify which services the new merchant account sh
 
 ### **API Version 2016-08-18**
 
+#### March 6th, 2017
+* Changes to GW-USA and GW-CDN
+    * New fields for first data terminals: discover_merchant_id and amex_merchant_id
+
 #### November 28th, 2016
 * New Gateway USA workflow added.
 
@@ -36,7 +40,7 @@ The API allows the partner to specify which services the new merchant account sh
 * Changes to all workflows:
     * agreement.personal_guarantee_accepted is **new** and is optional. The personal guarantee must be accepted where entity_type is "sole_proprietor" or "partnership".
     * Remove restriction on country fields so that full ISO 3166 list of country codes can be accepted.
-    * address.region and Address.postal_code are now optional.
+    * address.region and address.postal_code are now optional.
     * pending_issues.message is new and contains a human readable message about the error.
     * Error responses have renamed field error.name.
     * Error responses have renamed field error.reason.
@@ -75,7 +79,7 @@ The API allows the partner to specify which services the new merchant account sh
 * API Version 2016-06-10 removed.
 
 #### September 10th, 2016
-* API Version 2016-06-10 Deprecated and will be removed in the next release.
+* API Version 2016-06-10 deprecated and will be removed in the next release.
 
 #### June 10th, 2016
 * First release of the API specification.
