@@ -84,7 +84,7 @@ $(function() {
             $statusParagraph.append("<br> Merchant ID: " + getUrlParameter('merchant_id'));
             $statusDiv.removeClass('hidden notice error');
             $statusDiv.addClass('success');
-            $currentForm.find(":input").prop('disabled', true); // disable form on success
+            $currentForm.find(":input").not("btn").val("");
         // if account creation failed validation: 
         } else if(urlStatus === '0') {
             var errorMessage = decodeURIComponent(getUrlParameter('error_message'));
