@@ -14,20 +14,33 @@ navigation:
 
 # Onboarding API
 
-The Onboarding API allows you to build your own custom UI through which a sub-merchants sign up for a Beanstream account or to reuse the information already collected to create a lightweight integration.
+The Onboarding API allows partners to build their own custom interface through which sub-merchants sign up for a Beanstream account.
 
-You can submit either completed or partially completed applications. This means you can allow your sub-merchant to submit their application in stages or to submit supporting documentation at a later date.
+Applications can be submitted completed or as partial updates. This allows flexibility for partners and allows full control of how integrators upload sub-merchant data to the API. Partners can integrate to different **workflows** of the API to sign sub-merchants up for various services.
 
-The API allows the partner to specify which services the new merchant account should be provisioned with. The API supports the onboarding of merchants for card payments in Canada and the US, as well as funds transfer services in Europe, the UK and North America.
+The following workflows are currently available:
+* PSP-CAD - Canadian Card Payments
+* PSP-USD - United States Card Payments
+* GW-CDN -
+* GW-USA -
+* EFT-CAD - Canadian Funds Transfer
+* ACH-USD - United States Funds Transfer
+* BACS-GBP - United Kingdom Funds Transfer
+* SEPA-EUR - European Funds Transfer
+
 
 ## Changelog
 
 
 ### **API Version 2016-08-18**
+[Specification](../v2016-08-18)
 
 #### March 6th, 2017
+* Changes to all workflows:
+    * on_hold is a new state an application can be in while being processed.
 * Changes to GW-USA and GW-CDN
-    * New fields for first data terminals: discover_merchant_id and amex_merchant_id
+    * discover_merchant_id is a new field for first data terminals.
+    * amex_merchant_id is a new field for first data terminals.
 
 #### November 28th, 2016
 * New Gateway USA workflow added.
@@ -60,6 +73,7 @@ The API allows the partner to specify which services the new merchant account sh
 
 
 ### **API Version 2016-06-11**
+[Specification](../v2016-06-11)
 
 #### June 11th, 2016
 * Changes to all workflows:
@@ -72,14 +86,3 @@ The API allows the partner to specify which services the new merchant account sh
 * Changes to PSP-USD:
     * applicant.social_security_number is now required.
 
-
-### **API Version 2016-06-10 (Deprecated)**
-
-#### November 16th, 2016
-* API Version 2016-06-10 removed.
-
-#### September 10th, 2016
-* API Version 2016-06-10 deprecated and will be removed in the next release.
-
-#### June 10th, 2016
-* First release of the API specification.
