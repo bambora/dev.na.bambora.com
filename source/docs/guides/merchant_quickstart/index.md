@@ -24,7 +24,7 @@ You can create a test merchant account [here](/docs/forms/create_test_merchant_a
 
 ## 2. Generate API keys
 
-You will need a Merchant ID (MID) and an API key per API that you wish to test. Your MID can be found in the top-right corner of the screen after logging in to the <a href="https://www.beanstream.com/admin/" target="_blank">Back Office</a>.
+You will need a Merchant ID (MID) and an API key per API that you wish to test. Your MID can be found in the top-right corner of the screen after logging in to the <a href="https://www.beanstream.com/admin/">Back Office</a>.
 
 You can generate five keys for our five APIs in our Back Office.
 
