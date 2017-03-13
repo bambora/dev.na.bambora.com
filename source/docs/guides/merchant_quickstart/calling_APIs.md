@@ -26,14 +26,14 @@ All the examples in this guide use cURL, a lightweight, command-line tool for ma
 
 We also provide a Postman collection for those who prefer the readability of a user friendly interface. Postman is a popular HTTP client that runs as a Chrome app. You can download Postman <a href="https://www.getpostman.com/" target="_blank">here</a>.
 
-You can download our collection and an environment here. You will need to update the environment with your merchant ID and pass codes before you can run any queries. Most queries contain variables that are set from the response of a related (e.g. 'Get Token' sets the returned token in the environment, 'Make Token Payment' sets the token from the environment in its request body).
+You can download our collection and an environment [here](/resources/postman-collection.zip). You will need to update the environment with your merchant ID and pass codes before you can run any queries. Most queries contain variables that are set from the response of a related (e.g. 'Get Token' sets the returned token in the environment, 'Make Token Payment' sets the token from the environment in its request body).
 
 ## 1. Tokenize a credit card
 If you accept credit cards, you must be in compliance with PCI Security Council standards. You can reduce the scope of your compliance by minimizing your application's contact with the card data. You can remove the need to pass credit card details to your server by tokenization the card data in the browser. You can create a single use token from the browser/mobile app through our Tokenization API.
 
 You can further reduce the scope of your compliance by removing the need for your code to interact with card data by using our hosted Payfields library validate and tokenize all card data.
 
-```
+```shell
 curl https://www.beanstream.com/scripts/tokenization/tokens  \
   -H "Content-Type: application/json" \
   -d '{
@@ -47,7 +47,7 @@ curl https://www.beanstream.com/scripts/tokenization/tokens  \
 ## 2. Create a Payment Profile
 Now that you have a single use token you can either take a one-off payment or create a multi-use token to store the card data for future payments.
 
-```
+```shell
 curl https://www.beanstream.com/api/v1/profiles  \
   -H "Authorization: Passcode your_payment_profile_passcode"  \
   -H "Content-Type: application/json" \
@@ -68,7 +68,7 @@ If your transaction was not approved you can easily isolate the problem by cheki
 
 HTTP status codes 200 and 402 indicate your request reached the emulator. All other HTTP status codes indicate that your request did not reach the emulator. You can read a full list of response codes here.
 
-```
+```shell
 curl https://www.beanstream.com/api/v1/payments  \
   -H "Authorization: Passcode your_payment_passcode"  \
   -H "Content-Type: application/json" \
@@ -86,7 +86,7 @@ curl https://www.beanstream.com/api/v1/payments  \
 ## 4. Query the transaction
 The response body of a transaction request contains a transaction id. You can request a transaction at a later date using the same Payments API.
 
-```
+```shell
 curl -X GET https://www.beanstream.com/api/v1/payments/{your_transaction_id} \
   -H "Authorization: Passcode your_payment_passcode" \
   -H "Accept: application/json"
@@ -94,7 +94,7 @@ curl -X GET https://www.beanstream.com/api/v1/payments/{your_transaction_id} \
 
 You can also query transactions by date and any combination of the 24 other fields of a transaction record.
 
-```
+```shell
 curl https://www.beanstream.com/api/v1/reports \
 -H "Authorization: Passcode your_reporting_passcode"  \
 -H "Content-Type: application/json" \

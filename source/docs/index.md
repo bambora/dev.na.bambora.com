@@ -43,7 +43,7 @@ card_sets:
     -
         title: References
         description: >
-            Get an in-depth knowledge of our payment gateway. See all the references <a href="/docs/guides">here.</a>
+            Get an in-depth knowledge of our payment gateway. See all the references <a href="/docs/references">here.</a>
         cards:
             -
                 title: Payments API

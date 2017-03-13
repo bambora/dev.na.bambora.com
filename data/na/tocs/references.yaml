@@ -4,3 +4,6 @@
   title: 'Onboarding API'
 - file: '/docs/references/merchant_SDKs/'
   title: 'Payments SDKs'
+- file: '/docs/references/AVS/'
+  title: 'Address Verification System (AVS)'
+

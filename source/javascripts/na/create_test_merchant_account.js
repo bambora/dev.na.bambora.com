@@ -1,5 +1,10 @@
 $(function() {
 
+    // Update the value for error_page_url and success_page_url 
+    var current_url = $(location).attr('href');
+    $("input[name='error_page_url']").val(current_url);
+    $("input[name='success_page_url']").val(current_url);
+
     // http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
     // get a parameter from the page url 
     var getUrlParameter = function getUrlParameter(sParam) {
@@ -79,7 +84,7 @@ $(function() {
             $statusParagraph.append("<br> Merchant ID: " + getUrlParameter('merchant_id'));
             $statusDiv.removeClass('hidden notice error');
             $statusDiv.addClass('success');
-            $currentForm.find(":input").prop('disabled', true); // disable form on success
+            $currentForm.find(":input").not(".btn").val("");
         // if account creation failed validation: 
         } else if(urlStatus === '0') {
             var errorMessage = decodeURIComponent(getUrlParameter('error_message'));
