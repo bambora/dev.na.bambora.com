@@ -71,7 +71,7 @@ The API allows the partner to specify which services the new merchant account sh
 
 ## v2016-06-11
 
-* [Onboarding API Spec](../v2016-06-11)
+* [Onboarding API Spec](./v2016-06-11)
 
 ### Change logs - 11 Jun 2016    
 #### Common changes for all workflows

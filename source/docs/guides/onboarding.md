@@ -120,7 +120,7 @@ Note that you will first have to get the app into the in_review state by populat
 ## Sample Request
 You can execute the cURL request below by copying the code into a text editor, replacing the version and authorization placeholders and then pasting and executing the updated request in Terminal.
 
-```curl
+```shell
 Definition
 POST /v1/workflows HTTP/1.1
 
