@@ -330,7 +330,7 @@ language_tabs: # declare as many languages as you wish to support.
 
 #### Swagger layout
 
-The swagger layout is used to render a (Swagger)[http://swagger.io/specification/] file. It has additional frontmatter configuration to set the swagger file used:
+The swagger layout is used to render a (Swagger)[http://swagger.io/specification/] file. It has additional frontmatter configuration to set the swagger file used. As well, you can optionally passed a list of 'ignored_paths' to skip them when building the output:
 
 ```yaml
 ---
@@ -338,6 +338,12 @@ The swagger layout is used to render a (Swagger)[http://swagger.io/specification
 # ... (include the required YAML fields defined above) 
 
 swagger: API_spec.merchant.1_0_2
+
+ignored_paths: # optional
+- "/payments"       # methods on these paths will not be shown on the page.
+- "/payments/{transId}/void" 
+
+
 ```
 
 The referenced API spec must be in the `/data/` folder and referenced like the (navigation configuration)[].
