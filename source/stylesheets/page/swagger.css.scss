@@ -1,4 +1,5 @@
 @import 'bambora_ui_variables';
+@import '_site_primary_colors';
 
 @mixin expand-arrow($arrow-color) {
     content: '';
@@ -44,6 +45,10 @@ h2.open:before {
 
 
 /* security section */
+
+.security-body {
+    display: none;
+}
 
 .security-definition {
     margin-bottom: 50px;
@@ -96,6 +101,10 @@ h2.open:before {
 
 .tag-group h3.open:after {
     @include expanded-arrow;
+}
+
+.tag-operations {
+    display: none;
 }
 
 /* expandable operation headings */
