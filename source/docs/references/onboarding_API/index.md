@@ -18,11 +18,12 @@ The Onboarding API allows partners to build their own custom interface through w
 
 Applications can be submitted completed or as partial updates. This allows flexibility for partners and allows full control of how integrators upload sub-merchant data to the API. Partners can integrate to different **workflows** of the API to sign sub-merchants up for various services.
 
-The following workflows are currently available:
+The following workflows are currently supported:
+
 * PSP-CAD - Canadian Card Payments
 * PSP-USD - United States Card Payments
-* GW-CDN -
-* GW-USA -
+* GW-CDN - Canadian Payment Gateway
+* GW-USA - United States Payment Gateway
 * EFT-CAD - Canadian Funds Transfer
 * ACH-USD - United States Funds Transfer
 * BACS-GBP - United Kingdom Funds Transfer

@@ -58,8 +58,9 @@ paths:
       operationId: getSepaEurApplications
       description: |
         Retrieves all European SEPA applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -335,8 +336,9 @@ paths:
       operationId: getBacsGbpApplications
       description: |
         Retrieves all United Kingdom BACS applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "pending_review", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -612,8 +614,9 @@ paths:
       operationId: getAchUsdApplications
       description: |
         Retrieves all United States ACH applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "pending_review", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -889,8 +892,9 @@ paths:
       operationId: getEftCadApplications
       description: |
         Retrieves all Canada EFT applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "pending_review", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -1166,8 +1170,9 @@ paths:
       operationId: getPspCadApplications
       description: |
         Retrieves all Canada PSP applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -1359,8 +1364,9 @@ paths:
       operationId: getPspUsdApplications
       description: |
         Retrieves all US PSP applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -1636,8 +1642,9 @@ paths:
       operationId: getGwCdnApplications
       description: |
         Retrieves all Canadian Gateway applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -1829,8 +1836,9 @@ paths:
       operationId: getGwUsaApplications
       description: |
         Retrieves all US Gateway applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -2023,8 +2031,9 @@ paths:
       operationId: getPspNzdApplications
       description: |
         Retrieves all New Zealand PSP applications referenced by the given criteria in the url. A search criteria can be a combination of the following:
+
            - state={state}
-            - *Accepted values are "in_progress", "in_review", "approved" and "rejected"*
+            - *Accepted values are "in\_progress", "in\_review", "on\_hold", "approved" and "rejected"*
            - created_before={date}
            - created_after={date}
            - updated_before={date}
@@ -2441,7 +2450,6 @@ definitions:
     type: object
     required:
       - company_name
-      - merchant_category
       - address
       - bank_account
     properties:
@@ -2449,9 +2457,10 @@ definitions:
         type: string
         maxLength: 64
       merchant_category:
+        description: 'This is the 4 digit merchant category code'
         type: string
-        description: 'This is the merchant category code'
-        enum: ["5813","5811","5812","8398","7997","8651","8661","8641","1711","1750","1731","1520","7623","1761","1740","7033","5462","5411","5499","5994","8021","8099","5963","5699","5971","5970","5992","5399","8931","7311","7542","7217","8351","7379","7372","7392","0780","8111","7349","7333","8999","6513","7251","0742","7230","7210","4121","4722","8299"]
+        minLength: 4
+        maxLength: 4
       website_url:
         type: string
         maxLength: 128
@@ -2467,7 +2476,6 @@ definitions:
     type: object
     required:
       - company_name
-      - merchant_category
       - address
       - bank_account
     properties:
@@ -2475,9 +2483,10 @@ definitions:
         type: string
         maxLength: 64
       merchant_category:
+        description: 'This is the 4 digit merchant category code'
         type: string
-        description: 'This is the merchant category code'
-        enum: ["5813","5811","5812","8398","7997","8651","8661","8641","1711","1750","1731","1520","7623","1761","1740","7033","5462","5411","5499","5994","8021","8099","5963","5699","5971","5970","5992","5399","8931","7311","7542","7217","8351","7379","7372","7392","0780","8111","7349","7333","8999","6513","7251","0742","7230","7210","4121","4722","8299"]
+        minLength: 4
+        maxLength: 4
       website_url:
         type: string
         maxLength: 128
@@ -2575,6 +2584,14 @@ definitions:
         type: string
         minLength: 11
         maxLength: 11
+      discover_merchant_id:
+        type: string
+        minLength: 15
+        maxLength: 15
+      amex_merchant_id:
+        type: string
+        minLength: 10
+        maxLength: 10
 
   ChasePaymentechTerminal:
     type: object
@@ -2855,6 +2872,8 @@ definitions:
     required:
       - first_name
       - last_name
+      - date_of_birth
+      - address
       - email
     properties:
       title:
@@ -2878,6 +2897,8 @@ definitions:
       email:
         type: string
         maxLength: 500
+      document:
+        $ref: '#/definitions/PspNzdFile'
 
   EftCadBusiness:
     description: 'The details of an EFT Canadian business'
@@ -3230,7 +3251,7 @@ definitions:
       merchant_category:
         type: string
         description: 'This is the merchant category code'
-        enum: ["7997","8699","8641","7941","7922","7994","5192","5499","7995","8099","5969","5968","5977","5732","5992","5999","7399","4816","7372","7392","8999","7299","4722","8299","4899","4814"]
+        enum: ["7997","8699","8641","7941","7922","7994","5192","5499","7995","8099","5969","5968","5977","5732","5992","5999","7399","4816","7372","7392","8999","7299","4722","8299","4899","4814", "8398"]
       services_description:
         type: string
         maxLength: 100
@@ -3357,13 +3378,6 @@ definitions:
         maxLength: 15
       address:
         $ref: '#/definitions/Address'
-      documents:
-        type: array
-        description: 'A maximum of three documents is allowed'
-        minItems: 0
-        maxItems: 3
-        items:
-          $ref: '#/definitions/PspNzdFile'
       owners:
         type: array
         maxItems: 5
@@ -3472,11 +3486,7 @@ definitions:
       drivers_license_version:
         type: string
         maxLength: 64
-      ev-token:
-        type: string
-        maxLength: 64
-        description: 'Green verification ID'
-        
+
   EftCadDirector:
     description: 'Defines an EFT Canadian business owner or director'
     additionalProperties: false
@@ -3699,6 +3709,13 @@ definitions:
         maxLength: 15
       address:
         $ref: '#/definitions/Address'
+      documents:
+        type: array
+        description: 'A maximum of three documents is allowed'
+        minItems: 0
+        maxItems: 3
+        items:
+          $ref: '#/definitions/PspNzdFile'
       identity:
             $ref: '#/definitions/PspNzIdentity'
 
@@ -4047,8 +4064,3 @@ definitions:
       message:
         type: string
         description: 'A human readable message about the error'
-  
-
-
-
-
