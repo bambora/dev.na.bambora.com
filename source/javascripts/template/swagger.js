@@ -1,5 +1,4 @@
 // Hide elements that should be hidden on page load 
-//$('.tag-operations').toggle();
 $('.schema-body .schema-body').toggle();
 $('.schema-title').toggleClass('open');
 $('.schema-body .schema-title').toggleClass('open');
