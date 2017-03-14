@@ -3,7 +3,7 @@ title: Onboarding API Overview
 layout: tutorial
 
 summary: >
-  The Onboarding API allows you to build your own custom UI through which a sub-merchants sign up for a Beanstream account or to reuse the information already collected to create a lightweight integration.
+  The Onboarding API allows partners to build their own custom interface through which sub-merchants can sign up for an account.
 
 navigation:
   header: na.tocs.na_nav_header
@@ -14,7 +14,7 @@ navigation:
 
 # Onboarding API
 
-The Onboarding API allows partners to build their own custom interface through which sub-merchants sign up for a Beanstream account.
+The Onboarding API allows partners to build their own custom interface through which sub-merchants can sign up for an account.
 
 Applications can be submitted completed or as partial updates. This allows flexibility for partners and allows full control of how integrators upload sub-merchant data to the API. Partners can integrate to different **workflows** of the API to sign sub-merchants up for various services.
 
@@ -80,11 +80,11 @@ The following workflows are currently supported:
 #### June 11th, 2016
 * Changes to all workflows:
     *  **API version is now required in the header attributes X-API-Version: 2016-06-11**
-    * Additional Properties are no longer allowed. This means that no extra/undefined properties will be allowed to be passed in that are not already in the swagger specification.
-    * The list of Countries for each flow is now more extensive for each of the flow a large list of countries is available.
+    * Additional properties are no longer allowed. This means that no extra/undefined properties will be allowed to be passed in that are not already in the swagger specification.
+    * The list of countries for each flow is now more extensive.
     * Postal code is no longer a required field.
     * Region is now being collected in all flows, it was an enum in previous specific flows for provinces and is now a string maxlength 64.
-    * Global Address Fields replace all existing address fields as follows: Address line 1, Address line 2, Region (includes: state/province/municipality/region), City, Postal Code (includes ZipCode), Country.
+    * Global address fields replace all existing address fields as follows: Address line 1, Address line 2, Region (includes: state/province/municipality/region), City, Postal Code (includes ZipCode), Country.
 * Changes to PSP-USD:
     * applicant.social_security_number is now required.
 
