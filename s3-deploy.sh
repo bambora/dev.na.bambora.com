@@ -1,3 +1,5 @@
+export AWS_DEFAULT_REGION=ca-central-1
+
 # This file is passed evironment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, 
 # APP_HOME=bamboo.build.working.directory and planName=bamboo.shortPlanName by Bamboo.
 
@@ -12,7 +14,7 @@ then
     bucket_name=developer.na.bambora.com
 
     echo "Syncing to bucket..."
-    aws s3 sync --delete --exact-timestamps $APP_HOME/build s3://${bucket_name} --region ca-central-1
+    aws s3 sync --delete --exact-timestamps $APP_HOME/build s3://${bucket_name}
 else
     echo "deploying branch to test..."
     bucket_name="dev.beanstream.com.${planName}"
