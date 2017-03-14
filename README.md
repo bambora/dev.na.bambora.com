@@ -38,10 +38,10 @@ cd dev.na.bambora.com
 docker build -t devbamboracom .
 
 # For windows:
-docker run -v $pwd/source/:/usr/src/app/source -p 4567:4567 devbamboracom
+docker run -v $pwd/:/usr/src/app/ -p 4567:4567 devbamboracom
 
 # For linux:
-docker run -v `pwd`/source:/usr/src/app/source -p 4567:4567 devbamboracom
+docker run -v `pwd`/:/usr/src/app/ -p 4567:4567 devbamboracom
 ```
 
 **Note**: If you get a `request canceled while waiting for connection` error when running `docker build`, go to Docker Settings > Network and change the DNS server to fixed.
