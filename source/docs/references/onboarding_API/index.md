@@ -35,6 +35,7 @@ The following workflows are currently supported:
 
 ### **API Version 2016-08-18**
 [Specification](../v2016-08-18)
+[Terms API Spec](./tac_v2016-08-18)
 
 #### March 6th, 2017
 * Changes to all workflows:
