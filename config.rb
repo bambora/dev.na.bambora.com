@@ -69,8 +69,8 @@ end
 # end
 
 # Edit on Github variables 
-set :github_repo_url, "https://github.com/bambora/dev.bambora.com"
-set :github_branch, "dev.na.bambora.com"
+set :github_repo_url, "https://github.com/bambora/dev.na.bambora.com"
+set :github_branch, "staging"
 
 # Helpers 
 helpers CustomHelpers

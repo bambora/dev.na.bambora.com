@@ -2,7 +2,7 @@
 title: Save Customer Data
 layout: spec
 
-summary: Save Customer Data
+summary: We give merchants and developers the power to generate numerous, flexible reports. Merchants can review complete transaction details for a particular transaction ID, or access basic summary order information using specific search and sort functions.
 
 navigation:
   header: na.tocs.na_nav_header

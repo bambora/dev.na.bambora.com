@@ -2,7 +2,7 @@
 title: Take Payments
 layout: spec
 
-summary: Take Payments
+summary: All payment requests are made via server-side requests. You can either call our RESTful Payment API directly, or via one of our API wrapping libraries (our SDKs).
 
 navigation:
   header: na.tocs.na_nav_header

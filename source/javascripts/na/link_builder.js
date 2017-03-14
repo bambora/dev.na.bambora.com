@@ -123,52 +123,57 @@
   };
 
   FormController.prototype.createStringToHash = function(){
-    var perams = {};
-    perams[HPF_MERCHANT_ID] = this.merchantId.value.trim();
+    var params = {};
+    params[HPF_MERCHANT_ID] = this.merchantId.value.trim();
 
-    perams[HPF_AMOUNT] = this.amount.value.trim();
-    perams[HPF_ORDER_NUMBER] = this.orderNumber.value.trim();
-    perams[HPF_TRANSACTION_TYPE] = this.transactionType.value.trim();
-    perams[HPF_CARD_OWNER] = this.cardOwner.value.trim().split(' ').join('+');
+    params[HPF_AMOUNT] = this.amount.value.trim();
+    params[HPF_ORDER_NUMBER] = this.orderNumber.value.trim();
+    params[HPF_TRANSACTION_TYPE] = this.transactionType.value.trim();
+    params[HPF_CARD_OWNER] = this.cardOwner.value.trim().split(' ').join('+');
 
-    perams[HPF_BILL_NAME] = this.orderName.value.trim().split(' ').join('+');
-    perams[HPF_BILL_EMAIL] = this.orderEmail.value.trim();
-    perams[HPF_BILL_ADDRESS_1] = this.orderAddress1.value.trim().split(' ').join('+');
-    perams[HPF_BILL_ADDRESS_2] = this.orderAddress2.value.trim().split(' ').join('+');
-    perams[HPF_BILL_CITY] = this.orderCity.value.trim().split(' ').join('+');
-    perams[HPF_BILL_PROVINCE] = this.orderProvince.value.trim().split(' ').join('+');
-    perams[HPF_BILL_POSTAL_CODE] = this.orderPostalCode.value.trim().split(' ').join('+');
-    perams[HPF_BILL_COUNTRY] = this.orderCountry.value.trim();
+    params[HPF_BILL_NAME] = this.orderName.value.trim().split(' ').join('+');
+    params[HPF_BILL_EMAIL] = this.orderEmail.value.trim();
+    params[HPF_BILL_ADDRESS_1] = this.orderAddress1.value.trim().split(' ').join('+');
+    params[HPF_BILL_ADDRESS_2] = this.orderAddress2.value.trim().split(' ').join('+');
+    params[HPF_BILL_CITY] = this.orderCity.value.trim().split(' ').join('+');
+    params[HPF_BILL_PROVINCE] = this.orderProvince.value.trim().split(' ').join('+');
+    params[HPF_BILL_POSTAL_CODE] = this.orderPostalCode.value.trim().split(' ').join('+');
+    params[HPF_BILL_COUNTRY] = this.orderCountry.value.trim();
 
-    perams[HPF_SHIP_NAME] = this.shipName.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_EMAIL] = this.shipEmail.value.trim();
-    perams[HPF_SHIP_PHONE] = this.shipPhone.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_ADDRESS_1] = this.shipAddress1.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_ADDRESS_2] = this.shipAddress2.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_CITY] = this.shipCity.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_PROVINCE] = this.shipProvince.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_POSTAL_CODE] = this.shipPostalCode.value.trim().split(' ').join('+');
-    perams[HPF_SHIP_COUNTRY] = this.shipCountry.value.trim();
+    params[HPF_SHIP_NAME] = this.shipName.value.trim().split(' ').join('+');
+    params[HPF_SHIP_EMAIL] = this.shipEmail.value.trim();
+    params[HPF_SHIP_PHONE] = this.shipPhone.value.trim().split(' ').join('+');
+    params[HPF_SHIP_ADDRESS_1] = this.shipAddress1.value.trim().split(' ').join('+');
+    params[HPF_SHIP_ADDRESS_2] = this.shipAddress2.value.trim().split(' ').join('+');
+    params[HPF_SHIP_CITY] = this.shipCity.value.trim().split(' ').join('+');
+    params[HPF_SHIP_PROVINCE] = this.shipProvince.value.trim().split(' ').join('+');
+    params[HPF_SHIP_POSTAL_CODE] = this.shipPostalCode.value.trim().split(' ').join('+');
+    params[HPF_SHIP_COUNTRY] = this.shipCountry.value.trim();
 
-    perams[HPF_APPROVED_PAGE] = encodeURIComponent(this.approvedLink.value.trim());
-    perams[HPF_DECLINED_PAGE] = encodeURIComponent(this.declinedLink.value.trim());
-    perams[HPF_HASH_EXPIRY] = this.hashExpiry.value.trim();
-    perams[HPF_LANGUAGE] = this.language.value.trim();
-    perams[HPF_REF_1] = this.ref1.value.trim();
-    perams[HPF_REF_2] = this.ref2.value.trim();
-    perams[HPF_REF_3] = this.ref3.value.trim();
-    perams[HPF_REF_4] = this.ref4.value.trim();
-    perams[HPF_REF_5] = this.ref5.value.trim();
+    params[HPF_APPROVED_PAGE] = encodeURIComponent(this.approvedLink.value.trim());
+    params[HPF_DECLINED_PAGE] = encodeURIComponent(this.declinedLink.value.trim());
+    params[HPF_HASH_EXPIRY] = this.hashExpiry.value.trim();
+    params[HPF_LANGUAGE] = this.language.value.trim();
+    params[HPF_REF_1] = this.ref1.value.trim();
+    params[HPF_REF_2] = this.ref2.value.trim();
+    params[HPF_REF_3] = this.ref3.value.trim();
+    params[HPF_REF_4] = this.ref4.value.trim();
+    params[HPF_REF_5] = this.ref5.value.trim();
 
-    perams[HPF_D_FINANCING_TYPE] = this.dFinancingType.value.trim();
-    perams[HPF_D_PLAN_NUMBER] = this.dPlanNumber.value.trim();
-    perams[HPF_D_GRACE_PERIOD] = this.dGracePeriod.value.trim();
-    perams[HPF_D_TERM] = this.dTerm.value.trim();
+    params[HPF_D_FINANCING_TYPE] = this.dFinancingType.value.trim();
+    params[HPF_D_PLAN_NUMBER] = this.dPlanNumber.value.trim();
+    params[HPF_D_GRACE_PERIOD] = this.dGracePeriod.value.trim();
+    params[HPF_D_TERM] = this.dTerm.value.trim();
 
     var stringToHash = '';
-    for (var key in perams) {
-      if (perams[key]) {
-        stringToHash += key + '=' + perams[key] + '&';
+    for (var key in params) {
+      if (params[key]) {
+
+        if(key !== "merchant_id") {
+          stringToHash += "&";
+        }
+
+        stringToHash += key + '=' + params[key];
       }
     }
     return stringToHash;
@@ -191,7 +196,7 @@
     if(hashKey == '') {
       var link =  HPF_BASE_URL + '?' + stringToHash;
     } else {
-      var link =  HPF_BASE_URL + '?' + stringToHash + HPF_HASH_VALUE + '=' + hash;
+       var link =  HPF_BASE_URL + '?' + stringToHash + '&' + HPF_HASH_VALUE + '=' + hash;
     }
 
     this.message.classList.remove('hidden');

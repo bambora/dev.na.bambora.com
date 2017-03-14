@@ -53,7 +53,7 @@
     <% else %>
       <ul>
         <% toc_file.each do |item| %>
-          <% if this_page == item.file then li_class = "active" else 
+          <% if ( this_page == item.file or this_page == "#{item.file}index/" ) then li_class = "active" else 
               li_class = "" end %> 
 
           <li data-nav-title="<%= item.file %>" class="<%= li_class %>">
@@ -61,7 +61,7 @@
               <%= item.title %> 
             </a>
 
-            <% if this_page == item.file %> 
+            <% if ( this_page == item.file or this_page == "#{item.file}index/" ) %> 
               <div class="page-included js-toc"></div>
             <% end %> 
           </li>

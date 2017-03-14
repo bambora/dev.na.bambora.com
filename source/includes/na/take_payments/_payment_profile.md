@@ -139,9 +139,9 @@ res, err := gateway.Payments().MakePayment(payment)
 
 Payment Profiles provide a secure method of taking payments that reduces your PCI scope. You can take a payment using a token the same as you would take a payment with a credit card, the main difference being you have to supply the Profile’s customer_code.
 
-Before processing a transaction using a 'Payment Profile', you need to have created a one. See [here](../save_customer_data).
+Before processing a transaction using a 'Payment Profile', you need to have created a one. See [here](/docs/references/merchant_SDKs/save_customer_data).
 
-A multi-use payment profile token is distinct from a single-use card token. See [here](../save_card_data).
+A multi-use payment profile token is distinct from a single-use card token. See [here](/docs/references/merchant_SDKs/save_customer_data).
 
 ### Pre-Auth and Complete
 

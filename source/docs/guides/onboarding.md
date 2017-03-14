@@ -85,7 +85,7 @@ Most, but not all, fields listed in the API spec are required. You do not need t
 ## Updating and deleting fields
 When you update an application all fields that you pass in will be saved. If there are fields that you do not want updated, then simply do not pass them. If there are fields that you previously passed, but now want emptied, then set their value to null or zero. Here is an example JSON request removing some fields:
 
-```
+```json
 {
     "applicant": {
       "first_name": null,
@@ -149,7 +149,7 @@ Applications will go through several states until they are finally approved and 
 
 When an application is created it will begin in the ‘in_progress’ state. It will stay in this state until all required fields are populated. At that time it will automatically move into the ‘in_review’ state. When being reviewed the data cannot be changed. After review the application will be moved to ‘approved’ or ‘rejected’. If an application was rejected, you can simply get the application info, create a new one and copy the info into it to go through the approval process again. Only do this if you are changing information that you believe may be in error or incorrectly entered.
 
-## Terms and conditions api
+## Terms and conditions API
 You need to either display or link to the Terms and Conditions in your UI. The API requires that you specify the exact version of the Terms And Conditions that your sub-merchant has agreed to and the date/time at which they agreed.
 
 [Note: you may request the terms doc in either html or pdf format. The version id is specific to the format.]

@@ -1,16 +1,18 @@
-branch=$(git symbolic-ref --short HEAD)
+# This file is passed evironment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, 
+# APP_HOME=bamboo.build.working.directory and planName=bamboo.shortPlanName by Bamboo.
 
-echo "${AWS_ACCESS_KEY_ID}"
-echo "${AWS_SECRET_ACCESS_KEY}"
+planName=$(echo "$planName" | tr '[:upper:]' '[:lower:]') # S3 bucket names can't have capital letters.
+
+echo "plan name: ${planName}"
 
 newBucket=False
-if [ "$branch" = "master" ]
+if [ -z "$planName" ] || [ "$planName" = "dev portal" ]
 then 
     echo "deploying master to production..."
     bucket_name=dev.beanstream.com
 else
-    echo "deploying branch at dev.beanstream.com.${branch}..."
-    bucket_name="dev.beanstream.com.${branch}"
+    echo "deploying branch to test..."
+    bucket_name="dev.beanstream.com.${planName}"
     
     if aws s3 ls "s3://${bucket_name}" 2>&1 | grep -q 'NoSuchBucket'
     then
@@ -24,6 +26,7 @@ fi
 echo "Syncing to bucket..."
 aws s3 sync --delete --exact-timestamps $APP_HOME/build s3://${bucket_name}
 
+# S3 Bucket Policy 
 policy="{
 	\"Version\": \"2012-10-17\",
 	\"Statement\": [

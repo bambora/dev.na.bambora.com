@@ -24,6 +24,7 @@ $(function() {
         var $currentForm = $(this); 
         var toEmail = $currentForm.find('input[name="_to"]').val();
         var replyEmail = $currentForm.find('input[name="_replyto"]').val();
+        $currentForm.find('input[name="_cc"]').val(replyEmail);
 
         var $statusDiv = $currentForm.next('.block-highlight');
         var $statusParagraph = $statusDiv.find('p');
@@ -55,7 +56,7 @@ $(function() {
                 $statusDiv.removeClass('hidden notice error');
                 $statusDiv.addClass('success');
 
-                $currentForm.find(":input").prop('disabled', true); // disable form on success
+                $currentForm.find(":input").not(".btn").val("");
             },
             error: function(err) {
                 $statusParagraph.html("Oops, there was an error.");

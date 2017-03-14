@@ -5,3 +5,4 @@
 //= require ./app/site-search
 //= require ./app/navigation
 //= require ./app/edit-on-github
+//= require ./app/new-tab-for-links

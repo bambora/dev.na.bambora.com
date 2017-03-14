@@ -11,9 +11,8 @@ links:
     title: Support
 
 buttons:
-  - file: /docs/forms/create_test_merchant_account/
+  - file: /docs/sign_up/
     title: Sign up
     secondary: true
   - file: https://www.beanstream.com/admin/sDefault.asp
     title: Login
-    new_tab: True

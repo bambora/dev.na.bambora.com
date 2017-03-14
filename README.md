@@ -5,6 +5,7 @@
 * [Build the site](#build-the-site)
   * [Docker](#docker)
   * [Run locally](#run-locally)
+* [Branching, merging and deploying](#branching-merging-and-deploying)
 * [Editing the docs](#editing-the-docs)
   * [Ways to make changes](#ways-to-make-changes)
     * [Through your web browser](#through-your-web-browser)
@@ -23,7 +24,6 @@
     * [Spec layout](#spec-layout)
     * [Swagger layout](#swagger-layout)
     * [FAQ layout](#faq-layout)
-* [Branching and merging](#branching-and-merging)
 * [Making non-documentation changes to the site](#making-non-documentation-changes-to-the-site)
 
 ## Build the site
@@ -44,11 +44,13 @@ docker run -v $pwd/source/:/usr/src/app/source -p 4567:4567 devbamboracom
 docker run -v `pwd`/source:/usr/src/app/source -p 4567:4567 devbamboracom
 ```
 
+**Note**: If you get a `request canceled while waiting for connection` error when running `docker build`, go to Docker Settings > Network and change the DNS server to fixed.
+
 You can now see the docs at <http://localhost:4567>. The site will update with changes you make when a page is reloaded.
 
 ### Run locally
 
-Alternatively, you can build and run the site locally. You're going to need: 
+Alternatively, you can build and run the site locally. You're going to need:
 
 * **Linux , OS X, windows**.
 * **Ruby, version 1.9.3 or newer**
@@ -79,6 +81,14 @@ If you want to run the static site in a standalone simple web server run:
 ```shell
 bundle exec rake run
 ```
+
+## Branching, merging and deploying
+
+The site is auto-deployed on pushes to the master branch that build successfully. Changes should first be made and tested on a dedicated development team branch, then pushed to the staging branch, and only staging should ever be pushed to master.
+
+Any branch that is pushed to the Github repo will build and deployed to an internally accessible s3 bucket with the name `dev.beanstream.com.<branch_name>`. These buckets will be periodically deleted but will be recreated if need be when the branch is pushed again (development team base branches will never be deleted).
+
+When development team base branches are deployed, Bamboo will attempt to merge changes on the master branch into the team branch, in order to keep the branches up to date with master.
 
 ## Editing the docs
 
@@ -336,17 +346,66 @@ The referenced API spec must be in the `/data/` folder and referenced like the (
 
 #### FAQ layout
 
-The FAQ layout can be used for a faq-style page. It has no additional frontmatter. In the markdown, use h2's (`##`) for question headings, and any content that comes after the heading will be collapsable under the question. 
+The FAQ layout can be used for a faq-style page. It has no additional frontmatter. In the markdown, use h2's (`##`) for question headings, and any content that comes after the heading will be collapsable under the question.
 
-## Branching and merging
+## Tone
 
-The site is auto-deployed on pushes to the master branch that build successfully. Changes should first be made and tested on a dedicated development team branch, then pushed to the staging branch, and only staging should ever be pushed to master.
+The tone you use while writing documentation is important. The documentation represents the company, so maintaining quality and and consistency is as valued as the amount of documentation available.
 
-Any branch pushed to the github repo will attempt to build and, if successful, will deploy to an internally accessible s3 bucket with the name dev.beanstream.com.#{branch_name}. These buckets will periodically be deleted but will be recreated if need be when the branch is pushed again (development team base branches will never be deleted).
+Here are some notes on Tone from the official Bambora Brand and Design Guide.
 
-When development team branches are pushed, Bamboo will try and merge in the master branch before building them and, if successful, will commit the merge back to the development team branch.
+### Voice
+
+The voice of Bambora is filled with compassion, invoking a sense of humility in every conversation. The personalities behind the brand understand the big picture: humans drive business, not payments or payment products. 
+
+The voice of Bambora conveys a quiet confidence; self-assured and soft spoken. Like a curious neighbor, Bambora respects boundaries but doesn’t shy away from conversation, or an opportunity to share a story. 
+
+Bambora speaks like a human, of course. The brand owns up when it makes a mistake and listens carefully when others are speaking — interrupting is so rude, right? Oh yeah, the brand is always asking questions; always excited to learn something new. 
+
+To keep things simple, Bambora follows a few guidelines when writing — nothing special, just good communication. But when it comes to something serious, Bambora cuts to the chase; there’s no room for small talk when a customer needs help.
+
+### Traits
+
+* KNOWLEDGEABLE but not condescending
+* FRIENDLY but not chatty
+* HONEST but not brash
+* OPTIMISTIC but not naive
+* CURIOUS but not nosey
+* EASY but not basic
+
+### Best practices
+
+* Use small words: Use > Utilize.
+* Write short sentences: Like this one.
+* Contractions are cool: Can’t stop, won’t stop.
+* Sentence case please: First letter stands tall.
+* Go easy on exclamations: Never more than one!
+* Adverbs are for embellishers: Stick to the truth.
+* Check your spelling: Use regional spelling (looking at you, English).
+* When to hyphenate: Compound adjectives before nouns (plus in-store and in-app).
+
+### Engagement methods
+
+#### Ask questions
+
+Show an interest in others. Learn what people like to talk about and go with the flow. You can always bring it back to products later, or never. 
+
+#### Show commitment
+
+We’re building relationships here. It takes time. Be patient, be thoughtful
+
+#### Send winks
+
+Look for ways to bake pleasant or unexpected surprises in every customer experience. Winks are good!
+
+#### Be interesting
+
+Feel free to show the full range of our personality. Our brand is filled with passionate people. Show off (a little) and have some fun
 
 
 ## Making non-documentation changes to the site
 
 With a little more effort, larger changes (e.g. adding a new template, changing css styling) can be made to the developer portal.
+
+
+

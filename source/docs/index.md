@@ -8,7 +8,7 @@ summary: >
 navigation:
   header: na.tocs.na_nav_header
   footer: na.tocs.na_nav_footer
-  toc: na.tocs.na_nav_toc
+  toc: none
   header_active:
 
 hero_unit:
@@ -19,8 +19,8 @@ hero_unit:
     button:
         text: Get started
         link: /docs/guides/merchant_quickstart/
-card_sets:
 
+card_sets:
     -  
         title: Guides
         description: >
@@ -31,36 +31,34 @@ card_sets:
                 description: >
                     Get up and running fast by opening a test account and hitting a few of our API endpoints.
                 icon: flag
-                link: /docs/guides/merchant_quickstart/setup/
+                link: /docs/guides/merchant_quickstart/
             -
                 title: Partner Quickstart
                 description: >
                     Get up and running fast by opening a test account and hitting a few of our API endpoints.
                 icon: flag
-                link: /docs/guides/partner_quickstart/setup/
-
-
+                link: /docs/guides/partner_quickstart/
     -
         title: References
         description: >
-            Get an in-depth knowledge of our payment gateway. See all the references <a href="/docs/guides">here.</a>
+            Get an in-depth knowledge of our payment gateway. See all the references <a href="/docs/references">here.</a>
         cards:
             -
                 title: Payments API
                 description: >
                     Our Payments API supports online payments, card tokenization, payment profiles and reporting.
                 icon: flag
-                link: /docs/references/merchant_API/overview/
+                link: /docs/references/merchant_API/
             -
                 title: Payments SDKs
                 description: >
                     Our Payments SDKs include a range of server-side SDKs, mobile SDKs for Android and iOS, and a browser SDK.
                 icon: more
-                link: /docs/references/merchant_SDKs/overview/
+                link: /docs/references/merchant_SDKs/
             -
                 title: Onboarding API
                 description: >
                     Our Onboarding API allows partners to submit applications on behalf of new sub-merchants.
                 icon: comment
-                link: /docs/references/partner_API/overview/
+                link: /docs/references/onboarding_API/
 ---

@@ -1,7 +1,6 @@
 @charset "utf-8";
 @import 'normalize';
 @import 'compass';
-@import 'faktpro';
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
@@ -430,7 +429,6 @@ html, body {
     input[type='year'],
     input[type='url'],
     input[type='color'] {
-        font-family: "Fakt Pro", "Helvetica Neue", Helvetica, Arial;
         font-size: 15px;
         color: $main-text;
         display: block;

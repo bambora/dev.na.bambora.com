@@ -2,7 +2,7 @@
 title: Analyze Payments
 layout: spec
 
-summary: Analyze Payments
+summary: Our Secure Payment Profile service allows merchants to create secure payment accounts for storing confidential contact and/or credit details on Beanstream’s server.
 
 navigation:
   header: na.tocs.na_nav_header
