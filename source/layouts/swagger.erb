@@ -73,7 +73,7 @@
 
         <!-- Security --> 
         <div class="security">
-          <h2 class="open"><a href="#">Security</a></h2>
+          <h2><a href="#">Security</a></h2>
           <div class="expandable security-body">
             <% security_defs.each do |definition| %> 
               <% def_name = definition[0] %>
@@ -117,12 +117,14 @@
                 <div class="expandable tag-operations">
                   <% operations[tag].each do |operation| %>
 
-                    <%= partial "layouts/_swagger_partials/operation", :locals => {
-                          :operation_name => operation["operation_name"],
-                          :path_name      => operation["path_name"],
-                          :operation_body => operation["operation_body"],
-                          :definitions    => definitions
-                    } %>
+                    <% if not current_page.data.ignored_paths or not current_page.data.ignored_paths.include? operation["path_name"]  %>
+                      <%= partial "layouts/_swagger_partials/operation", :locals => {
+                            :operation_name => operation["operation_name"],
+                            :path_name      => operation["path_name"],
+                            :operation_body => operation["operation_body"],
+                            :definitions    => definitions
+                      } %>
+                    <% end %>
                   
                   <% end %>
                 </div>

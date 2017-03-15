@@ -25,6 +25,8 @@ class CustomMarkdown < Middleman::Renderers::MiddlemanRedcarpetHTML
     "</div>"
   end
   
+  # Add extra content to header ids to keep duplicate header names 
+  # unique.
   def header(text, level)
     require 'securerandom'
     num = SecureRandom.hex
