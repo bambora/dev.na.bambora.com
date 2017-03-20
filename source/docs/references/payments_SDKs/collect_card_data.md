@@ -7,7 +7,7 @@ summary: Details on collecting credit card data.
 navigation:
   header: na.tocs.na_nav_header
   footer: na.tocs.na_nav_footer
-  toc: na.tocs.merchant_SDKs
+  toc: na.tocs.payments_SDKs
   header_active: References
 
 includes:

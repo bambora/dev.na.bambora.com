@@ -16,7 +16,12 @@ breadcrumbs: false
 
 <h1>Create a Test Merchant Account</h1>
 
-<p>Use this form to create a test merchant account. See the <a href="/docs/guides/merchant_quickstart">Merchant Quickstart</a> guide for more information on using your test account.</p>
+<p>Use our automated test account form to start developing and testing your own integrations. 
+After the form is submitted, you will be provided with an API key and a login to our online member area.</p>
+<p> 
+You can manage your account options through the upper right hand ACCOUNT menu. See the 
+<a href="/docs/guides/merchant_quickstart">Merchant Quickstart</a> guide for more information 
+on using your test account.</p>
 
 <% form_tag 'https://api.beanstream.com/scripts/merchantaccount/createtestaccount.aspx',
     :id => 'createTestAccount_form', :class => 'form-group', :method => 'POST' do %>

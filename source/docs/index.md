@@ -52,9 +52,9 @@ card_sets:
             -
                 title: Payments SDKs
                 description: >
-                    Our Payments SDKs include a range of server-side SDKs, mobile SDKs for Android and iOS, and a browser SDK.
+                    Our Payments SDKs include a range of server-side SDKs, mobile SDKs for Android and iOS, and a browser SDK, Payfields.
                 icon: more
-                link: /docs/references/merchant_SDKs/
+                link: /docs/references/payments_SDKs/
             -
                 title: Onboarding API
                 description: >

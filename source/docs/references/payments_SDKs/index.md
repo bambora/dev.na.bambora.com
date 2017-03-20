@@ -1,5 +1,5 @@
 ---
-title: Merchant SDKs Overview
+title: Payments SDKs Overview
 layout: tutorial
 
 summary: >
@@ -8,12 +8,12 @@ summary: >
 navigation:
   header: na.tocs.na_nav_header
   footer: na.tocs.na_nav_footer
-  toc: na.tocs.merchant_SDKs
+  toc: na.tocs.payments_SDKs
   header_active: References
 ---
 
 # Overview
-Our SDKs wrap our RESTful APIs. Our server and mobile SDKs make it easy for you to use our RESTful APIs in a range of languages: C#, Go, Java, Javascript (Node), PHP, Python, and Ruby. Our browser SDK limits the scope of your PCI compliance to PCI SAQ-A.
+Our SDKs wrap our RESTful APIs. Our server and mobile SDKs make it easy for you to use our RESTful APIs in a range of languages: C#, Go, Java, Javascript (Node), PHP, Python, and Ruby. Our browser SDK, Payfields, limits the scope of your PCI compliance to PCI SAQ-A.
 
 
 ## Server SDK
