@@ -155,12 +155,15 @@ You need to either display or link to the Terms and Conditions in your UI. The A
 [Note: you may request the terms doc in either html or pdf format. The version id is specific to the format.]
 
 Here are the two steps:
-Query the latest version id of the doc
-https://uat-onboarding-api.beanstream.com/v1/workflows/{{flow}}/terms/default/{{format}}/version/
-e.g. https://uat-onboarding-api.beanstream.com/v1/workflows/psp-usd/terms/default/html/version/
-Retrieve the doc
-https://uat-onboarding-api.beanstream.com/v1/workflows/{{flow}}/terms/default/{{format}}/version/{{version}}
-e.g. https://uat-onboarding-api.beanstream.com/v1/workflows/psp-usd/terms/default/html/version/Oj0iO3b5W8iZJ2b61LU2dgGI7sqV1FYA
+
+**Step 1:** Query the latest version id of the doc
+- https://uat-onboarding-api.beanstream.com/v1/workflows/{{flow}}/terms/default/{{format}}/version/
+- e.g. https://uat-onboarding-api.beanstream.com/v1/workflows/psp-usd/terms/default/html/version/
+
+**Step 2:** Retrieve the doc
+- https://uat-onboarding-api.beanstream.com/v1/workflows/{{flow}}/terms/default/{{format}}/version/{{version}}
+- e.g. https://uat-onboarding-api.beanstream.com/v1/workflows/psp-usd/terms/default/html/version/Oj0iO3b5W8iZJ2b61LU2dgGI7sqV1FYA
+
 On the same page that you display the terms you must also either display or link to the pricing. You must clearly tell the customer what rate they are paying. This can just be your regular pricing page, but it must state that there are processing fees and the fees themselves.
 
 ### Terms and conditions versioning
