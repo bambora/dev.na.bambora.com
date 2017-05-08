@@ -18,7 +18,7 @@ Risk Thresholds can be used by merchants to block certain high-risk transactions
 
 If a transaction is assigned a risk score greater than or equal to the threshold set in the decline field, the transaction is not processed. You will receive an email message for transactions with a risk score lower than the decline threshold but greater than or equal to the warn threshold.
 
-Merchants using the API must use security authentication and include the customer IP (customerIp) to ensure an accurate risk score output. This is done automatically when using the payment form when billing address is required.
+Merchants using the API must use security authentication and include the customer IP (customer_ip) to ensure an accurate risk score output. This is done automatically when using the payment form when billing address is required.
 
 ## Required fields for Transactions
 To get an accurate Risk Threshold result, there are several minimally required fields in the transaction. Where possible, the merchant should send us the information in these fields to generate the most useful riskScore.
