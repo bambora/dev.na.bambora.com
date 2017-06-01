@@ -39,6 +39,33 @@ The following workflows are currently supported:
 
 [Terms API Spec](./tac_v2016-08-18)
 
+#### May 30th, 2017
+* New fields for GW-USA and GW-CDN
+    * terminal.first_data_nashville_terminal.visa_debit_merchant_number
+    * terminal.first_data_nashville_terminal.jcb_merchant_number
+    * terminal.first_data_nashville_terminal.token_type
+    * terminal.global_terminal.amex_merchant_number
+    * terminal.global_terminal.jcb_merchant_number
+    * terminal.global_terminal.discover_merchant_number
+    * terminal.chase_paymentech_terminal.amex_merchant_number
+    * terminal.chase_paymentech_terminal.discover_merchant_number
+    * terminal.elavon_terminal.amex_merchant_number
+    * terminal.elavon_terminal.discover_merchant_number
+    * terminal.tsys_terminal.amex_merchant_number
+    * terminal.tsys_terminal.discover_merchant_number
+* New fields for GW-CDN
+    * terminal.td_terminal.visa_debit_merchant_number
+    * terminal.td_terminal.debit_mc_merchant_number
+    * terminal.td_terminal.amex_merchant_number
+    * terminal.td_terminal.discover_merchant_number
+* New desjardins_terminal for GW-CDN
+    * terminal.desjardins_terminal.terminal_id
+    * terminal.desjardins_terminal.visa_merchant_number
+    * terminal.desjardins_terminal.mc_merchant_number
+    * terminal.desjardins_terminal.amex_merchant_number
+    * terminal.desjardins_terminal.visa_debit_merchant_number
+    * terminal.desjardins_terminal.jcb_merchant_number
+
 #### May 9th, 2017
 * Update and rewrite [Onboarding API Guide](../../guides/onboarding)
 * Updated all Onboarding documentation to now use the 'Bambora' name
