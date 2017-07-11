@@ -18,7 +18,7 @@ navigation:
 
 Our Apple Pay API allows your mobile app and online store to accept payments using Apple Watch, iPhone, iPad, or Safari.
 
-## Getting Started
+## Getting started
 
 If this is your first time implementing our Payments API we recommend reviewing our [Payments API reference guides](https://dev.na.bambora.com/docs/references/merchant_API/v1-0-3/), to get familiar with Bambora's Payments API.
 
@@ -30,9 +30,9 @@ You can find more about Bambora and Apple Pay on [Github](https://github.com/bam
 
 Before you accept Apple Pay with Bambora, you need to [register a Merchant ID and download a Merchant Certificate (P12)](https://developer.apple.com/library/content/ApplePay_Guide/Configuration.html) with Apple.
 
-### Configure Your P12
+### Configure your .p12
 
-To enable Apple Pay on your Merchant Account, you'll set a password for your P12 using Keychain Access.
+To enable Apple Pay on your Merchant Account, you'll set a password for your .p12 file using the Keychain Access app.
 
 1. Under the Category menu, select **Certificates**.
 2. Find and right-click your *Merchant ID* certificate. Select **Export**.
@@ -57,7 +57,7 @@ All of the directions and code samples to enable Apple Pay in your iOS app are a
 
 [Getting Started with Apple Pay](https://developer.apple.com/apple-pay/get-started/) will cover how to use Apple Pay and best practices, [Apple Pay Guide](https://developer.apple.com/library/content/ApplePay_Guide/) has explanations of the user flow and working with Apple Pay, and [Apple Pay Sandbox Testing](https://developer.apple.com/support/apple-pay-sandbox/) will show you how to test Apple Pay transactions.
 
-## API Requests
+## API requests
 
 When you make an `apple_pay` request to our Payments API, it'll be formatted in JSON, calling to https://api.na.bambora.com/v1/payments/.
 
@@ -85,9 +85,11 @@ When you make an `apple_pay` request to our Payments API, it'll be formatted in 
 | payment_token | The encrypted Apple Pay token containing card holder details, generated from within the iOS app. |
 | complete | The type of transaction being performed. True indicates a Purchase, and false is a Pre-Authorisation. |
 
-## Additional Examples
+## API responses
 
-### Payment Button
+## Additional examples
+
+### Payment button
 
 The sample below shows the action taken by a payment button using Swift, generating a payment request.
 
@@ -121,7 +123,7 @@ func paymentButtonAction() {
 
 > Note: We not only support, but recommend the use of 3D Secure with Visa, MasterCard, and America Express using `.capability3DS`.
 
-### Issue Payment Token
+### Issue payment token
 
 This sample outlines how to handle the payment token once the payment request has been successfully authorised. To send the generated token to the server, execute the following request.
 
@@ -162,3 +164,5 @@ func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationView
 ```
 
 > Note: This iOS client is sending the payment token to our Mobile Payments Demo Server, as outlined on [Github](https://github.com/bambora/na-merchant-api-demo).
+
+You can learn more about the API and the responses you'll receive after a call [here](https://dev.na.bambora.com/docs/references/merchant_API/v1-0-3/#post-payments-PaymentRequest).
