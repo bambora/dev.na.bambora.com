@@ -111,6 +111,9 @@ The following workflows are currently supported:
 
 [Specification](./v2016-06-11)
 
+#### July 20th, 2017
+* Added optional custom_data field to all flows.
+
 #### June 8th, 2017
 * Added optional Address to Bank flows for BACS-GBP
 
