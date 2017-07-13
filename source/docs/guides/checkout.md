@@ -29,7 +29,7 @@ You can also find your Merchant ID from the left navigation panel under **admini
 
 ### Hash key
 
-Your hash key is way to secure your Checkout form along with transaction and customer details, ensuring your payment is completed. 
+Your hash key is the way to secure your Checkout form along with transaction and customer details, ensuring your payment is completed. 
 
 Click **administration** then **account settings**, and finally **order settings** to access your hash key. You'll use this hash key to generate a link to your form.
 
