@@ -1,7 +1,7 @@
 // Import variables
 @import 'syntax'; // syntax highlighting for code blocks
 @import 'bambora_ui_variables'; // colors, break points, etc.
-@import 'site_primary_colors'; // overwrite primary Bambora colors 
+@import 'site_primary_colors'; // overwrite primary Bambora colors
 @import 'z-index'; // manage site z-indexes
 
 // Import stylesheets
@@ -14,18 +14,21 @@ div.clear {
     clear:both;
 }
 
+// Overriding Bambora UI default styling for .container to align with Europrn dev portal.
+@media (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+}
+
 img {
   display: block;
   margin: auto;
-  max-width: 720px; 
+  max-width: 720px;
 }
 
-footer { 
+footer {
   background-color: $lightest;
-}
-
-.container {
-  margin-top: 66px;
 }
 
 table {
@@ -53,11 +56,11 @@ table {
 }
 
 pre {
-  padding: 20px 25px; 
-  border-radius: 6px; 
+  padding: 20px 25px;
+  border-radius: 6px;
 }
 
-// TODO: Fix li so it doesn't underline in dropdowns, other places. 
+// TODO: Fix li so it doesn't underline in dropdowns, other places.
 .markdown {
   li a:not(.btn) {    // link styling in markdown lists
     color: $primary;
@@ -66,16 +69,16 @@ pre {
     border-bottom: $primary 1px solid;
     line-height: 1.1em;
     cursor: pointer;
-    transition: all 100ms ease-out; 
+    transition: all 100ms ease-out;
   }
 
   li a:not(.btn):visited {
-      color: $primary; 
+      color: $primary;
   }
 
   li a:not(.btn):hover {
       color: $primary-light;
-      border-bottom: $primary-light 1px solid; 
+      border-bottom: $primary-light 1px solid;
   }
 
 
@@ -113,14 +116,14 @@ pre {
 
     a {
         background-color: $lightest;
-        color: $darkest; 
+        color: $darkest;
         text-decoration: none;
         flex-grow: 1;
         padding: 24px;
         margin-bottom: 30px;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.04);
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08);
         position: relative;
-        bottom: 0px; 
+        bottom: 0px;
         transition: bottom 0.1s;
 
         &:hover {
@@ -134,13 +137,13 @@ pre {
     .icon-bg {
         display: inline-block;
         width: 30px;
-        height: 30px; 
+        height: 30px;
         text-align: center;
-        line-height: 35px; 
+        line-height: 35px;
         border-radius: 4px;
-        
-        path { 
-            fill: $lightest; 
+
+        path {
+            fill: $lightest;
         }
     }
 
@@ -149,20 +152,20 @@ pre {
         float: right;
         background: rgb(202, 172, 223);
         color: rgb(120, 71, 181);
-        border-radius: 4px; 
-        font-size: 12px; 
+        border-radius: 4px;
+        font-size: 12px;
         padding: 0px 10px;
         font-weight: bold;
     }
 
-    h3 { 
-        margin-top: 15px; 
-        margin-bottom: 12px; 
+    h3 {
+        margin-top: 15px;
+        margin-bottom: 12px;
     }
 
     p {
-        font-size: 14px; 
-        margin: 0px; 
+        font-size: 14px;
+        margin: 0px;
     }
 }
 
@@ -174,7 +177,7 @@ html {
 
 body {
     position: relative;
-    min-height: 100%; 
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -197,10 +200,10 @@ footer {
 #search-overlay {
   display: none;
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: $zIndexSearch;
   overflow: auto;
@@ -221,7 +224,7 @@ footer {
   }
 
   a {
-    font-size: 20px; 
+    font-size: 20px;
     color: $muted-dark;
 
     &:hover {
@@ -236,16 +239,16 @@ footer {
   .form-group {
     margin-bottom: 15px;
   }
-  
+
   #result-count {
-    font-size: 24px; 
-    color: $primary; 
+    font-size: 24px;
+    color: $primary;
   }
 
   input {
     padding-left: 0;
     margin-left: 0;
-    font-size: 32px; 
+    font-size: 32px;
     color: $lightest;
     background: transparent;
     border: none;
@@ -261,7 +264,7 @@ footer {
     }
 
     .summary {
-      margin-top: 10px; 
+      margin-top: 10px;
       color: $lightest;
     }
 
@@ -278,7 +281,7 @@ footer {
         a {
           color: $contrast-dark;
           font-size: 14px;
-          text-decoration: none;        
+          text-decoration: none;
 
           &:hover {
             text-decoration: underline;
@@ -286,11 +289,11 @@ footer {
         }
       }
     }
-  } 
+  }
 }
 
 .no-scroll {
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 /* bread crumb trail */
@@ -327,7 +330,7 @@ footer {
   }
 }
 
-/* edit on github */ 
+/* edit on github */
 #edit-on-github {
   float: right;
   margin-top: 30px;
@@ -341,7 +344,7 @@ footer {
   }
 
   &:hover {
-    color: $primary; 
+    color: $primary;
   }
 
   .dropdown-title {
@@ -363,10 +366,10 @@ footer {
 .modal-overlay {
   display: none;
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: $zIndexModal;
 
@@ -384,14 +387,14 @@ footer {
       padding-left: 0;
       padding-bottom: 30px;
     }
-  
+
     li {
-      list-style-position: inside; 
+      list-style-position: inside;
       text-indent: calc(-1em - 10px);
       padding-left: calc(1em + 10px);
       margin-bottom: 1em;
     }
-  }  
+  }
 }
 
 
@@ -425,7 +428,7 @@ footer {
 }
 
 
-/* general mobile styling */ 
+/* general mobile styling */
 /* (mobile styling for header, side nav are in respective .scss files) */
 
 @media (max-width : 992px) {
