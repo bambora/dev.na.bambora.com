@@ -39,7 +39,7 @@ tocbot.init({
 });
 
 
-// Position left nav nicely on scroll 
+// Position left nav nicely on scroll
 wrap = $(window);
 nav = $('.nav-left');
 nav_offset = 84; // hard-coded pixel height between top of nav and page header
@@ -47,6 +47,8 @@ nav_offset -= 40; // padding above fixed nav
 
 wrap.on("scroll", function(e) {
   if(wrap.scrollTop() > nav_offset) {
+    console.log('nav_offset',nav_offset);
+    console.log('wrap.scrollTop()',wrap.scrollTop());
     nav.addClass('nav-left-fixed');
   } else {
     nav.removeClass('nav-left-fixed');

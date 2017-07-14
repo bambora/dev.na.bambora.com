@@ -19,25 +19,22 @@
     <% else %> <%# otherwise div without image %>
       <div class="hero hero-no-image">
     <% end %>
-      
-      <%= partial "layouts/header" %> 
-  
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-sm-8 col-xs-10">
-              <h1><%= current_page.data.hero_unit.big_heading %></h1>
-              <p><%= current_page.data.hero_unit.tag_line %></p>
-              <% if btn = current_page.data.hero_unit.button %>
-                <a href="<%= btn.link %>" class="btn"><%= btn.text %></a>
-              <% end %>
-            </div>
-          </div>
+
+      <%= partial "layouts/header" %>
+
+        <div class="container centre">
+          <h3><%= current_page.data.hero_unit.region %></h3>
+          <h1><%= current_page.data.hero_unit.big_heading %></h1>
+          <p><%= current_page.data.hero_unit.tag_line %></p>
+          <% if btn = current_page.data.hero_unit.button %>
+            <a href="<%= btn.link %>" class="btn"><%= btn.text %></a>
+          <% end %>
         </div>
     </div>
 
     <div class="container">
-      <% current_page.data.card_sets.each do |card_set| %> 
-        <div class="row card-set"> 
+      <% current_page.data.card_sets.each do |card_set| %>
+        <div class="row card-set">
           <div class="col-md-3">
             <hr>
             <h2><%= card_set.title %></h2>
@@ -45,7 +42,7 @@
               <%= card_set.description %>
             </p>
           </div>
-        
+
           <div class="col-md-8 col-md-offset-1">
             <%= partial("layouts/flex_cards", :locals => { :cards => card_set.cards }) %>
           </div>
@@ -56,7 +53,6 @@
     <%= partial "layouts/footer" %>
 
     <% if current_page.data.hero_unit and current_page.data.hero_unit.hero_image %>
-      <%= javascript_include_tag "template/landing_page_header" %>
     <% end %>
 
   </body>

@@ -12,10 +12,11 @@ navigation:
   header_active:
 
 hero_unit:
-    hero_image: Dev_Portal_bambora_background.jpg
-    big_heading: Developer Documentation.
+    region: Bambora North America
+    hero_image: hero.jpg
+    big_heading: Build better payments.
     tag_line:  >
-        The single source of truth for our North America payment gateway.
+        Create simple and secure payment experiences online and in-app.
     button:
         text: Get started
         link: /docs/guides/merchant_quickstart/
