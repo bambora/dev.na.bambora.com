@@ -145,6 +145,26 @@ Whether you build your form manually or use the [Checkout Form Link Builder](htt
 
 After you've entered all the details, simply click on **Create link** at the bottom of the page to generate a URL that you can copy and send out to your customers.
 
+## Redirect pages
+
+After a transaction has been completed, you'll have either an approved or declined result and a redirect will be required. To set your approved and declined redirects, log into the [Member Area](https://web.na.bambora.com) and click **administration**, then **account settings**, and then **order settings**.
+
+Under **Transaction Response Pages**, you can enter for Approval Redirect and Decline Redirect respectively.
+
+Approval
+```
+https://web.na.bambora.com/order/sample/approved.asp
+```
+
+Decline
+```
+https://web.na.bambora.com/order/sample/declined.asp
+```
+
+Don't forget to click **Update** at the bottom of the page once you're done.
+
+> To customise your redirect pages, reach out to our [Bambora Customer Experience Team](https://www.bambora.com/en/ca/contact/support/), and we'll provide the code to create your own pages.
+
 ## Applying a theme
 
 While Checkout is a basic form for you to use when collecting payments it's also easy to update. We also offer a modern user interface (UI) that you can copy and paste into your **payment form**.
