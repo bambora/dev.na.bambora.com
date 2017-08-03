@@ -1,0 +1,50 @@
+# Response Variables
+
+## About response variables
+The response variables listed below outline all of the responses through either HTTP Post or Server-to-server communication, or both. Many of these variables are important pieces of information that must be displayed to your customer.
+
+| Variable | Type | Description | Display result to customer |
+| -------- | ---- | ----------- | ------------------- |
+| authCode | Up to 32 alphanumeric characters | When a transaction is approved, this variable contains a unique bank-issued code. | Yes |
+| avsAddrMatch | Binary digit | This variable validates the street addresses. 1 is a match, 0 is different. | No |
+| avsID | Single digit | ID number from an AVS response. | No |
+| avsMessage | Up to 128 alphanumeric characters | The text message associated with an AVS ID. | No |
+| avsPostalMatch | Binary digit |  This variable validates the postal/ZIP code. 1 is a match, 0 is different. | No |
+| avsProcessed | Binary digit | This variable validates an issuer has performed AVS. 1 is a successful attempt, 0 is no attempt to perform AVS. | No |
+| avsResult | Single digit | This variable validates a confirmation of both address and postal/ZIP code match. 1 is a match, 0 is a mismatch. | No |
+| cvdID | Single digit | This variable validates the CVD submitted. 1 - match, 2 - mismatch, 3 - not verified, 4 - missing CVD should be present, 5 - unable to process, 6 - not provided. | No |
+| eci | Single digit | This variable applies to 3D Secure transactions, indicating a liability shift from the merchant to the card company. 5 - successful liability shift, 6 - successful liability shift, without the cardholder's participation, 7 - unsuccessful authentication, no liability shift. | No | 
+| errorFields | The total list of incomplete fields | When a cardholder enters errors into a form, this list of fields must be corrected before a transaction can be completed. | Yes |
+| errorType | Single character | This variable outlines the type of error returned as either N, S, or U. | No |
+| ioConfCode | Up to 15 alphanumeric characters | When the cardholder successfully uses Interac Online, this variable displays a confirmation number from their financial institution. | Yes |
+| ioInstName | Up to 30 alphanumeric characters | This variable displays the name of the cardholder's financial institution during Interac Online transactions. | Yes |
+| messageID | Up to 3 digits | This variable is provided in every approved/declined transaction response. | Yes |
+| messageText | A | This variable returns a basic approved or declined response message that can b | Yes |
+| paymentMethod | 2 character alphanumeric | This variable outlines the payment method for transactions. CC - credit card, IO - Interac Online. | Optional |
+| rbAccountID | 10 digits | This variable displays the ID number for the Recurring Billing Profile, returned on creation. Transactions return bilingID with the same value. | No |
+| ref1 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | Optional |
+| ref2 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | Optional |
+| ref3 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | Optional |
+| ref4 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | Optional |
+| ref5 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | Optional |
+| responseType | Single character | This variable is set to T as a completed transaction response, and an R with a 3D Secure redirect. | No |
+| rspCavResult | Single digit | This variable is used for Canadian address verification to confirm validation. 1 - validation passed, 2 - validation failed. | No |
+| rspCodeAddr*N* | 3 digits | This variable is returned information validating Canadian address verification for up to four submitted address codes. | No |
+| rspCodeCav | 3 digits | This variable represents the Equifax response for CAV service version 1.0. | No |
+| rspCodeCredit*N* | 3 digits |  |  |
+| rspCodeCredit*N* | 3 digits |  |  |
+| rspCodeDob | 4 digits |  |  |
+| rspCodeSafeScan | Single character |  |  |
+| rspCodeSafeScanID | Single character |  |  |
+| rspCustomerDec | Alphanumeric |  |  |
+| trnAmount | Up to 9 digits | This variable is the amount of the transaction. | Yes |
+| trnApproved | Binary digit | This variable verifies whether a transaction is approved or declined. 1 - transaction is approved, 0 - transaction is declined. | Yes |
+| trnCustomerName | Server-to-server up to 32 alphanumeric characters | The customer's name as submitted with the transaction. | Yes |
+| trnDate | 20 alphanumeric  | The date and time the transaction was processed. | Yes |
+| trnEmailAddress | Server-to-server up to 64 alphanumeric characters | This variable is the email address submitted by the cardholder with transaction. | Yes |
+| trnId | 8 digits | The unique identifier for each individual transaction. | Yes |
+| trnLanguage | Server-to-server 3 characters | The language used for the submitted transaction. | Yes |
+| trnOrderNumber | Up to 30 alphanumeric characters | This variable represents the optional order number assigned to transactions. | Optional |
+| trnPhoneNumber | Server-to-server up to 32 digits | This variable is the phone number submitted by the cardholder with the transaction. | Yes |
+| trnType | Up to 3 alphanumeric characters | This variable displays the type of transaction being performed. | No |
+| cardType | Double character | This variable displays the card type selected for the transaction. VI - Visa, PV - Visa Debit, MC - MasterCard, AM - American Express, NN - Discover, DI - Diner's Club, JB - JCB, IO - Interac Online, ET - direct debit or electronic transfer. | Yes |
