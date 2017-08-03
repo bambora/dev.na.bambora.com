@@ -1,0 +1,102 @@
+# Query String Variables
+
+When using a query string on HTTP POST and server-to-server integrations, there are several variables which can be used to store card and customer data in a multi-use token, or simply complete a transactions.
+
+## Standard variables
+
+All variables that are either necessary or recommended for a call to the API.
+
+| Variable | Type | Description | Required |
+| -------- | ---- | ----------- | -------- |
+| requestType | Server-to-server | This variable directs the call and appears as `requestType=BACKEND`. | Yes |
+| merchant_id | General 9-digit | Your unique Merchant ID found in your [Member Area](https://web.na.bambora.com). | Yes |
+| trnOrderNumber | Up to 30 alphanumeric characters | This variable represents the optional order number assigned to transactions. | No |
+| trnAmount | General up to 9 digits | The amount of the transaction. | Yes | 
+| errorPage | HTTP POST up to 128 alphanumeric characters | When a transaction request contains errors, the cardholder is redirected to this page. | Yes |
+| approvedPage | HTTP POST up to 128 alphanumeric characters | This URL is the page the cardholder is redirected after the transaction is approved. | No |
+| declinedPage | HTTP POST up to 128 alphanumeric characters | This URL is the page the cardholder is redirected after the transaction is declined. | No |
+| username | Up to 16 alphanumeric characters | Legacy password system used to access the API and set from **order settings** within your [Member Area](https://web.na.bambora.com). | Yes, or the use of a HASH |
+| password | Up to 16 alphanumeric characters | Legacy password system used to access the API and set from **order settings** within your [Member Area](https://web.na.bambora.com). | Yes, or the use of a HASH |
+| hashValue | No limit on input | Used to apply a hash value, encrypting the transaction. | Yes, or the use of username/password |
+| hashExpiry | 12 digits | Used to indicate the expiration time for the hashed transaction in a YYYYMMDDHHMM format. | Yes, or the use of username/password |
+
+## Transaction variables
+
+All variables used to collect cardholder or customer information for a transaction.
+
+| Variable | Type | Description | Required |
+| -------- | ---- | ----------- | -------- |
+| trnCardOwner | Up to 32 alphanumeric characters | The cardholder's first and last name as they appear on the card. | Yes |
+| trnCardNumber | Up to 20 digits | The 16-digit credit card number. | Yes |
+| trnExpiryMonth | Double-digit | The month the card expires, as it appears on the card. | Yes |
+| trnExpYear | Double-digit | The year the card expires, as it appears on the card. | Yes |
+| trnCardCvd | Up to 4 digits | The 3 or 4-digit security code that appears on the back of Visa and MasterCard cards, and the front of American Express. | No | 
+| ordName | Up to 64 alphanumeric characters | The first and last name of the customer that placed the order. | Yes |
+| ordEmailAddress | Up to 64 alphanumeric characters | The email address that will receive the receipt. | Yes |
+| ordPhoneNumber | Up to 32 digits | The phone number submitted with the order. | Yes |
+| ordAddress1 | Up to 64 alphanumeric characters | The street address submitted by the cardholder. | Yes |
+| ordAddress2 | Up to 64 alphanumeric characters | The second line of the street address submitted with the order. | No | 
+| ordCity | Up to 32 characters | The city address submitted by the cardholder. | Yes |
+| ordProvince | Two characters | The province or state address submitted by the cardholder using the two-letter ISO code. [Provinces](https://en.wikipedia.org/wiki/ISO_3166-2:CA) and [States](https://en.wikipedia.org/wiki/ISO_3166-2:US). | Yes |
+| ordCountry | Two characters | The country submitted by the card holder using the the [two-letter ISO code](https://www.iso.org/obp/ui/#search/code/). | Yes |
+| ordPostalCode | Up to 16 alphanumeric characters | The postal or ZIP code of the address submitted by the cardholder.  | Yes |
+| ordTax1Price | Up to 12 digits including decimal place. | The amount of the main or first tax applied to the transaction, between 0.1% and 22%. | No |
+| ordTax2Price | Up to 12 digits including decimal place. | The amount of the secondary tax applied to the transaction, between 0.1% and 22%. | No |
+| pcCustomerCode | 17 alphanumeric characters | The customer code use by card brands to identify the purchase, merchant, or transaction reference number. | No |
+
+## Profile variables
+
+All variables here can be saved in a multi-use token and later recalled or used during a transaction.
+
+| Variable | Type | Description | Required |
+| -------- | ---- | ----------- | -------- |
+| trnCardOwner | Up to 32 alphanumeric characters | The cardholder's first and last name as they appear on the card. | Yes |
+| trnCardNumber | Up to 20 digits | The 16-digit credit card number. | Yes |
+| trnExpiryMonth | Double-digit | The month the card expires, as it appears on the card. | Yes |
+| trnExpYear | Double-digit | The year the card expires, as it appears on the card. | Yes |
+| trnCardCvd | Up to 4 digits | The 3 or 4-digit security code that appears on the back of Visa and MasterCard cards, and the front of American Express. | No | 
+| ordName | Up to 64 alphanumeric characters | The first and last name of the customer that placed the order. | Yes |
+| ordEmailAddress | Up to 64 alphanumeric characters | The email address that will receive the receipt. | Yes |
+| ordPhoneNumber | Up to 32 digits | The phone number submitted with the order. | Yes |
+| ordAddress1 | Up to 64 alphanumeric characters | The street address submitted by the cardholder. | Yes |
+| ordAddress2 | Up to 64 alphanumeric characters | The second line of the street address submitted with the order. | No | 
+| ordCity | Up to 32 characters | The city address submitted by the cardholder. | Yes |
+| ordProvince | Two characters | The province or state address submitted by the cardholder using the two-letter ISO code. [Provinces](https://en.wikipedia.org/wiki/ISO_3166-2:CA) and [States](https://en.wikipedia.org/wiki/ISO_3166-2:US). | Yes |
+| ordCountry | Two characters | The country submitted by the card holder using the the [two-letter ISO code](https://www.iso.org/obp/ui/#search/code/). | Yes |
+| ordPostalCode | Up to 16 alphanumeric characters | The postal or ZIP code of the address submitted by the cardholder.  | Yes |
+
+## Recurring Billing variables
+
+All variables used to establish a recurring payment.
+
+| Variable | Type | Description | Required |
+| -------- | ---- | ----------- | -------- |
+| trnRecurring | Binary digit | When this variable is set to 1, the transaction request will be flagged as a recurring transaction. 0 will set the transaction as a single payment. | Yes | 
+| rbBillingPeriod | Single character | Establishing a frequency for recurring transactions, this variable can be set to D - daily, W - weekly, M - monthly, or Y - yearly. | Yes |
+| rbBillingIncrement | No limit on numeric input | Setting the increment determines how often `rbBillingPeriod` occurs. If set to Weekly, an increment of 3 results in billing every three weeks. | Yes |
+| rbEndMonth | Binary digit | When set to 1, all recurring transactions will be billed on the final day of the month. | No |
+| rbCharge | Binary digit | When set to 0, the initial transaction will be delayed until the time set in`rbFirstBilling`. | No |
+| rbFirstBilling | 8-digit | Using the MMDDYYYY format, this will select the first date to start any recurring transaction. | No | 
+| rbSecondBilling | 8-digit | Used with `rbFirstBilling` to prorate the first payment, adding this variable establishes all future payments using the MMDDYYYY format. | No |
+| rbExpiry | 8-digit | Using the MMDDYYYY format, this variable sets an end to the billing cycle. Leave the variable empty to charge the profile indefinitely. | No |
+| rbApplyTax1 | Binary digit | A flag for setting the first tax from your [Member Area](https://web.na.bambora.com). 1 - Enabled, 0 - Disabled. | No |
+| rbApplyTax2 | Binary digit | A flag for setting the second tax from your [Member Area](https://web.na.bambora.com). 1 - Enabled, 0 - Disabled. | No |
+| ref1 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | No |
+| ref2 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | No |
+| ref3 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | No |
+| ref4 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | No |
+| ref5 | Up to 256 alphanumeric characters | One of five optional order references added to a transaction's details. | No |
+
+## 3D Secure variables
+
+All of the variables associated with Verified by Visa (VbV), MasterCard SecureCode (SecureCode), or American Express SafeKey (SafeKey).
+
+| Variable | Type | Description | Required |
+| -------- | ---- | ----------- | -------- |
+| termURL | Encoded URL | Once the cardholder has entered their PIN on the bank portal, this URL will collect the bank response codes. | Yes |
+| vbvEnabled | VbV binary digit | This flag will determine whether VbV is performed on all, or only specific transactions. 1 - Enable on orders, 2 - bypass VbV on a specific order. | No |
+| scEnabled | SecureCode binary digit  | This flag will determine whether SecureCode is performed on all, or only specific transactions. 1 - Enable on orders, 2 - bypass SecureCode on a specific order. | No |
+| sKeyEnabled | SafeKey binary digit  | This flag will determine whether SafeKey is performed on all, or only specific transactions. 1 - Enable on orders, 2 - bypass SafeKey on a specific order. | No |
+| SecureXID | Server-to-server 20-digit | Following the authentication, use this variable to include the bank issued 3D Secure transaction identifier. | Yes for self-certified merchants |
+| SecureECI | Server-to-server Single digit | This displays the authentication status. 5 - Transaction authenticated, 6 - Authentication attempted but not completed. | Yes for self-certified merchants |
+| SecureCAVV | Server-to-server 40 alphanumeric characters | This variable is for the authentication verification issued from the bank. | Yes for self-certified merchants |
