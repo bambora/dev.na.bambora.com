@@ -1,0 +1,1021 @@
+# Response Messages
+
+## About response messages
+
+When a transaction is processed using the Payment API, it returns numerical messages that validate, update, or deny the request. Our Payment API responds directly to your Merchant Account depending on your issuer. Select your account provider below to review your responses.
+
+## Account Providers
+
+<br>[Bambora](#bambora)
+<br>[Desjardins](#desjardins)
+<br>[Elavon](#elavon)
+<br>[Electronic Bill Payment/Automated Clearing House (EBP/ACH)](#ebp)
+<br>[Europay, MasterCard, Visa (EMV)](#emv)
+<br>[First Data](#first-data)
+<br>[Global Payments](#global-payments)
+<br>[Interac Online](#interac-online)
+<br>[Paymentech](#paymentech)
+<br>[Toronto-Dominion Bank (TD)](#td)
+<br>[United Kingdom (UK)](#uk)
+<br>[Vital](#vital)
+
+<a name="bambora"></a>
+
+### Bambora
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 14 | Invalid expiration date | Invalid expiration date |
+| 16 | Duplicate Transaction – This transaction has already been approved | Duplicate Transaction – This transaction has already been approved |
+| 21 | Validation is less than the minimum amount | Validation is less than the minimum amount |
+| 22 | Validation greater than maximum amount | Validation greater than maximum amount |
+| 26 | Invalid expiry date | Invalid expiry date |
+| 49 | Invalid transaction request string | Invalid transaction request string |
+| 50 | Invalid transaction type | Invalid transaction type |
+| 51 | DECLINE | Restricted Card or IP |
+| 52 | Invalid Card Number | Invalid Card Number |
+| 53 | Application Error - Sending Request | Application Error - Sending Request |
+| 54 | Transaction timeout - No available device | Transaction timeout - No available device |
+| 55 | Transaction timeout - No transaction Response | Transaction timeout - No transaction Response |
+| 56 | Application Error - Retrieving Response | Application Error - Retrieving Response |
+| 59 | Declined - Operation must be performed by Master Merchant | Declined - Operation must be performed by Master Merchant |
+| 60 | Declined - Operation restricted through Master Merchant | Declined - Operation restricted through Master Merchant |
+| 190 | Unknown transaction response | Unknown transaction response |
+| 191 | Invalid Transaction Amount | Invalid Transaction Amount |
+| 192 | Transaction cannot be voided after being returned | Transaction cannot be voided after being returned |
+| 193 | Amount does not match the transaction you are modifying. | Amount does not match the transaction you are modifying. |
+| 194 | Transaction exceeds return limit. | Transaction exceeds return limit. |
+| 195 | Invalid adjustment amount. | Invalid adjustment amount. |
+| 196 | Original purchase transaction has been voided | Original purchase transaction has been voided |
+| 197 | Transactions cannot be adjusted to a zero or negative value | Transactions cannot be adjusted to a zero or negative value |
+| 198 | Zero value transactions cannot be voided | Zero value transactions cannot be voided |
+| 199 | Credit card does not match original purchase. | Credit card does not match original purchase. |
+| 200 | Transaction cannot be adjusted | Transaction cannot be adjusted |
+| 201 | Invalid transaction adjustment ID | Invalid transaction adjustment ID |
+| 202 | Invalid order number | Invalid order number |
+| 203 | Pre-Authorization already completed | Pre-Authorization already completed |
+| 204 | Declined: Use Pre-Auth Completion | Declined: Use Pre-Auth Completion |
+| 205 | Transaction only voidable on the date processed | Transaction only voidable on the date processed |
+| 206 | Account missing terminal id | Account missing terminal id |
+| 207 | Invalid merchant id | Invalid merchant id |
+| 208 | Completion greater than remaining reserve amount. | Completion greater than remaining reserve amount. |
+| 209 | Merchant Account Disabled | Merchant Account Disabled |
+| 210 | Merchant Account Closed | Merchant Account Closed |
+| 211 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 212 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 214 | Transaction reversed | Transaction reversed |
+| 215 | Address Validation Failed | Address Validation Failed |
+| 217 | DECLINE | Transaction Declined TR |
+| 218 | DECLINE | Transaction Declined AC |
+| 297 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 298 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 299 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 300 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 301 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 302 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 303 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 304 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 305 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 306 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 307 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 308 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 309 | Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 310  |  Service Unavailable - Please try again later | Service Unavailable - Please try again later |
+| 311 | 3D Secure Failed | 3D Secure Failed |
+| 312 | Card type not accepted | Card type not accepted |
+| 313 | DECLINE | Over sales limit |
+| 314 | Missing or invalid payment information - Please validate all required payment information. | Missing or invalid consumer payment information |
+| 315 | CALL HELP DESK | HTTPS Connection Required |
+| 316 | CALL HELP DESK | Invalid transaction validation type |
+| 317 | CALL HELP DESK | Authentication Failed |
+| 318 | CALL HELP DESK | No transaction request data received |
+| 319 | CALL HELP DESK | Transaction Declined - Restricted transaction type |
+| 320 | CALL HELP DESK | Missing errorPage URL |
+| 321 | CALL HELP DESK | Missing or invalid return URL |
+| 322 | CALL HELP DESK | Transaction amount does not match inventory calculation |
+| 323 | CALL HELP DESK | One or more products not found in inventory |
+| 324 | CALL HELP DESK | Invalid product quantity |
+| 325 | File Transfer Approved | File Transfer Approved |
+| 326 | Declined - Invalid bank account | Declined - Invalid bank account |
+| 558 | Decline | Decline |
+| 559 | No Transaction Found | No Transaction Found |
+| 560 | Transaction In Process | Transaction In Process |
+| 632 | Decline | Max number of recurring billing accounts reached |
+| 674 | Payment declined | Payment declined |
+| 681 | Payment method not accepted on this account | Payment method not accepted on this account |
+| 682 | Decline | Decline |
+| 683 | Declined. Missing or invalid merchant data. | Declined. Missing or invalid merchant data. |
+| 760 | Multiple Transaction Matches Found | Multiple Transaction Matches Found |
+| 761 | Payment Cancelled | Payment Cancelled |
+| 762 | Expired session. Transaction not completed in allocated time. | Expired session. Transaction not completed in allocated time. |
+| 788 | Duplicate Order Number - This order number has already been processed | Duplicate Order Number - This order number has already been processed |
+| 789 | Card Number Mismatch | Card Number Mismatch |
+| 792 | Credit card must support 3D Secure VBV or SecureCode | Credit card must support 3D Secure VBV or SecureCode |
+| 793 | Address validation failed. Transaction reversed. | Address validation failed. Transaction reversed. |
+| 800 | Invalid customer code (token) | Invalid customer code (token) |
+| 801 | Card number missing for given customer code (token) | Card number missing for given customer code (token) |
+| 802 | Declined HASH EXPIRED | Declined HASH EXPIRED |
+| 804 | Declined - Entered Information Cannot Be Authenticated | Declined - Entered Information Cannot Be Authenticated |
+| 807 | Batch close completed successfully | Batch close completed successfully |
+| 808 | Batch close failed on all terminals | Batch close failed on all terminals |
+| 809 | Batch close on one or more terminals | Batch close on one or more terminals |
+| 810 | Batch close failed on store and forward | Batch close failed on store and forward |
+| 811 | Insufficient user permission for processing payment transactions | 	Insufficient user permission for processing payment transactions |
+| 812 | Insufficient user permission for processing refund transactions | Insufficient user permission for processing refund transactions |
+| 813 | User session has expired | User session has expired |
+| 814 | User session validation failed | User session validation failed |
+| 815 | Invalid session source | Invalid session source |
+| 816 | Card track data cannot be decrypted | Card track data cannot be decrypted |
+| 817 | Card track data cannot be parsed for card number and expiry | Card track data cannot be parsed for card number and expiry |
+| 818 | Invalid track format indicator | Invalid track format indicator |
+| 819 | Missing AVS and CVD data required for Discover transaction | Missing AVS and CVD data required for Discover transaction |
+| 820 | Invalid use of trnAmount field, must pass ordItemPrice with taxes enabled. | Invalid use of trnAmount field, must pass ordItemPrice with taxes enabled. |
+| 821 | Declined | CVD mismatch. Transaction reversed |
+| 822 | Declined | AVS mismatch. Transaction reversed |
+| 825 | Missing or invalid term URL | CALL HELP DESK |
+| 827 | Declined | Declined |
+| 935 | Adjustment failed, please wait one minute and retry | Adjustment failed, please wait one minute and retry |
+| 936 | Declined please try again | Invalid or expired single use token |
+| 937 | Declined please try again | Single use token service unavailable |
+| 938 | Authentication is required to process this transaction | Authentication is required to process this transaction |
+| 940 | DECLINE | Masterpass account is not enabled |
+| 941 | DECLINE | oauth_verifier is required |
+| 942 | DECLINE | checkout_resource_url is required |
+| 944 | Card entry method not accepted | Card entry method not accepted |
+
+<a name="desjardins"></a>
+
+### Desjardins
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 1001 | APPROVED | Approved with balance |
+| 1002 | APPROVED | Approved without the balance |
+| 1003 | APPROVED | Approved VIP |
+| 1004 | APPROVED | Approved. Administrative Transaction |
+| 1005 | DECLINED | Declined |
+| 1006 | EXPIRED CARD | Declined. Expired card |
+| 1007 | ADM PIN TRIES EXCEE | Declined. Max PIN attempts with an Administrative card reached |
+| 1008 | INVALID CARD | Declined. The Admin card must be from the same institution as the POS |
+| 1009 | SYSTEM NOT AVAIL. | Declined. The host cannot authorize the transaction at this time |
+| 1010 | TRX NOT ALLOWED | Declined. The transaction type is invalid |
+| 1011 | TRX NOT ALLOWED | Declined. The transaction type is not supported on this terminal |
+| 1012 | DECLINED | Declined. The card status is lost or stolen |
+| 1013 | DECLINED | Declined. The status of the card is unknown |
+| 1014 | ACCOUNT NOT SET UP | Declined. The account used in the transaction is not defined |
+| 1015 | PLEASE RETRY | Declined. Auth. type incorrectly defined. Host problem |
+| 1016 | INVALID CARD | Declined. Track2 invalid |
+| 1017 | PLEASE RETRY | Declined. Partial cancellations are not supported |
+| 1018 | PLEASE RETRY | Declined. Invalid amount |
+| 1019 | PLEASE RETRY | Declined. The transaction date is invalid. |
+| 1020 | PLEASE RETRY | Declined. Transaction declined by the issuer |
+| 1021 | PLEASE RETRY | Declined. Format error in the transaction |
+| 1022 | PLEASE RETRY | Declined. Invalid acquirer institution |
+| 1023 | PLEASE RETRY | Declined. Routing problem |
+| 1024 | PLEASE RETRY | Declined. Routing problem |
+| 1025 | PLEASE RETRY | Declined. Cannot authorize |
+| 1026 | PLEASE RETRY | Declined. Invalid card number length |
+| 1027 | DECLINED | Declined. Insufficient funds |
+| 1028 | PLEASE RETRY | Declined. Preauthorization limit reached for the period |
+| 1029 | DECLINED | Declined. Duplicate transaction |
+| 1030 | PLEASE RETRY | 	Declined. Max online refund amount reached for a card for the period |
+| 1031 | REFUND LIMIT | Declined. Max offline refund amount reached for a card for the period |
+| 1032 | REFUND LIMIT | Declined. Max refund amount for a transaction |
+| 1033 | OVER MAX NUMBER TRX | Declined. Max number of refunds reached for a card for the period |
+| 1034 | PLEASE RETRY | Declined. Max refund amount reached for a card for the period |
+| 1035 | NOT AVAILABLE | Declined. Balance inquiry transaction not permitted |
+| 1036 | OVER MAX NUMBER TRX | Declined. Usage limit has been reached |
+| 1037 | OVER MAX NUMBER TRX | Declined. The number of refunds for this card type has been reached |
+| 1038 | PLEASE RETRY | Declined. Declined by the issuer |
+| 1039 | DECLINED | Declined. Status of the card inactive |
+| 1040 | HOLD CARD | Declined. Stolen card |
+| 1041 | REFUND LIMIT | Declined. Limit in the no. of trans. or refund amount and Interac cancellations reached for the terminal |
+| 1042 | PIN REQUIRED | Declined. The card PIN is required for this card (can be admin card) |
+| 1043 | INVALID CARD | Declined. The check digit of the card number is invalid |
+| 1044 | PLEASE RETRY | Declined. A forced transaction ended in error due to a system problem |
+| 1045 | SYSTEM NOT AVAIL. | Declined. The authorization host is not available |
+| 1046 | CALL FOR AUTH | Declined. The authorization host is not available |
+| 1047 | CALL FOR AUTH | Declined. The authorization host is not available |
+| 1048 | PLEASE RETRY | Declined. System error |
+| 1049 | TRX NOT ALLOWED | Declined. Unsupported transaction |
+| 1050 | CALL FOR AUTH | Declined. Maximum amount limit |
+| 1051 | CALL FOR AUTH | Declined. Maximum amount limit for the day reached |
+| 1052 | CALL SERVICE | Declined. Issuing host did not respond (timeout) |
+| 1053 | CALL SERVICE | Declined. System error |
+| 1054 | CALL SERVICE | Declined. System error |
+| 1055 | CALL SERVICE | Declined. System error (admin card) |
+| 1056 | CALL FOR AUTH | Declined. System error with security boxes |
+| 1057 | CALL FOR AUTH | Declined. ARQC error |
+| 1058 | CALL FOR AUTH | Declined. CVR error |
+| 1059 | CALL FOR AUTH | Declined. TVR error |
+| 1060 | CALL FOR AUTH | Declined. This message is an EMV referral - "fallback" |
+| 1061 | RETAILER NOT FOUND | Declined. The merchant number is invalid |
+| 1062 | PLEASE RETRY | Declined. Account type invalid. |
+| 1063 | INVALID ADMIN PIN | Declined. The administrative PIN is invalid |
+| 1064 | NEED ADMIN CARD | Declined. Admin card required. Currently only validated for admin PIN change transactions |
+| 1065 | CALL SERVICE | Declined. The amount of the transaction is too high |
+| 1066 | CARD NOT SET UP | Declined. The card is not set up in the acquirer's host (POS) |
+| 1067 | CALL SERVICE | Declined. The transaction date is invalid |
+| 1068 | INVALID DATE | Declined. The expiry date of the card is invalid |
+| 1069 | CALL SERVICE | Declined. Transaction code invalid |
+| 1070 | DECLINED | Declined. Transaction amount exceeds the allowable limit |
+| 1071 | DECLINED | Declined. EMV - ARQC invalid |
+| 1072 | DECLINED | Declined. EMV - Error with the security box |
+| 1073 | DECLINED | Declined. EMV - Error with the security box |
+| 1074 | DECLINED | Declined. EMV - Key cannot be found in the security module |
+| 1075 | DECLINED | Declined. EMV - ATC error |
+| 1076 | DECLINED | Declined. EMV - CVR error |
+| 1077 | DECLINED | Declined. EMV - TVR error |
+| 1078 | DECLINED | Declined. EMV - Transaction in fallback |
+| 1079 | INVALID PROGRAM | Declined. PPC - The selected program is inactive |
+| 1080 | TRX NOT ALLOWED | Declined. PPC - The merchant does not have access to the transaction program |
+| 1081 | INC. AMOUNT/CARD | Declined. PPC - Amount differs from the program |
+| 1082 | INVALID AMOUNT | 	Declined. PPC - The amount does not correspond with the program |
+| 1083 | DECLINED | Declined. PPC - Activation correction impossible |
+| 1084 | DECLINED | Declined. PPC - amount of the transaction higher than the starting amount |
+| 1085 | ALREADY ACTIVE | 	Declined. PPC - card already activated |
+| 1086 | INSUFF. FUNDS | Declined. PPC - Insufficient funds |
+| 1087 | INVALID CARD | Declined. PPC - Invalid card |
+| 1088 | FORMAT ERROR | Declined. Error in the format of the transaction |
+| 1089 | FORMAT ERROR | Declined. Error in the contents of a field in the transaction |
+| 1090 | FORMAT ERROR | Declined. Error in Batch Close |
+| 1091 | PLEASE RETRY | Declined. Desjardins acquirer system timeout |
+| 1092 | FORMAT ERROR | Declined. Error in the Desjardins host acquirer system |
+| 1093 | TERMINAL DEACTIVATED | Declined. The terminal is deactivated at the Desjardins acquirer host |
+| 1094 | FORMAT ERROR | Declined. The transaction is invalid. The response sent by the host only contains a header. |
+| 1095 | INVALID PIN LENGTH | Declined. PIN length invalid |
+| 1096 | PLEASE RETRY | Declined. Cardholder card data decrypting error. |
+| 1097 | PLEASE RETRY | Declined. MAC error |
+| 1098 | CALL SERVICE | Declined. Sequence number (see header) is invalid |
+| 1099 | PIN TRIES EXCEEDED | Declined. Number of PIN attempts exceeded |
+| 1100 | EXPIRED CARD | Declined. Expired card |
+| 1101 | HOLD CARD | Declined. Card probably fraudulent. |
+| 1102 | HOLD CARD | Declined. Stolen card |
+| 1103 | INVALID AMOUNT | Declined. Invalid amount |
+| 1104 | PLEASE RETRY | Declined. Invalid card |
+| 1105 | HOLD CARD | Declined. Card probably fraudulent. |
+| 1106 | PLEASE RETRY | Declined. Limit exceeded |
+| 1107 | HOLD CARD | Declined. Amount exceeds the limit |
+| 1108 | HOLD CARD | Declined. Retain card |
+| 1109 | DECLINED | Declined. EMV - ARQC error |
+| 1110 | DECLINED | Declined. EMV - CVR error |
+| 1111 | DECLINED | Declined. EMV - TVR error |
+| 1112 | UNABLE TO PROCESS | Declined. Error in the tax calculation |
+| 1113 | CANCELLATION LIMITÂ | Declined. Daily Interac cancellation limit reached |
+| 1114 | KEY CHANGE REQUIRED | Declined. First transaction for a terminal must be a transaction code 96 |
+| 1115 | CARD NOT SUPPORTED | Declined. |
+| 1116 | SELECT OTHER ACCT | Declined. Inactive Desjardins Interac account |
+| 1117 | CARD NOT SET UP | Declined. Inactive Desjardins Interac card |
+| 1118 | DECLINED | Declined. Desjardins Interac card, insufficient funds |
+| 1119 | NOT ALLOWED | Declined. Transaction not allowed |
+| 1120 | INVALID PIN | Declined. Incorrect PIN |
+| 1121 | DECLINED | Declined. PIN Required. The card must be inserted into the chip reader. |
+| 1122 | ADM PIN NOT IN FILE | Declined. Unrecognized administrative card |
+| 1123 | PIN CHG NOT ALLOWED | Declined. This Admin card cannot be used to change the PIN |
+| 1124 | SYSTEM NOT AVAIL. | Declined. Desjardins Interac issuing host unavailable |
+| 1125 | DECLINED | Declined. Requires caisse authorization |
+| 1126 | ACCOUNT NOT SET UP | Declined. Non-existent account |
+| 1127 | CARD NOT SUPPORTED | Declined. Caisse (branch) does not exist |
+| 1128 | CARD NOT SET UP | Declined. Card inactive at the Desjardins Interac issuing host |
+| 1129 | SELECT OTHER ACCT | Declined. Account does not exist |
+| 1130 | DECLINED | Declined. Amount exceeds the allowable limit |
+| 1131 | CARD NOT SET UP | Declined. Account does not exist |
+| 1132 | Invalid Accord D Transaction | Invalid Accord D Transaction |
+| 1133 | Accord D transaction cannot be processed as recurring. | Accord D transaction cannot be processed as recurring. |
+
+<a name="ebp"></a>
+
+### EBP/ACH
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 328 | Non sufficient Funds | Non sufficient Funds |
+| 329 | Account Closed | Account Closed |
+| 330 | Invalid Account | Invalid Account |
+| 331 | Payment Stopped | Payment Stopped |
+| 332 | Cannot trace account | Cannot trace account |
+| 334 | No chequing privileges | No chequing privileges |
+| 335 | Funds not cleared | Funds not cleared |
+| 336 | Payor/Payee Deceased | Payor/Payee Deceased |
+| 337 | Account frozen | Account frozen |
+| 338 | Incorrect payor/payee name | Incorrect payor/payee name |
+| 339 | Refused by payor/payee | Refused by payor/payee |
+| 340 | Payment recalled | Payment recalled |
+| 341 | Interbank reject - Invalid due date | Interbank reject - Invalid due date |
+| 342 | Interbank reject - Invalid institution number | Interbank reject - Invalid institution number |
+| 343 | Interbank reject - Invalid account number | Interbank reject - Invalid account number |
+| 344 | Interbank reject - Invalid institution and account number | Interbank reject - Invalid institution and account number |
+| 345 | Interbank reject - Other | Interbank reject - Other |
+| 627 | Edit Reject | Edit Reject |
+| 629 | Currency/Account Mismatch | Currency/Account Mismatch |
+| 630 | Payment Recalled | Payment Recalled |
+| 763 | Not in accordance with agreement - Personal | Not in accordance with agreement - Personal |
+| 764 | Agreement revoked - Personal | Agreement revoked - Personal |
+| 765 | No pre-notification - Personal | No pre-notification - Personal |
+| 766 | Not in accordance with agreement - Business | Not in accordance with agreement - Business |
+| 767 | Agreement revoked - Business | Agreement revoked - Business |
+| 768 | No pre-notification - Business | No pre-notification - Business |
+| 769 | Customer Initiated Return Credit Only | Customer Initiated Return Credit Only |
+
+<a name="elavon"></a>
+
+### Elavon
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 743 | APPROVAL | APPROVAL |
+| 744 | DECLINED-HELP 9999 (Gift Card - Host Busy) | DECLINED-HELP 9999 (Gift Card - Host Busy) |
+| 745 | INVALID CARD (Gift Card) | INVALID CARD (Gift Card) |
+| 746 | INVALID TERM ID (Gift Card) | INVALID TERM ID (Gift Card) |
+| 747 | AMOUNT ERROR (Gift Card) | AMOUNT ERROR (Gift Card) |
+| 748 | ALREADY ACTIVE (Gift Card | ALREADY ACTIVE (Gift Card |
+| 749 | REQ. EXCEEDS BAL. (Gift Card) | REQ. EXCEEDS BAL. (Gift Card) |
+| 750 | MAX REACHED (Gift Card) | MAX REACHED (Gift Card) |
+| 751 | NON RELOADABLE (Gift Card) | NON RELOADABLE (Gift Card) |
+| 752 | CARD NOT ACTIVE (Gift Card) | CARD NOT ACTIVE (Gift Card) |
+| 753 | SEQ ERR PLS CALL (Gift Card) | SEQ ERR PLS CALL (Gift Card) |
+| 754 | DECLINED-HELP 9999 (Gift Card – System Error) | DECLINED-HELP 9999 (Gift Card – System Error) |
+| 755 | DECLINE CVV2 | DECLINE CVV2 |
+| 756 | PICK UP CARD | PICK UP CARD |
+| 757 | DECLINED | DECLINED |
+| 758 | CALL AUTH. CENTER | CALL AUTH. CENTER |
+| 759 | ELAVON PROCESSING ERROR | ELAVON PROCESSING ERROR |
+
+<a name="emv"></a>
+
+### EMV
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 790 | Approved | Approved |
+| 791 | Declined | Declined |
+
+<a name="first-data"></a>
+
+### First Data
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 684 | APPROVAL | APPROVAL |
+| 685 | REFERRAL | REFERRAL |
+| 686 | INVLD MER ID | INVLD MER ID |
+| 687 | APPRV LESSER AMT | APPRV LESSER AMT |
+| 688 | BAD PROCESSING CODE | BAD PROCESSING CODE |
+| 689 | INV AMT | INV AMT |
+| 690 | INV ACCT NUM | INV ACCT NUM |
+| 691 | INV TERMINAL | INV TERMINAL |
+| 692 | PLEASE RETRY | PLEASE RETRY |
+| 693 | DECLINED | DECLINED |
+| 694 | EXPIRED CARD | EXPIRED CARD |
+| 695 | DECLINED | DECLINED |
+| 696 | HOLD - CALL CTR | HOLD - CALL CTR |
+| 697 | SERV NOT ALLOWED | SERV NOT ALLOWED |
+| 698 | APPROVAL | APPROVAL |
+| 699 | AVS ACCEPTED | AVS ACCEPTED |
+| 700 | INVALID TERM ID | INVALID TERM ID |
+| 701 | PLEASE RETRY | PLEASE RETRY |
+| 702 | RESEND BATCH | RESEND BATCH |
+| 703 | SYSTEM PROBLEM | SYSTEM PROBLEM |
+| 704 | CVV2 DECLINED | CVV2 DECLINED |
+| 705 | DOWNLOAD FAILED | DOWNLOAD FAILED |
+| 706 | INVLID MAC | INVLID MAC |
+| 707 | INVALID ID NBR | INVALID ID NBR |
+| 708 | INV DRIVER NBR | INV DRIVER NBR |
+| 709 | INV VEHICLE NBR | INV VEHICLE NBR |
+| 710 | INV EXP DATE | INV EXP DATE |
+| 711 | INVLD AMT 3 | INVLD AMT 3 |
+| 712 | INVLD ACCT 2 | INVLD ACCT 2 |
+| 713 | INV EXP DATE | INV EXP DATE |
+| 714 | INV ACCT | INV ACCT |
+| 715 | INVLD ACCT 1 | INVLD ACCT 1 |
+| 716 | CAPT. NOT ALLOWED | CAPT. NOT ALLOWED |
+| 717 | COMM ERR RESEND | COMM ERR RESEND |
+| 718 | INVL TERMINAL ID | INVL TERMINAL ID |
+| 719 | INVL ARRIVAL-DT | INVL ARRIVAL-DT |
+| 720 | INVL CHECKOUT DT | INVL CHECKOUT DT |
+| 721 | INVL ROOM RATE | INVL ROOM RATE |
+| 722 | INVL FOLIO NBR | INVL FOLIO NBR |
+| 723 | INV TRN TYPE | INV TRN TYPE |
+| 724 | MAX TIP $999 | MAX TIP $999 |
+| 725 | INCORRECT PIN | INCORRECT PIN |
+| 726 | AMT EXCEEDED LIMIT | AMT EXCEEDED LIMIT |
+| 727 | HOST KEY ERROR | HOST KEY ERROR |
+| 728 | PIN RETRY EXCEEDED | PIN RETRY EXCEEDED |
+| 729 | DUPLICATE TRAN | DUPLICATE TRAN |
+| 730 | REV REJECTED | REV REJECTED |
+| 731 | ENTER LESSER AMOUNT | ENTER LESSER AMOUNT |
+| 732 | PIN XLATE ERROR | PIN XLATE ERROR |
+| 733 | INV CASHBACK AMT | INV CASHBACK AMT |
+| 734 | CRYPTO BOX UNAV | CRYPTO BOX UNAV |
+| 735 | DBT SWITCH UNAVL | DBT SWITCH UNAVL |
+| 736 | ISSUER UNAV | ISSUER UNAV |
+| 737 | UNDEFINED CARD | UNDEFINED CARD |
+| 738 | DBTSW INV MERID | DBTSW INV MERID |
+| 739 | TRAN CT EXCD LMT | TRAN CT EXCD LMT |
+| 740 | RESUB EXCDS LMT | RESUB EXCDS LMT |
+| 741 | DBTSW PIN XL ERR | DBTSW PIN XL ERR |
+| 742 | DECLINE | DECLINE |
+| 823 | ISS UNAV/DATE ER | ISS UNAV/DATE ER |
+| 939 | Reversal Outside Window | Reversal Outside Window |
+
+<a name="global-payments"></a>
+
+### Global Payments
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 561 | APPROVED | APPROVED |
+| 562 | CALL CARD ISSUER | CALL CARD ISSUER |
+| 563 | CALL | CALL |
+| 564 | INVLD MERCH ID | INVLD MERCH ID |
+| 565 | PIC UP | PIC UP |
+| 566 | DECLINE | DECLINE |
+| 567 | REVERSED | REVERSED |
+| 568 | Decline-CV2 FAIL | Decline-CV2 FAIL |
+| 569 | AP WITH ID | AP WITH ID |
+| 570 | INVLD | INVLD |
+| 571 | INVLD AMOUNT | INVLD AMOUNT |
+| 572 | INVLD ACCT | INVLD ACCT |
+| 573 | PLEASE RETRY | PLEASE RETRY |
+| 574 | INVLD EXP DATE | INVLD EXP DATE |
+| 575 | PIN INVALID | PIN INVALID |
+| 576 | UNAUTH TRANS | UNAUTH TRANS |
+| 577 | MAX PIN RETRIES | MAX PIN RETRIES |
+| 578 | AP DUPE | AP DUPE |
+| 579 | SYSTEM UNAVAILABLE | SYSTEM UNAVAILABLE |
+| 580 | INV ACCT MATCH | INV ACCT MATCH |
+| 581 | INV ACCT MATCH | INV ACCT MATCH |
+| 582 | INV ITEM NUM | INV ITEM NUM |
+| 583 | ITEM ADJ | ITEM ADJ |
+| 584 | MUST BALANCE NOW | MUST BALANCE NOW |
+| 585 | USE DUP THEN BAL | USE DUP THEN BAL |
+| 586 | NO DUP FOUND | NO DUP FOUND |
+| 587 | INVALID DATA | INVALID DATA |
+| 588 | NO TRANS FOUND | NO TRANS FOUND |
+| 589 | AP NOT CAPTURED | AP NOT CAPTURED |
+| 590 | AP AUTH-ONLY | AP AUTH-ONLY |
+| 591 | INV BANK | INV BANK |
+| 592 | TRAN TYPE INVLD | TRAN TYPE INVLD |
+| 593 | APPROVED | APPROVED |
+| 594 | DB UNAVAIL 02 | DB UNAVAIL 02 |
+| 595 | DB UNAVAIL 03 | DB UNAVAIL 03 |
+| 596 | DB UNAVAIL 04 | DB UNAVAIL 04 |
+| 597 | UNAUTH USER | UNAUTH USER |
+| 598 | INVALID CARD | INVALID CARD |
+| 599 | DB ISSUER UNAVAIL | DB ISSUER UNAVAIL |
+| 600 | INVALID POS CARD | INVALID POS CARD |
+| 601 | ACCT TYPE INVLD | ACCT TYPE INVLD |
+| 602 | INVALID PREFIX | INVALID PREFIX |
+| 603 | INVALID FIID | INVALID FIID |
+| 604 | VERIFY | VERIFY |
+| 605 | INVALID LIC | INVALID LIC |
+| 606 | INVALID STATE CD | INVALID STATE CD |
+| 607 | EDC UNAVAILABLE | EDC UNAVAILABLE |
+| 608 | DB UNAVAIL 01 | DB UNAVAIL 01 |
+| 609 | SCAN UNAVAILABLE | SCAN UNAVAILABLE |
+| 610 | EXCEEDS MAX AMT | EXCEEDS MAX AMT |
+| 611 | EXCEEDS MAX USES | EXCEEDS MAX USES |
+| 770 | INVALID CID | INVALID CID |
+| 803 | ISSUER UNAVAIL | ISSUER UNAVAIL |
+| 806 | TRAN NOT ALLOWED | TRAN NOT ALLOWED |
+
+<a name="interac-online"></a>
+
+### Interac Online
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 634 | APPROVED THANKS | APPROVED |
+| 635 | CARD USE LIMITED REFER TO BRANCH | CARD USE LIMITED REFER TO BRANCH |
+| 636 | FUNDS NOT AVAIL REFER TO BRANCH | FUNDS NOT AVAIL REFER TO BRANCH |
+| 637 | EXPIRED CARD REFER TO BRANCH | EXPIRED CARD REFER TO BRANCH |
+| 638 | PIN ERROR PLEASE RE-TRY | RE-TRY PIN ERROR |
+| 639 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY INVALID TRANSACTION |
+| 640 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY INVALID TRANSACTION |
+| 641 | $ LIMIT EXCEEDED REFER TO BRANCH | $ LIMIT EXCEEDED REFER TO BRANCH |
+| 642 | CARD USE LIMITED REFER TO BRANCH | CARD USE LIMITED REFER TO BRANCH |
+| 643 | USAGE EXCEEDED REFER TO BRANCH | USAGE EXCEEDED REFER TO BRANCH |
+| 644 | EXCESS PIN RETRY REFER TO BRANCH | EXCESS PIN RETRY REFER TO BRANCH |
+| 645 | PIN ERROR PLEASE RE-TRY | RE-TRY EDIT ERROR |
+| 646 | INVALID CARD REFER TO BRANCH | INVALID CARD REFER TO BRANCH |
+| 647 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY EDIT ERROR |
+| 648 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY EDIT ERROR |
+| 649 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY EDIT ERROR |
+| 650 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY INVALID CARD |
+| 651 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY SYSTEM PROBLEM |
+| 652 | INVALID CARD REFER TO BRANCH | CARD NOT SUPPORTED REFER TO BRANCH |
+| 653 | ACCT NOT SET UP REFER TO BRANCH | ACCT NOT SET UP REFER TO BRANCH |
+| 654 | ACCT NOT SET UP REFER TO BRANCH | ACCT NOT SET UP REFER TO BRANCH |
+| 655 | CARD IS NOT SETUP REFER TO BRANCH | CARD IS NOT SETUP REFER TO BRANCH |
+| 656 | CANNOT PROCESS PLEASE RETRY | RE-TRY EDIT ERROR |
+| 657 | CANNOT PROCESS PLEASE RETRY | RETRY SYSTEM TIMEOUT |
+| 658 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY EDIT ERROR |
+| 659 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY SYSTEM PROBLEM |
+| 660 | Bad sequence number: resend transaction | Bad sequence number: resend transaction |
+| 661 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY SYSTEM PROBLEM |
+| 662 | CANNOT PROCESS PLEASE RETRY | RE-TRY EDIT ERROR |
+| 663 | CANNOT PROCESS PLEASE RETRY | RE-TRY EDIT ERROR |
+| 664 | CANNOT PROCESS PLEASE RETRY | RE-TRY EDIT ERROR |
+| 665 | CANNOT PROCESS PLEASE RE-TRY | RETRY SYSTEM PROBLEM |
+| 666 | CANNOT PROCESS PLEASE RE-TRY | RETRY SYSTEM PROBLEM |
+| 667 | CANNOT PROCESS PLEASE RE-TRY | RETRY SYSTEM PROBLEM |
+| 668 | CANNOT PROCESS PLEASE RE-TRY | RETRY SYSTEM PROBLEM |
+| 669 | CANNOT PROCESS OVER STORE LIMIT | OVER RETAILER LIMIT |
+| 670 | CANNOT PROCESS PLEASE RE-TRY | RE-TRY INVALID TRANSACTION |
+| 671 | CANNOT PROCESS | CANNOT PROCESS |
+| 672 | CANNOT PROCESS OVER CORR LIMIT | EXCEEDS CORRECTION LIMIT |
+| 673 | CANNOT PROCESS | CANNOT PROCESS |
+
+<a name="paymentech"></a>
+
+### Paymentech
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 346 | Approved | Approved |
+| 347 | Auth Declined | Auth Declined |
+| 348 | Call Voice Oper | Call Voice Oper |
+| 349 | Hold - Call | Hold - Call |
+| 350 | Call Voice Oper | Call Voice Oper |
+| 351 | Invalid Card No | Invalid Card No |
+| 352 | Invalid Exp. Date | Invalid Exp. Date |
+| 353 | Invalid ICA No | Invalid ICA No |
+| 354 | Invalid ABA No | Invalid ABA No |
+| 355 | Invalid PIN No | Invalid PIN No |
+| 356 | Invalid Bank MID | Invalid Bank MID |
+| 357 | Invalid Term No | Invalid Term No |
+| 358 | Invalid Amount | Invalid Amount |
+| 359 | Invalid Tran Fmt | Invalid Tran Fmt |
+| 360 | Call Voice Oper | Call Voice Oper |
+| 361 | Lost/Stolen Card | Lost/Stolen Card |
+| 362 | Invalid PIN | Invalid PIN |
+| 363 | Over Credit Flr | Over Credit Flr |
+| 364 | Request Denied | Request Denied |
+| 365 | Not Online to XX | Not Online to XX |
+| 366 | Auth Down-Retry | Auth Down-Retry |
+| 367 | Auth Declined | Auth Declined |
+| 368 | Invalid Pin No | Invalid Pin No |
+| 369 | Auth Declined | Auth Declined |
+| 370 | Card Not Allowed | Card Not Allowed |
+| 371 | PL Setup Reqd | PL Setup Reqd |
+| 372 | BIN Not Allowed | BIN Not Allowed |
+| 373 | Card Not Allowed | Card Not Allowed |
+| 374 | Inv Merc Rstrct Code | Inv Merc Rstrct Code |
+| 375 | Prod Restricted | Prod Restricted |
+| 376 | Prod Not On File | Prod Not On File |
+| 377 | Auth Declined | Auth Declined |
+| 378 | Auth Declined | Auth Declined |
+| 379 | Auth Declined | Auth Declined |
+| 380 | *Request Denied* | *Request Denied* |
+| 381 | Invalid Driver Number | Invalid Driver Number |
+| 382 | PIN Not Selected | PIN Not Selected |
+| 383 | Auth Declined | Auth Declined |
+| 384 | CVC2/CID ERROR | CVC2/CID ERROR |
+| 385 | Tran Not Defined | Tran Not Defined |
+| 386 | Block Act Not Alwd | Block Act Not Alwd |
+| 387 | Incorrect Act Amt | Incorrect Act Amt |
+| 388 | Auth Down - Retry | Auth Down - Retry |
+| 389 | Auth Busy - Retry | Auth Busy - Retry |
+| 390 | Auth Busy - Retry | Auth Busy - Retry |
+| 391 | Auth Error - Retry | Auth Error - Retry |
+| 392 | Err - Pls Retry | Err - Pls Retry |
+| 393 | Err - Pls Retry | Err - Pls Retry |
+| 394 | Invalid Term ID | Invalid Term ID |
+| 395 | Invalid Function | Invalid Function |
+| 396 | Invalid Card | Invalid Card |
+| 397 | Invalid Exp. Date | Invalid Exp. Date |
+| 398 | Invalid Action Code | Invalid Action Code |
+| 399 | Amt Entry Error | Amt Entry Error |
+| 400 | Invalid PIN | Invalid PIN |
+| 401 | Invalid Card | Invalid Card |
+| 402 | Auth # Not Entered | Auth # Not Entered |
+| 403 | Invalid Down Pay Ind | Invalid Down Pay Ind |
+| 404 | Policy # Wrong Len | Policy # Wrong Len |
+| 405 | Invalid Ind Code | Invalid Ind Code |
+| 406 | Invalid Function | Invalid Function |
+| 407 | Entry Mode Invalid | Entry Mode Invalid |
+| 408 | Invalid Industry Data | Invalid Industry Data |
+| 409 | Inv Fleet Data | Inv Fleet Data |
+| 410 | Invalid Sys Info | Invalid Sys Info |
+| 411 | Invalid Format | Invalid Format |
+| 412 | Inv Transaction Class | Inv Transaction Class |
+| 413 | Inv PIN Capability | Inv PIN Capability |
+| 414 | Inv/Missing Retr Ref | Inv/Missing Retr Ref |
+| 415 | Inv MSDI | Inv MSDI |
+| 416 | Invalid Duration | Invalid Duration |
+| 417 | Inv Pref Cust Ind | Inv Pref Cust Ind |
+| 418 | Inv MO/TO Number | Inv MO/TO Number |
+| 419 | Inv Sale/Chg Des/Folio | Inv Sale/Chg Des/Folio |
+| 420 | Inv Mult Clr Seq No | Inv Mult Clr Seq No |
+| 421 | Inv Purch Card Data | Inv Purch Card Data |
+| 422 | Inv Input/Use VRU | Inv Input/Use VRU |
+| 423 | Invalid EC Data 329 | Invalid EC Data 329 |
+| 424 | INV Function or Multiple FS or Unknown TKN | INV Function or Multiple FS or Unknown TKN |
+| 425 | INV TKN Value | INV TKN Value |
+| 426 | CVD Data Error | CVD Data Error |
+| 427 | TKN Data Error | TKN Data Error |
+| 428 | Invalid Term ID | Invalid Term ID |
+| 429 | Invalid Term ID | Invalid Term ID |
+| 430 | Term Not Active | Term Not Active |
+| 431 | Invalid Act Code | Invalid Act Code |
+| 432 | Void Not Allowed | Void Not Allowed |
+| 433 | Ref Num Not Found | Ref Num Not Found |
+| 434 | Proc Error 7 | Proc Error 7 |
+| 435 | Too Many Batches | Too Many Batches |
+| 436 | Release Batch | Release Batch |
+| 437 | Invalid Function | Invalid Function |
+| 438 | Invalid Term ID | Invalid Term ID |
+| 439 | Invalid Term ID | Invalid Term ID |
+| 440 | Proc Error 13 | Proc Error 13 |
+| 441 | Proc Error 14 | Proc Error 14 |
+| 442 | Proc Error 15 | Proc Error 15 |
+| 443 | Invalid Function | Invalid Function |
+| 444 | Invalid Function | Invalid Function |
+| 445 | Invalid Function | Invalid Function |
+| 446 | Please Try Again | Please Try Again |
+| 447 | Invalid Function | Invalid Function |
+| 448 | Amount Too Large | Amount Too Large |
+| 449 | Amount Too Large | Amount Too Large |
+| 450 | Invalid Term ID | Invalid Term ID |
+| 451 | Proc Error 24 | Proc Error 24 |
+| 452 | Invalid Term ID | Invalid Term ID |
+| 453 | Invalid Function | Invalid Function |
+| 454 | Rev Not Allowed | Rev Not Allowed |
+| 455 | Rev Not Allowed | Rev Not Allowed |
+| 456 | Dscv Not Allowed | Dscv Not Allowed |
+| 457 | Rev Not Allowed | Rev Not Allowed |
+| 458 | Dscv Not Allowed | Dscv Not Allowed |
+| 459 | DC Not Allowed | DC Not Allowed |
+| 460 | CB Not Allowed | CB Not Allowed |
+| 461 | Invalid Key | Invalid Key |
+| 462 | Invalid Key | Invalid Key |
+| 463 | Failed-Plz Call | Failed-Plz Call |
+| 464 | Failed-Plz Call | Failed-Plz Call |
+| 465 | Failed-Plz Call | Failed-Plz Call |
+| 466 | Failed-Plz Call | Failed-Plz Call |
+| 467 | Failed-Plz Call | Failed-Plz Call |
+| 468 | Failed-Plz Call | Failed-Plz Call |
+| 469 | Failed-Plz Call | Failed-Plz Call |
+| 470 | JCB Not Allowed | JCB Not Allowed |
+| 471 | JCB Not Allowed | JCB Not Allowed |
+| 472 | Bank Not On File | Bank Not On File |
+| 473 | No Sponsor Inst | No Sponsor Inst |
+| 474 | Failed Plz Call | Failed Plz Call |
+| 475 | WX Not Allowed | WX Not Allowed |
+| 476 | Amount Too Large | Amount Too Large |
+| 477 | Reenter Odometer | Reenter Odometer |
+| 478 | <Duplicate Tran> | <Duplicate Tran> |
+| 479 | Tran Not Allowed | Tran Not Allowed |
+| 480 | Bat Already Rels | Bat Already Rels |
+| 481 | Invalid Rtng Ind | Invalid Rtng Ind |
+| 482 | AX Not Allowed | AX Not Allowed |
+| 483 | Invalid Merchant | Invalid Merchant |
+| 484 | Call Voice Op | Call Voice Op |
+| 485 | Auth Down-Retry | Auth Down-Retry |
+| 486 | Auth Busy-Retry | Auth Busy-Retry |
+| 487 | Auth Busy-Retry | Auth Busy-Retry |
+| 488 | Invalid Term ID | Invalid Term ID |
+| 489 | Term Not Active | Term Not Active |
+| 490 | No Transactions | No Transactions |
+| 491 | Bat Already Rels | Bat Already Rels |
+| 492 | Batch Not Found | Batch Not Found |
+| 794 | NO CHECKING ACCT | NO CHECKING ACCT |
+| 805 | Signature Debit Not Allowed | Signature Debit Not Allowed |
+
+<a name="td"></a>
+
+### TD
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 61 | Approved | Approved |
+| 62 | Approved | Approved |
+| 63 | Approved | Approved |
+| 64 | Approved | Approved |
+| 65 | Approved | Approved |
+| 66 | Approved | Approved |
+| 67 | Approved | Approved |
+| 68 | Approved | Approved |
+| 69 | Approved | Approved |
+| 70 | Approved | Approved |
+| 71 | Declined | Declined |
+| 72 | Declined EXPIRED CARD | Declined EXPIRED CARD |
+| 73 | Declined | Declined |
+| 74 | Declined | Declined |
+| 75 | Declined | Declined |
+| 76 | PLEASE TRY AGAIN | PLEASE TRY AGAIN |
+| 77 | Declined | Declined |
+| 78 | Declined | Declined |
+| 79 | Declined | Declined |
+| 80 | Declined | Declined |
+| 81 | Declined | Declined |
+| 82 | Declined | Declined |
+| 83 | Declined | Declined |
+| 84 | Declined | Declined |
+| 85 | Declined | Declined |
+| 86 | PLEASE TRY AGAIN | Declined |
+| 87 | Declined | Declined ADJ NOT ALLOWED |
+| 88 | Declined | Declined |
+| 89 | Declined | Declined INVALID TRAN DATE |
+| 90 | Declined | Declined |
+| 91 | PLEASE TRY AGAIN | Declined |
+| 92 | Declined | Declined |
+| 93 | Declined | Declined |
+| 94 | Declined | Declined |
+| 95 | Declined | Declined |
+| 96 | Declined | Declined |
+| 97 | Declined | Declined |
+| 98 | Declined | Declined |
+| 99 | Declined | Declined |
+| 100 | Declined | Declined DUPLICATE TRAN |
+| 101 | Declined | Declined |
+| 102 | Declined | Declined |
+| 103 | Declined | Declined MAX PER REFUND |
+| 104 | Declined | Declined NUM TIMES USED |
+| 105 | Declined | Declined MAX REFUND TOTAL |
+| 106 | Declined | Declined |
+| 107 | Declined | Declined |
+| 108 | Declined | Declined |
+| 109 | Declined | Declined MAX REFUND NUMBER |
+| 110 | Declined | Declined |
+| 111 | Declined | Declined |
+| 112 | Declined | Declined |
+| 113 | Declined | Declined |
+| 114 | Declined | Declined |
+| 115 | Declined | Declined |
+| 116 | Declined | Declined |
+| 117 | Declined | Declined |
+| 118 | Declined | Declined |
+| 119 | Declined | Declined |
+| 120 | Declined | Declined |
+| 121 | Declined | Declined |
+| 122 | Declined | Declined |
+| 123 | Call for Auth | Call for Auth |
+| 124 | Declined | Declined |
+| 125 | Declined | Declined |
+| 126 | Declined | Declined |
+| 127 | Declined | Declined CARD NOT SUPPORTED |
+| 128 | Declined | Declined |
+| 129 | Declined | Declined |
+| 130 | Declined | Declined |
+| 131 | Declined | Declined |
+| 132 | Declined | Declined |
+| 133 | Declined | Declined |
+| 134 | Declined | Declined |
+| 135 | Declined | Declined |
+| 136 | Declined | Declined |
+| 137 | Declined | Declined |
+| 138 | Declined | Declined |
+| 139 | Declined | Declined SERVICE MERCHANT NOT ON FILE |
+| 140 | Declined | Declined |
+| 141 | Declined | Declined |
+| 142 | Declined | Declined |
+| 143 | Declined | Declined |
+| 144 | Declined | Declined |
+| 145 | Declined | Declined |
+| 146 | Declined | Declined |
+| 147 | Declined | Declined INVALID TRAN DATE |
+| 148 | Declined | Declined INVALID EXP DATE |
+| 149 | Declined | Declined INVALID TRANCODE |
+| 150 | Declined | Declined |
+| 151 | Declined | Declined |
+| 152 | Declined | Declined |
+| 153 | Declined | Declined |
+| 154 | Declined | Declined BAD FORMAT |
+| 155 | Declined | Declined BAD DATA |
+| 156 | Declined | Declined |
+| 157 | Declined | Declined |
+| 158 | PLEASE TRY AGAIN | Declined - TIMEOUT |
+| 159 | Declined | Declined |
+| 160 | Declined | Declined TERMINAL DEACTIVATED |
+| 161 | Declined | Declined BAD RESPONSE LENGTH |
+| 162 | Declined | Declined |
+| 163 | Declined | Declined |
+| 164 | Declined | Declined |
+| 165 | Declined | Declined |
+| 166 | Declined | Declined BAD SEQUENCE NUMBER |
+| 167 | Declined | Declined |
+| 168 | Declined | Declined EXPIRED CARD |
+| 169 | Declined | Declined |
+| 170 | Declined | Declined |
+| 171 | Declined | Declined |
+| 172 | Declined | Declined |
+| 173 | Declined | Declined |
+| 174 | Declined | Declined |
+| 175 | Declined | Declined |
+| 176 | Declined | Declined |
+| 177 | Declined | Declined ADMIN CARD NOT FOUND |
+| 178 | Declined | Declined ADMIN CARD NOT ALLOWED |
+| 179 | Declined | Declined |
+| 180 | Declined | Declined |
+| 181 | Declined | Declined |
+| 182 | Declined | Declined |
+| 183 | Declined | Declined |
+| 184 | Declined | Declined |
+| 185 | Declined | Declined |
+| 186 | Declined | Declined |
+| 187 | Declined | Declined |
+| 188 | Declined | Declined |
+| 189 | Declined | Declined |
+| 771 | Declined | Declined |
+| 772 | Declined | Declined |
+| 773 | Declined | Declined |
+| 774 | Declined | Declined |
+| 775 | Declined | Declined |
+| 776 | Declined | Declined |
+| 777 | Declined | Declined |
+| 778 | Declined | Declined |
+| 779 | Declined | Declined |
+| 780 | Declined | Declined |
+| 781 | Declined | Declined |
+| 782 | Declined | Declined |
+| 783 | Declined | Declined |
+| 784 | Declined | Declined |
+| 785 | Declined | Declined |
+| 786 | Declined | Declined |
+| 787 | Declined | Declined |
+| 824 | Approved | Approved |
+
+<a name="uk"></a>
+
+### UK
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 828 | Approved | Approved |
+| 829 | Duplicate transaction found | Duplicate transaction found |
+| 830 | No charge model found | No charge model found |
+| 831 | Invalid currency | Invalid currency |
+| 832 | Invalid Transaction Channel | Invalid Transaction Channel |
+| 833 | Invalid input data (details provided in description) | Invalid input data (details provided in description) |
+| 834 | Server configuration error | Server configuration error |
+| 835 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 836 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 837 | Bank system error | Bank system error |
+| 838 | Bank system temporary unreachable | Bank system temporary unreachable |
+| 839 | Operation not supported by bank | Operation not supported by bank |
+| 840 | Invalid expiry date | Invalid expiry date |
+| 841 | Invalid card type | Invalid card type |
+| 842 | Invalid order ID | Invalid order ID |
+| 843 | Transaction refused | Transaction refused |
+| 844 | Transaction refused | Transaction refused |
+| 845 | Transaction refused | Transaction refused |
+| 846 | Transaction refused | Transaction refused |
+| 847 | Transaction refused | Transaction refused |
+| 848 | Invalid reference transaction ID | Invalid reference transaction ID |
+| 849 | Transaction refused: Card Number can only contain numbers | Transaction refused: Card Number can only contain numbers |
+| 850 | Communication problems | Communication problems |
+| 851 | Communication problems | Communication problems |
+| 852 | No response from bank before client timeout | No response from bank before client timeout |
+| 853 | Communication problems | Communication problems |
+| 854 | Transaction refused | Transaction refused |
+| 855 | Transaction refused | Transaction refused |
+| 856 | Transaction refused: The sum of this and previously credited amounts (if any) exceeds debited amount | Transaction refused: The sum of this and previously credited amounts (if any) exceeds debited amount |
+| 857 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 858 | Transaction type not supported by server | Transaction type not supported by server |
+| 859 | Transaction refused: The status of the reference transaction does not allow this transaction | Transaction refused: The status of the reference transaction does not allow this transaction |
+| 860 | Transaction refused: The type of the reference transaction does not allow this transaction | Transaction refused: The type of the reference transaction does not allow this transaction |
+| 861 | Transaction refused: The currency code does not match the reference transaction | Transaction refused: The currency code does not match the reference transaction |
+| 862 | Transaction refused: Server temporarily unavailable | Transaction refused: Server temporarily unavailable |
+| 863 | Transaction refused: Active configuration differs from the one used in the reference transaction | Transaction refused: Active configuration differs from the one used in the reference transaction |
+| 864 | Transaction refused: Merchant ID not active. | Transaction refused: Merchant ID not active. |
+| 865 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 866 | Transaction refused | Transaction refused |
+| 867 | Transaction refused. Card Expired | Transaction refused. Card Expired |
+| 868 | System error | System error |
+| 869 | System error | System error |
+| 870 | System error | System error |
+| 871 | Invalid track 2 data | Invalid track 2 data |
+| 872 | Invalid track 2 expiry date | Invalid track 2 expiry date |
+| 873 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 874 | Transaction refused: Card is blacklisted | Transaction refused: Card is blacklisted |
+| 875 | Transaction refused: Card is blacklisted | Transaction refused: Card is blacklisted |
+| 876 | Transaction refused: Reference transaction cancelled | Transaction refused: Reference transaction cancelled |
+| 877 | Transaction refused: Reference transaction already captured | Transaction refused: Reference transaction already captured |
+| 878 | Required data was too long | Required data was too long |
+| 879 | Transaction refused: Merchant ID inactive | Transaction refused: Merchant ID inactive |
+| 880 | Transaction refused: The currency code does not match with the reference transaction | Transaction refused: The currency code does not match with the reference transaction |
+| 881 | Transaction refused: Capture amount exceeds authorized amount | Transaction refused: Capture amount exceeds authorized amount |
+| 882 | This capture requires a telephone auth code | This capture requires a telephone auth code |
+| 883 | Telephone auth code not requested | Telephone auth code not requested |
+| 884 | Server error, no transaction sent to acquirer | Server error, no transaction sent to acquirer |
+| 885 | The Originating Account Type parameter is invalid | The Originating Account Type parameter is invalid |
+| 886 | Transaction refused: Velocity check rule violation (details provided in description) | Transaction refused: Velocity check rule violation (details provided in description) |
+| 887 | Server error | Server error |
+| 888 | Server error | Server error |
+| 889 | Server received corrupt input data format | Server received corrupt input data format |
+| 890 | Invalid transaction type | Invalid transaction type |
+| 891 | Communication problems | Communication problems |
+| 892 | Server unavailable | Server unavailable |
+| 893 | Invalid input data | Invalid input data |
+| 894 | Transaction refused | Transaction refused |
+| 895 | Server error | Server error |
+| 896 | Card type is not allowed | Card type is not allowed |
+| 897 | No transaction matching the referenced transaction | No transaction matching the referenced transaction |
+| 898 | Invalid Merchant ID | Invalid Merchant ID |
+| 899 | Invalid Transaction Channel | Invalid Transaction Channel |
+| 900 | Server error | Server error |
+| 901 | Invalid Order ID | Invalid Order ID |
+| 902 | Invalid Order Description | Invalid Order Description |
+| 903 | Invalid Order Info | Invalid Order Info |
+| 904 | Invalid Card Number | Invalid Card Number |
+| 905 | Invalid Expire Date | Invalid Expire Date |
+| 906 | Invalid Card Type | Invalid Card Type |
+| 907 | Invalid Currency Code | Invalid Currency Code |
+| 908 | Invalid Currency Subunit | Invalid Currency Subunit |
+| 909 | Invalid Amount | Invalid Amount |
+| 910 | Invalid VAT Numerator | Invalid VAT Numerator |
+| 911 | Invalid Reference Transaction ID | Invalid Reference Transaction ID |
+| 912 | Transaction type not supported by legacy system | Transaction type not supported by legacy system |
+| 913 | Corrupt input data to server | Corrupt input data to server |
+| 914 | Invalid LARID | Invalid LARID |
+| 915 | Invalid Sub Merchant ID | Invalid Sub Merchant ID |
+| 916 | Invalid Start Date | Invalid Start Date |
+| 917 | Invalid Issue | Invalid Issue |
+| 918 | Invalid CVD Code State | Invalid CVD Code State |
+| 919 | Invalid CVD Code | Invalid CVD Code |
+| 920 | Acquirer error. Transaction not processed | Acquirer error. Transaction not processed |
+| 921 | System error | System error |
+| 922 | Invalid track 2 data | Invalid track 2 data |
+| 923 | Requires telephone authorization | Requires telephone authorization |
+| 924 | The bank reported time out. Please retry | The bank reported time out. Please retry |
+| 925 | Server configuration error | Server configuration error |
+| 926 | Pick up card | Pick up card |
+| 927 | Originating account type value not supported | Originating account type value not supported |
+| 928 | System error | System error |
+| 929 | Illegal argument: [Description] | Illegal argument: [Description] |
+| 930 | Business rule violation: [Description] | Business rule violation: [Description] |
+| 931 | Operation cannot be performed at this time: [Description] | Operation cannot be performed at this time: [Description] |
+| 932 | System error | System error |
+| 933 | Authentication Problem | Authentication Problem |
+| 934 | Blocked in fraud screening | Blocked in fraud screening |
+
+<a name="vital"></a>
+
+### Vital
+
+| Message ID | Cardholder message | Merchant message |
+| ---------- | ------------------ | ---------------- |
+| 494 | Approval | Approval |
+| 495 | Card OK | Card OK |
+| 496 | Call | Call |
+| 497 | Call | Call |
+| 498 | No Reply | No Reply |
+| 499 | No Reply | No Reply |
+| 500 | Hold-call or Pick Up Card | Hold-call or Pick Up Card |
+| 501 | Hold-call or Pick Up Card | Hold-call or Pick Up Card |
+| 502 | Hold-call or Pick Up Card | Hold-call or Pick Up Card |
+| 503 | Hold-call or Pick Up Card | Hold-call or Pick Up Card |
+| 504 | Acct Length Err | Acct Length Err |
+| 505 | Already Reversed | Already Reversed |
+| 506 | Amount Error | Amount Error |
+| 507 | Cant Verify PIN | Cant Verify PIN |
+| 508 | Cant Verify PIN | Cant Verify PIN |
+| 509 | Card No. Error | Card No. Error |
+| 510 | Cashback Not App | Cashback Not App |
+| 511 | Cashback Not Avl | Cashback Not Avl |
+| 512 | Check Digit Err | Check Digit Err |
+| 513 | CID Format Error | CID Format Error |
+| 514 | Date Error | Date Error |
+| 515 | Decline | Decline |
+| 516 | Decline | Decline |
+| 517 | Decline | Decline |
+| 518 | Decline | Decline |
+| 519 | Decline | Decline |
+| 520 | Decline | Decline |
+| 521 | Decline | Decline |
+| 522 | Encryption Error | Encryption Error |
+| 523 | Error | Error |
+| 524 | Expired Card | Expired Card |
+| 525 | Failure HV | Failure HV |
+| 526 | Failure CV | Failure CV |
+| 527 | Invalid Routing | Invalid Routing |
+| 528 | Invalid Trans | Invalid Trans |
+| 529 | No Account | No Account |
+| 530 | No Action Taken | No Action Taken |
+| 531 | Unsolic Reversal | Unsolic Reversal |
+| 532 | No Action Taken | No Action Taken |
+| 533 | No Check Account | No Check Account |
+| 534 | No Credit Acct | No Credit Acct |
+| 535 | No Save Account | No Save Account |
+| 536 | No Such Issuer | No Such Issuer |
+| 537 | PIN Exceeded | PIN Exceeded |
+| 538 | RE Enter | RE Enter |
+| 539 | Sec Violation | Sec Violation |
+| 540 | Serv Not Allowed | Serv Not Allowed |
+| 541 | Serv NOt Allowed | Serv NOt Allowed |
+| 542 | Stop Recurring | Stop Recurring |
+| 543 | Stop Recurring | Stop Recurring |
+| 544 | System Error | System Error |
+| 545 | Term Id Error | Term Id Error |
+| 546 | Wrong Pin | Wrong Pin |
+| 547 | CVV2 Mismatch | CVV2 Mismatch |
+| 548 | Duplicate Trans | Duplicate Trans |
+| 549 | Approval | Approval |
+| 550 | Cannot Convert | Cannot Convert |
+| 551 | Invalid ABA | Invalid ABA |
+| 552 | Amount Error | Amount Error |
+| 553 | Unpaid Items | Unpaid Items |
+| 554 | Duplicate Number | Duplicate Number |
+| 555 | MICR Error | MICR Error |
+| 556 | Too Many Checks | Too Many Checks |
