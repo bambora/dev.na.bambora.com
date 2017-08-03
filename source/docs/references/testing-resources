@@ -1,0 +1,40 @@
+# Testing resources
+
+As you set up your Merchant Account and begin processing with the API, you'll want to test connections to both servers and gateways. To ensure that your credit cards remain safe, we've provided test card below for you to use to test approvals and declines, and even Address Verification System.
+
+Visa Test Cards
+
+| Card Number | CVV | Status | Address | Verified By Visa |
+| ----------- | --- | ------ | ------- | ---------------- |
+| 4030 0000 1000 1234 | 123 | Approved | 1407 Graymalkin Lane, 111 111 | N/A |
+| 4003 0505 0004 0005 | 123 | Declined | 1407 Graymalkin Lane, 111 111 | N/A |
+| 4504 4817 42333 | 123 | Approved less than $100 - Decline over $100 | 1407 Graymalkin Lane, 111 111 | N/A |
+| 4012 8888 8888 1881 | 123 | Approved | Canada Post - 2659 Douglas Street V8T 4M3 | N/A |
+| 4123 4501 3100 3312 | 123 | Approved by Verified by Visa | 1407 Graymalkin Lane, 111 111 | Password 12345 |
+
+MasterCard Test Cards
+
+| Card Number | CVV | Status | Address | SecureCode |
+| ----------- | --- | ------ | ------- | ---------- |
+| 5100 0000 1000 1004 | 123 | Approved | 1407 Grymalkin Lane, 111 111 | N/A |
+| 5100 0000 2000 2000 | 123 | Declined | 1407 Grymalkin Lane, 111 111 | N/A |
+| 2223 0000 4840 0011 | 123 | Approved for 2-series BIN | 1407 Grymalkin Lane, 111 111 | N/A |
+| 5555 5555 5555 4444 | 123 | Approved | Canada Post - 2659 Douglas Street V8T 4M3 | N/A |
+| 5105 1051 0510 5100 | 123 | Approved by SecureCode | 1407 Graymalkin Lane, 111 111 | Password 12345 |
+
+American Express Test Cards
+
+| Card Number | CVV | Status | Address | SafeKey |
+| ----------- | --- | ------ | ------- | ------- |
+| 3711 000010 00131 | 1234 | Approved | 1407 Grymalkin Lane, 111 111 | N/A |
+| 3424 000010 00180 | 1234 | Declined | 1407 Grymalkin Lane, 111 111 | N/A |
+| 3700 000000 00002 | 1234 | Approved | Canada Post - 2659 Douglas Street V8T 4M3 | N/A |
+| 3714 496353 98431 | 1234 | Approved by SafeKey | 1407 Grymalkin Lane, 111 111 | N/A |
+
+Discover Test Cards
+
+| Card Number | CVV | Status | Address |
+| ----------- | --- | ------ | ------- |
+| 6011 5000 8000 9080 | 123 | Approved | 1407 Graymalkin Lane, 111 111 |
+| 6011 0009 0090 1111 | 123 | Declined | 1407 Graymalkin Lane, 111 111 |
+
