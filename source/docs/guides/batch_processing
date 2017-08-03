@@ -1,0 +1,175 @@
+# Batch Processing
+
+## About Batch Processing
+
+Batch Processing saves you time by submitting a single request to process a group of credit transactions or bank transfers at once.
+
+You can submit a request up to 30 days in advance. When you submit a batch request, we validate all of your transaction details before they are processed, and once they are, offer real-time status reports of each transaction.
+
+## Getting started
+
+Batch processing supports both standard credit card payments, as well as Automated Clearing House (ACH) or Electronic Funds Transfers (EFT), between banks. Both are completed using our RESTful API through an HTTP POST.
+
+All requests are posted to this Bambora REST URL, and need two headers when you submit.
+
+`https://api.na.bambora.com/v1/batchpayments`
+
+### Authentication header
+
+We require an HTTP Basic Authentication over SSL with your base64 encoded API passcode in every request. The header uses a string containing your Merchant ID, as well as your API Key.
+
+`Authorization: Passcode base64(merchant_id:api_key)`
+
+> Both your Merchant ID and API passcode are found within your [Member Area](https://web.na.bambora.com), by selecting **administration**, then **account settings**, and finally **order settings**.
+
+### Content header
+
+This second required header must be set to a multipart/form-data format. In the `boundary=[xxxxx]`, you'll place your unique string. Your string will specify where to separate the message from the file content of the request. This string can be anything you choose, as long as it does not exist anywhere in the batch file you upload.
+
+`Content-Type: multipart/form-data; boundary=--a1b2c3d4e5--`
+
+### File type header
+
+This header can be used to indicate the type of file being uploaded, and will appear by default as `STD`, for Standard Batch.
+
+## Formatting the batch file
+
+Whether you submit your batch file as .csv, or .txt, you'll need many important pieces of information in the exact order that they appear below. If a non-required field is not being used, simply leave the column blank and move to the next field.
+
+### Credit card requirements
+
+| Column | Field | Descriptions |
+| ------ | ----- | ------------ |
+| A | Record Type | Used for the type of transaction. Enter C for credit card. |
+| B | Transaction Type | P - Purchase, R - Return, PA - Pre-Authorisation, PAC - Pre-Auth Completion, VP - Void a Purchase, VR - Void a Return. |
+| C | Adjustment ID | The original 8-digit transaction ID used for returns, completions, or voids. Leave field blank for purchases and pre-authorisations. |
+| D | Card Number | The 16-digit credit card number. Optional if using an adjustment ID. |
+| E | Card Expiry | The 4-digit expiry date of the card, appearing as MMYY. Optional if using an adjustment ID. |
+| F | Amount | The total of the transaction amount without the decimal, including cents. $123.00 becomes 12300. |
+| G | Reference | Optional field for up to 32 characters. Using this field will force the API to check for duplicate transactions. We recommended using Order IDs. |
+| H | Card Owner | The name of the cardholder, as it appears on the card. |
+| I | Email Address | The cardholder's email address and destination for transaction receipts. |
+| J | Recurring | This flag is meant for the issuer, indicating these payments are frequent or recurring. 1 - Recurring transaction, 0 - Single transaction. |
+| K | DDS | If you're using Dynamic Descriptor Service, this value added field will pass additional information, appearing on the cardholder's card statement. Up to 25 non-special characters. |
+| L | Profile Code | If the cardholder has a previous Bambora Profile, you can use the profile code and leave the card number, expiry date, card owner, and email address blank. |
+
+As a .txt, all columns appear on a single line with each field/column separated by a comma. Each transaction or transfer requires its own line.
+
+### ACH/EFT requirements
+
+| Entry | Descriptions |
+| ----- | ------------ |
+| E | The type of batch file. E for electronic bank payment. |
+| C or D | The transfer type. C - Credit the recipient bank account, D - Debit a bank account. |
+| 3-digit financial institution | The financial institution number as it appears on the account holder's cheque. |
+| 5-digit transit number | The bank transit number as it appears on the account holder's cheque. |
+| Up to 12-digit account number | The bank account number as it appears on the account holder's cheque. |
+| Amount | The total of the transaction amount without the decimal, including cents. $123.00 becomes 12300. |
+| Up to 19-digit reference number | Optional ID field for internal references. If not used, enter 0. |
+| Name | The full name of the account holder. |
+| Profile Code | The Bambora recipient code associated with the recipient's profile. |
+| Dynamic Descriptor | By entering this field, you'll override your merchant DBA on the recipient's bank statement. |
+
+> ACH or EFT transfers typically require at least three business days to process.
+
+## Uploading files
+
+After you've formatted your batch files, you'll be able to upload them using one of two ways.
+
+> While you can schedule a batch process up to 30 days in advance, the deadline for submitting a batch to process the following business day is 11:00 AM PST/  2:00 PM EST.
+
+### API upload
+
+When you submit your request to `/v1/batchpayments/` you'll use a JSON object including the `filename=@mybatchfile.csv` variable to post your batch file. 
+
+### Member Area upload
+
+After you've logged into your [Member Area](https://web.na.bambora.com), click **processing**, then **batch processing**.
+
+In the top left corner, click **Choose File**, and find your .csv or .txt batch file. Next, you can immediately select your processing date before clicking **Upload**.
+
+## Batch requests
+
+When you submit your request, you'll use the processing information and a JSON object through a CURL request, including the batch parameters.
+
+| Variable | Description |
+| -------  | ----------- |
+| process_date | The date the bath will be processed in YYYYMMDD format. |
+| process_now | This flag determines whether a batch is processed immediately. 0 - Use `process_date`, 1 - Immediately. Only used for credit card processing. | 
+| filename | The batching file uploaded to Bambora. |
+
+### Scheduled batch sample
+
+```shell
+POST /v1/batchpayments
+
+curl https://api.na.bambora.com/v1/batchpayments
+-H "Authorization: Passcode A1B2C3D4E5"
+-H "FileType: STD"
+-F "criteria={ 'process_date':'20180625','process_now':0 };type=application/json"
+-F "filename=@mybatchfile.csv"
+```
+
+### Immediate credit sample
+
+```shell
+POST /v1/batchpayments
+
+curl https://api.na.bambora.com/v1/batchpayments
+-H "Authorization: Passcode A1B2C3D4E5"
+-H "FileType: STD"
+-F "criteria={ 'process_date':'20180625','process_now':1 };type=application/json"
+-F "filename=@mybatchfile.csv"
+```
+
+## Responses
+
+After a successful request, you'll get a response from the API in HTTP format. This response will include codes that outline a successful or failed upload.
+
+### Successful response sample
+
+```shell
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+"code":1,
+"message":" file successfully received"
+"batch_id":12345678
+}
+```
+
+### Failed response sample
+
+```shell
+HTTP/1.1 412 Precondition Failed
+Content-Type: application/json
+{
+"code":4
+"category":2
+"message":"Authentication Failure"
+}
+```
+
+### Response codes
+
+| Code | Message | HTTP Status | Cause |
+| ---- | ------- | ----------- | ----- |
+| 1 | File successfully received | 200 OK | Batch successfully processed. |
+| 2 | Secure connection required | 403 Forbidden | HTTPS required for URL. |
+| 4 | Authentication failure | 401 Unauthorized | Authorisation header was not included or formatted correctly, or the Merchant ID or API passcode was incorrect. |
+| 5 | Insufficient user permissions | 401 Unauthorized | Your Merchant account is not configured to upload batch files. |
+| 7 | Invalid process date | 400 Bad Request | Processing date has already passed. |
+| 8 | Service is busy importing another file. Try again later | 503 Service Unavailable | Your account is currently importing another batch. |
+| 9 | File greater than maximum allowable size | 413 Request Entity Too Large | Your batch file must be separated into smaller files. |
+| 10 | Unexpected error - Contact support | 500 Internal Server Error | There has been an error while processing and the transaction must be retried. |
+| 11 | Multipart message file content is missing or invalid | 400 Bad Request | Required content is missing or invalid within the uploaded file. |
+| 14 | Invalid file type | 400 Bad Request | Your FileType header does not have a valid file value. |
+| 15 | Content type must be set to multipart/form-data | 400 Bad Request | The authorisation header did not include the `multipart/form-data`. |
+| 16 | Missing or invalid parameter content | 400 Bad Request | The JSON file is missing required variables. |
+| 17 | Invalid multipart message structure | 400 Bad Request | There was missing content in the content-disposition header. |
+| 18 | Invalid merchant_id for sub-merchant | 400 Bad Request | The Merchant ID is not valid, or the merchant is not the sender's Sub-merchant.  |
+| 19 | Addendum contains invalid characters or too long | 400 Bad Request | Additional details must be changed or shortened. |
+| 20 | Action requires administrator access | 400 Bad Request | The user does not have permission to proceed with the batch. |
+| 21 | Transmitting merchant account is inactive | 400 Bad Request | The Merchant Account is no longer active. The [Customer Experience Team](https://www.bambora.com/en/ca/contact/support/) must be contacted. |
+| 22 | Submitted sub-merchant account is inactive | 400 Bad Request | The Sub-merchant Account is no longer active. The [Customer Experience Team](https://www.bambora.com/en/ca/contact/support/) must be contacted. |
+| 23 | Transmitting merchant account is invalid	 | 400 Bad Request | The Merchant ID has been incorrectly entered. |
