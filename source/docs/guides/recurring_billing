@@ -1,0 +1,65 @@
+# Recurring Billing
+
+## About Recurring Billing
+
+Recurring Billing is the best way to schedule your transactions and automate your billing. Using a multi-use token to create a profile, you'll be able to store and charge your customer's credit card as often as you want.
+
+Recurring Billing uses a simple query string or as a series of direct server-to-server HTTP POSTs. 
+
+## Creating a recurring profile
+
+To start a subscription, you'll need a credit card on file to charge on the intervals you select. When you add a card for a subscription, you'll POST your request to the URL below. 
+
+`https://web.na.bambora.com/scripts/process_transaction.asp`
+
+### Request requirements
+
+Each request requires that you enter `requestType=BACKEND` and provide your Merchant ID, username, and password.
+
+To create a recurring profile, you'll need the card's number, expiry date, and name of the cardholder as it appears on their card.
+ 
+| Variable | Description |
+| -------- | ----------- |
+| merchand_Id | The 9-digit unique Merchant ID found in your [Member Area](https://web.na.bambora.com). |
+| username | Your username used to accesss the API and set from **order settings** within your [Member Area](https://web.na.bambora.com). |
+| password | Your password used to access the API and set from **order settings** within your [Member Area](https://web.na.bambora.com). |
+| trnCardOwner | The first and last name of the cardholder as it appears on the card. |
+| trnCardNumber | The 16-digit card number. |
+| trnExpiryMonth| The double-digit month the card expires. |
+| trnExpiryYear | The double-digit year the card expires. |
+| trnAmount | The amount of each billed transaction. |
+
+You can add additional cardholder details to the multi-use token from any of our transaction or profile variables listed [here](https://dev.na.bambora.com/references/query-variables).
+
+>Note: You can replace your username and password with a generated hash value from **order settings** within your [Member Account](https://web.na.bambora.com).
+
+### Setting a time frame
+
+When you submit your query, you'll need to set your billing schedule with the amount, frequency, time frame, and duration of the payment.
+
+| Variable | Description |
+| trnRecurring | A flag designating a payment as a single scheduled payment, or a recurring subscription. 0 - Single, 1 - Recurring  |
+| rbBillingPeriod | Used to select the frequency of the payments. D - Days, W - Weeks, M - Months, Y - Years |
+| rbBillingIncrement | Used to select the length of the frequency between payments. |
+
+There are additional variables that can be used to fine-tune your recurring or scheduled payments that can be found [here](https://dev.na.bambora.com/references/query-variables).
+
+## Sample query
+
+For the recurring sample below, we're establishing an indefinite subscription billing $10 every 30 days. This sample string uses additional order and profile details including the cardholder's email, address, and phone number.
+
+`https://web.na.bambora.com/scripts/process_transaction.asp?requestType=BACKEND&merchant_Id=1234500000
+&username=myusername1234&password=mypass1234&trnType=P&paymentMethod=CC&trnCardOwner=Rosanna+Sylvester&trnCardNumber=4030000010001234&trnExpMonth=10&trnExpYear=10&ordName=Rosanna+Sylvester&ordEmailAddress=joe@mydomain.com
+&ordAddress1=123+Main+Street&ordAddress2=Suite+202&ordCity=Victoria&ordProvince=BC&ordCountry=CA&ordPostalCode=V8T+4M3
+&ordPhoneNumber=2504722326&trnAmount=10&trnRecurring=1&rbBillingPeriod=D&rbBillingIncrement=30
+ClosedSample Response`
+
+### Responses
+
+Once you've successfully posted to the Query API, you'll receive a response back, similar to the one below.
+
+`trnApproved=1&trnId=10002125&messageId=1&messageText=Approved&rbAccountId=123456&trnOrderNumber=10002125
+&authCode=TEST&errorType=N&errorFields=&responseType=T&trnAmount=10&trnDate=8%2F20%2F2009+11%3A04%3A27+AM
+&rbAccountId=2955260&avsProcessed=0&avsId=0&avsResult=0&avsAddrMatch=0&avsPostalMatch=0&avsMessage=Address+Verification+not+performed+for+this+transaction%2E&cardType=VI&trnType=P&paymentMethod=CC&ref1=&ref2=&ref3=&ref4=&ref5=`
+
+>You can check your Address Verification Results [here](https://dev.na.bambora.com/fraud-defence/).
