@@ -27,7 +27,7 @@ You can use using the test card number 4030 0000 1000 1234, with a security code
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 </div>
 
-See [more examples](/docs/guides/custom_checkout/demos/) of styled Custom Checkout. See a [demo](https://libs.na.bambora.com/customcheckout/0.1.0/demo.html?source=production) of Custom Checkout’s eventing. See a [demo](https://demo.na.bambora.com) of a complete payment flow Custom Checkout.
+See [more examples](/docs/guides/custom_checkout/demos/) of styled Custom Checkout. See a [demo](https://libs.na.bambora.com/customcheckout/1.0.0/demo.html?source=production) of Custom Checkout’s eventing. See a [demo](https://demo.na.bambora.com) of a complete payment flow Custom Checkout.
 
 ## Custom Checkout vs Checkout
 

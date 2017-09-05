@@ -23,7 +23,7 @@ Custom Checkout's input fields can be customized to fit your payment form on you
 
 You can use using the test card number 4030 0000 1000 1234, with a security code 123 and any expiry date in the future.
 
-Note: We also have a [demo](https://libs.na.bambora.com/customcheckout/0.1.0/demo.html?source=production) of Custom Checkout’s eventing and a [demo](https://demo.na.bambora.com) of a complete payment flow Custom Checkout.
+Note: We also have a [demo](https://libs.na.bambora.com/customcheckout/1.0.0/demo.html?source=production) of Custom Checkout’s eventing and a [demo](https://demo.na.bambora.com) of a complete payment flow Custom Checkout.
 
 ## Bootstrap
 
