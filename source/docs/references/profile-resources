@@ -1,0 +1,89 @@
+# Profile Resources
+
+When you create, update, or delete the Profile of a customer, you'll receive responses from the API. You can view a full list of the responses below.
+
+## Basic responses
+
+| Variable | Description |
+| -------- | ----------- |
+| responseCode | On profile requests, a single numeric code associated with is returned detailing the status. | 
+| responseMessage | This variable is the description of the responseCode variable. |
+| customerCode | This variable is a token string that identifies the payment profile. This code is automatically generated, but can also be manually assigned during profile creation. |
+| trnOrderNumber | This variable is the manually, or automatically created ID associated with the creation of a profile, and is used to call the profile during transactions. |
+| cardType | This variable represents the card type associated with the profile. VI - Visa, MC - MasterCard, AM - American Express, DI - Diner's Club, NN - Discover, JB - JCB, NW - NextWave, SE - Sears. |
+| cardNumber | The cardholder's obfuscated 16-digit card number, displaying the first, and final four digits. |
+
+
+## Card validation responses
+
+| Variable | Description |
+| -------- | ----------- |
+| trnApprove | This variable will return as 1-Approved, or 0-Declined during the authorisation of cards. |
+| trnId | The unique transaction's ID associated with the card validation transaction. Also appears as messageID from the API. |
+| messageId | This variable provides the card validation status, using the same message ID from the Payment API. |
+| trnOrderNumber | This variable is automatically created when the transaction is verified on return. This order number can also be manually entered in the initial request. | 
+| authCode | This variable contains the bank's unique authorisation code for approval. |
+| cvdId | The verification response for the card's CVV. 1 - Match, 2 - Mismatch, 3 - CVV not verified, 4 - CVV , 5 - Issuer cannot process request, 6 - CVV not provided. |
+
+## Optional responses
+
+| Variable | Description |
+| -------- | ----------- |
+| ref1 (1-5) | If references fields were included on profile creation, up to five fields will return the info as it was entered. |
+| cardNode | This variable is used to differentiate multiple cards stored in a single profile. Each node contains the cardId, function (DEF or SEC), trnCardNumber (masked), and the cardExpiry. |
+
+## Customer responses
+
+If you use Profiles by allowing your customers to create and pay with their profiles, you'll be provided response codes that should be displayed to them when interacting with your site.
+
+| Code | Description |
+| ---- | ----------- |
+| 1 | Successful profile operation. |
+| 2 | Card validation has failed. |
+| 3 | A secure internet connection is required. |
+| 4 | The service version is invalid. |
+| 5 | The merchant ID is not valid. |
+| 6 | The operation type is invalid. |
+| 7 | Incorrect passcode. |
+| 8 | Customer/profile code is not valid. |
+| 9 | The session has expired. |
+| 10 | An unknown error has occurred, contact support. |
+| 11 | The XML message is invalid. |
+| 12 | Passcode access is locked. |
+| 13 | Passcode could not be authenticated. |
+| 14 | Merchant account is disabled. |
+| 15 | Customer code does not exist. |
+| 16 | Customer code already in use. |
+| 17 | Payment information has a duplicate match. |
+| 18 | No fields have been updated in modification. | 
+| 19 | Customer address/payment information was not validated. |
+| 20 | Profile account status is invalid. |
+| 21 | User has been cancelled. |
+| 22 | Order number already completed. |
+| 23 | No match found for status search. |
+| 24 | Billing information has a duplicate match. |
+| 25 | Velocity identifier has not been assigned to a customer code. |
+| 26 | Email message has failed to send. |
+| 27 | Operation has not been enabled. |
+| 28 | Profile group is invalid. |
+| 29 | Transaction ID is not valid. |
+| 30 | No payment information was found. |
+| 31 | No access to EFT. |
+| 32 | An answer was provided without a question. |
+| 33 | No answer provided. |
+| 34 | Configuration settings are incomplete. |
+| 35 | Profile holds maximum number of cards. |
+| 36 | No credit card associate with customer code. |
+| 37 | No card details have been updated in modification. |
+| 38 | Date format is incorrect (YYYYMMDDHHMM). |
+| 39 | All AccountRef must be numeric. |
+| 40 | Only credit cards can be set to default. |
+| 41 | There was a reporting service error. |
+| 42 | This accountRef is assigned to another profile. |
+| 43 | This card is already saved to this account. |
+| 44 | The card ID does not exist. |
+| 45 | Cannot process profile details without hashing. |
+| 46 | Hash validation failed. |
+| 47 | The operation request has expired. |
+| 48 | The return URL was invalid. |
+| 49 | Redirect request requires hash validation. |
