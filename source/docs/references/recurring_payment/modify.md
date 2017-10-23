@@ -22,7 +22,7 @@ navigation:
 | Parameter | Format | Description |
 |----------|--------|-------------|
 | requestType | BACKEND | Always pass "BACKEND" (case sensitive). |
-| merchant_id | 9 digits | Unique identifier for your Bambora merchant account (not "merchantId"). |
+| merchantId | 9 digits | Unique identifier for your Bambora merchant account (not "merchant_id"). |
 | passcode | 32 digits | Recurring Payment API Passcode (not the Payment API passcode) |
 
 
