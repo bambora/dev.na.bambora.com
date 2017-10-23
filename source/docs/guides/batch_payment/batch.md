@@ -65,6 +65,8 @@ You can query individual transactions from a batch through the Batch Payment Rep
 
 The response object contains a "code" property indicating the success of the request. This will be a number between 1 and 23, inclusive, where "1" indicates success. It has a "message" property with a description of the code. It also has a "process_date" property indicating the date that the batch will be sent to the bank to begin processing.
 
+The response contains a "batch_mode" property which indicates whether the batch will be processed or not, determined whether the merchant account is live or not. A value of "live" means the account will be processed and a value of "testing" means the batch will never be processed.
+
 ## Examples
 
 This section includes a sample HTTP request that references a file to be uploaded and a sample request where the data is declared inline within the request. It also includes formatted sample data for batched funds transfer and credit card payments.
@@ -141,7 +143,8 @@ E,C,003,99003,09400313373,30000,1000070003,Jane Doe
     "message": "File successfully received",
     "batch_id": 10000001,
     "process_date": "20170721",
-    "process_time_zone": "GMT-08:00"
+    "process_time_zone": "GMT-08:00",
+    "batch_mode": "live"
 }
 ```
 

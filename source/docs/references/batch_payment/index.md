@@ -77,8 +77,8 @@ For batches of ACH transactions, the API expects the following columns:
 - **Recipient Name** - Full name of the bank account holder
 - **Customer Code** - The 32-character customer code located in the Payment Profile. Do not populate bank account fields in the file when processing against a Payment Profile.
 - **Dynamic Descriptor** - By default the Bambora merchant company name will show on your customer's bank statement. You can override this default by populating the Dynamic Descriptor field.
-- **Standard Entry Code** - Leave black unless your account has SEC code permissions enabled.
-- **Entry Detail Addenda Record** - Leave black unless your account has SEC code permissions enabled.
+- **Standard Entry Code** - Leave blank unless your account has SEC code permissions enabled.
+- **Entry Detail Addenda Record** - Leave blank unless your account has SEC code permissions enabled.
 
 
 #### Credit card
@@ -119,6 +119,7 @@ HTTP Status: 200 OK
 - **batch_id** - A unique identifier for the batch file.
 - **process_date** - The date the transactions will begin processing.
 - **process_time_zone** - Usually "GMT-08:00".
+- **batch_mode** - Either "live" or "testing".
 
 ### Error
 
