@@ -119,7 +119,7 @@ HTTP Status: 200 OK
 - **batch_id** - A unique identifier for the batch file.
 - **process_date** - The date the transactions will begin processing.
 - **process_time_zone** - Usually "GMT-08:00".
-- **batch_mode** - Either "live" or "testing".
+- **batch_mode** - Either "live" or "test".
 
 ### Error
 
