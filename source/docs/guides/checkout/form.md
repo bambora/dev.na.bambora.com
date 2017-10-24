@@ -12,7 +12,7 @@ navigation:
 ---
 
 # Configure the form
-You can configure the form in the [Member Area](https://web.na.bambora.com). You can control what fields are displayed by default and how they are styled. You can also add a custom header and footer to the page. Click on **configuration**, and select **payment form** to find a list of title and form options.
+You can configure the form in the [Member Area](https://web.na.bambora.com). You can control what fields are displayed by default and how they are styled. You can also add a custom header and footer to the page. Click on **configuration**, and select **checkout** to find a list of title and form options.
 
 ## Layout
 These settings control the default appearance of the form. They can be overridden by settings passed in the URL.
