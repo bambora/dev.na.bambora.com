@@ -1456,6 +1456,10 @@ definitions:
       function:
         type: string
         description: Will say DEF for the default card
+      name:
+        type: string
+        maxLength: 64
+        description: Card holder name.
       number:
         type: string
         maxLength: 20
