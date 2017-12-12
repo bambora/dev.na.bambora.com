@@ -4,11 +4,11 @@ layout: tutorial
 
 summary: >
     Our Payment APIs are the RESTful interface to our payment gateway.
-    
+
 navigation:
   header: na.tocs.na_nav_header
   footer: na.tocs.na_nav_footer
-  toc: in-page
+  toc: na.tocs.payment_apis
   header_active: References
 
 ---

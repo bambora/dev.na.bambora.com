@@ -1,0 +1,10 @@
+- file: /docs/guides/batch_payment/
+  title: Overview
+- file: /docs/guides/batch_payment/batch/
+  title: Batch
+- file: /docs/guides/batch_payment/report/
+  title: Report
+- file: /docs/references/batch_payment/
+  title: Batch References
+- file: /docs/references/batch_payment_report/
+  title: Report References

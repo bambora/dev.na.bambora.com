@@ -6,9 +6,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"payment_profile",
     "order_number":"UPDQWX1429722203",
@@ -150,9 +150,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"payment_profile",
     "order_number":"UPDQWX1429722203",
@@ -172,9 +172,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments/{transId}/completions \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments/{transId}/completions
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "amount":9.20
 }'

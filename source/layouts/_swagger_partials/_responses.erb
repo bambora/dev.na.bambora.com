@@ -20,6 +20,12 @@
   <% responses.each do |response| %>
     <% response_code = response[0] %>
     <% response_body = response[1] %>
+
+    <% if response_body.has_key?("$ref") %>
+      <% ref = response_body["$ref"].split('/').last %>
+      <% response_body = response_definitions[ref] %>
+    <% end %> 
+
     <tr>
       <td><%= response_code %></td>
       <td><%= response_body.description %></td>

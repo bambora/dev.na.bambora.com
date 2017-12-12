@@ -3,7 +3,7 @@ title: Merchant Quickstart
 layout: tutorial
 
 summary: >
-  Learn how to create, configure, and test your merchant account with our Payment APIs. 
+  Learn how to create, configure, and test your merchant account with our Payment APIs.
 
 navigation:
   header: na.tocs.na_nav_header
@@ -29,11 +29,11 @@ All transactions through the API require your Merchant ID. It is permanently dis
 
 You can also find your Merchant ID by clicking on **administration** and then **Company Info**.
 
-### Setting Passcodes
+### Finding Passcodes
 
-Depending on which API you intend to use for your business, you'll need a passcode to complete the call. 
+Depending on which API you intend to use for your business, you'll need a passcode to complete the call.
 
-After logging into the [Member Area](https://web.na.bambora.com/), select **administration**,  then **account settings**, and finally **order settings**. 
+After logging into the [Member Area](https://web.na.bambora.com/), select **administration**,  then **account settings**, and finally **order settings**.
 
 On the Order Settings page, you'll find the **Payment Gateway** section with the sub-header **Security/Authentication**. Here you can set an API access code by clicking the **Generate New Code** button. Once you have a new code, click **Update** at the bottom of the page.
 
@@ -41,9 +41,5 @@ You can set passcodes for **Recurring Billing**, **Reporting**, **Batch File Upl
 
 To set a **Payment Profile** passcode, you'll need to navigate to **configuration**, then **payment profile configuration** from the left. Under **Security Settings**, you can click **Generate New Code**.
 
-## Authentication
-With your Merchant ID in hand and your passcodes set, you're ready to combine them into the required Authorization header. You can use our encoder to create an authorisation header [here](https://dev.na.bambora.com/docs/forms/encode_api_passcode/).
-
-`Authorization: Passcode Base64Encoded(merchant_id:passcode)`
 
 The next step is to accept a payment by [calling our API's](https://dev.na.bambora.com/docs/guides/merchant_quickstart/calling_APIs/).

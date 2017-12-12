@@ -1,2 +1,12 @@
 - file: /docs/guides/custom_checkout/
-  title: Custom Checkout
+  title: Overview
+- file: /docs/guides/custom_checkout/demos/
+  title: Demos
+- file: /docs/guides/custom_checkout/setup/
+  title: Setup
+- file: /docs/references/custom_checkout/
+  title: References
+- file: /docs/references/custom_checkout/versions/
+  title: Versions
+- file: /docs/references/custom_checkout/release_notes/
+  title: Release Notes

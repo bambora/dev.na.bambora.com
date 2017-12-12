@@ -24,11 +24,30 @@ cards:
         icon: checkmark
         link: /docs/references/onboarding_API/
     -
+        title: Custom Checkout Reference
+        description: >
+            Custom Checkout allows you to create a fully customizable payment
+            form while minimizing the scope of your PCI compliance.
+        icon: list
+        link: /docs/references/custom_checkout/
+    -
         title: Payment SDKs
         description: >
             The Payment SDKs wrap the Payment APIs. They include server, mobile and browser SDKs.
         icon: list
         link: /docs/references/payment_SDKs/
+    -
+        title: Batch Payment
+        description: >
+            Batch credit card, EFT and ACH transactions.
+        icon: creditcard-outline
+        link: /docs/references/batch_payment
+    -
+        title: Recurring Payment
+        description: >
+            Schedule series of automatic payments.
+        icon: creditcard-outline
+        link: /docs/references/recurring_payment
     -
         title: Address Verification System (AVS)
         description: >

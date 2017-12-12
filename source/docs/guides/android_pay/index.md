@@ -14,19 +14,17 @@ navigation:
 
 # Android Pay
 
-**Our Android Pay is currently in a closed Beta trial period. Contact your account manager if you would like early access.**
+**Android Pay for Bambora is currently in closed Beta. Contact your Account Manager for early access.**
 
 [https://grow.na.bambora.com/android-pay-beta](https://grow.na.bambora.com/android-pay-beta)
 
 ## About Android Pay
 
-Our Payments API allows your mobile apps and online stores to accept payments using an Android device or from a desktop with the Google Chome web browser.
+Our Payments API allows your mobile app and online store to accept payments through Android devices or from a desktop using Google Chome.
 
-When your customers use Android Pay, actual credit or debit card numbers are not sent with the payment. Instead a virtual account number is used to represent account info – so customer card details stay safe and secure.
+When your customers use Android Pay, a virtual account number is used to represent their payment. No card details are sent with the transaction, keeping them safe and secure.
 
-All of the directions and code samples to enable Android Pay in your app are available through Google documentation. Visit [Android Pay](https://www.android.com/pay/) to go over the basics of Android Pay. [Android Pay for Developers](https://developers.google.com/android-pay/) has instructions on how to enable Android Pay and on how to create Android Pay payment tokens.
-
-## Getting Started
+## Getting started
 
 If this is your first time implementing our APIs we recommend reviewing our [Reference guide](/docs/references/payment_APIs/), to get familiar with Bambora's Payment APIs.
 
@@ -34,23 +32,23 @@ You can find more about Bambora and Android Pay on [Github](https://github.com/b
 
 ## Requirements
 
-### Registering Your Android Pay Merchant ID
+### Registering your Android Pay Merchant ID
 
-Before you accept Android Pay with Bambora, you need to register an Android Pay Merchant ID to create and be able to access associated encryption keys.
-
-### Enable Android Pay
-
-To turn on Android Pay for your account, log into the [Member Area](https://web.na.bambora.com). Under **configuration**, click on **mobile payments**. From the Mobile Payments screen, you can enable Android Pay by creating an Android Pay Merchant ID for your mobile app.
+Before you accept Android Pay, you'll need to turn on and register an Android Merchant ID with Bambora. Start by logging into your [Member Area](https://web.na.bambora.com). Under **configuration**, click on **mobile payments**. From the Mobile Payments screen, you can enable Android Pay and add an Android Pay Merchant ID.
 
 <img src="/docs/guides/android_pay/android-mobile-payments-screenshot.png" alt="mobile-payments-screenshot">
 
-Click **ADD ANDROID MERCHANT ID** in order to create your *Android Pay Merchant ID*. Select to Copy the newly created Public Key and use it as as the publicKey parameter in your Android app.
+Enter a unique string and click **ADD ANDROID MERCHANT ID** to create your Android Pay Merchant ID. The ID comes with a newly created Public Key will be used as the `publicKey` parameter in your Android app.
 
 <img src="/docs/guides/android_pay/android-input.png" alt="apple-credentials">
 
 After you've added your Android Pay Merchant ID to your account, you can start integrating to your app.
 
-## API Requests
+### Accepting Android Pay
+
+Now that you're ready to accept Android Pay, you'll find plenty of code samples and instructions on integrating to your app through [Google's documentation](https://developers.google.com/android-pay/). To learn more about the basics of Android Pay, [click here](https://www.android.com/pay/).
+
+## API requests
 
 When you make an `android_pay` request to our Payments API, it'll be formatted in JSON, calling to https://api.na.bambora.com/v1/payments/.
 
@@ -78,9 +76,9 @@ When you make an `android_pay` request to our Payments API, it'll be formatted i
 | payment_token | The encrypted Android Pay token containing card holder details, generated from within your Android app. |
 | complete | The type of transaction being performed. True indicates a Purchase, and false is a Pre-Authorisation. |
 
-## Additional Examples
+## Additional examples
 
-### Payment Button
+### Payment button
 
 The sample below shows the action taken by a payment button in an Android app, generating a payment request.
 
@@ -102,7 +100,7 @@ getSupportFragmentManager().beginTransaction()
         .commit();
 ```
 
-### Process Payment Token
+### Process payment token
 
 Your app will receive a payment token once the payment request has been successfully authorised. You then need to send the payment token to your server, and then from there send it to the Bambora Payments API.
 

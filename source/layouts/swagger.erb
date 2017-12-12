@@ -37,6 +37,7 @@
         <% swagger      = get_data_from_frontmatter current_page.data.swagger %>
         <% info         = swagger.info %>
         <% definitions  = swagger.definitions %>
+        <% response_definitions = swagger.responses %>
         <% paths        = swagger.paths %>
         <% operations   = get_swagger_operations_by_tag paths %>
 
@@ -126,7 +127,8 @@
                           :operation_name => operation["operation_name"],
                           :path_name      => operation["path_name"],
                           :operation_body => operation["operation_body"],
-                          :definitions    => definitions
+                          :definitions    => definitions, 
+                          :response_definitions => response_definitions,
                         } %>
                       <% end %>
                     <% end %>

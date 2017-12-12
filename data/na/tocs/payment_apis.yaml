@@ -1,4 +1,10 @@
-- file: '/docs/references/payment_apis/overview/'
-  title: 'Overview'
-- file: '/docs/references/payment_apis/spec/'
-  title: 'Spec'
+- file: /docs/references/payment_APIs/
+  title: Overview
+- file: /docs/references/payment_APIs/v1-0-4/
+  title: Spec
+- file: /docs/references/payment_APIs/bank_response_codes/
+  title: Bank response codes
+- file: /docs/references/payment_APIs/payment_profile_response_codes/
+  title: Payment Profile response codes
+- file: /docs/references/payment_APIs/test_cards/
+  title: Test cards

@@ -1,0 +1,4645 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Bambora",
+		"_postman_id": "9785ccf5-547f-216b-d8d9-27f5c4e4045b",
+		"description": "Postman collection for Bambora.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Batch Payment",
+			"description": "",
+			"item": [
+				{
+					"name": "EFT Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode  {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_now\": 1\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"testdata.csv\"\r\nContent-Type: text/plain\r\n\r\nE,C,001,99001,09400313371,10000,1000070001,General Motors\r\nE,C,002,99002,09400313372,20000,1000070002,Paul Randall\r\nE,C,003,99003,09400313373,30000,1000070003,Alex Anderson\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ACH Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_now\": 1\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"in-future-{{id}}.txt\"\r\nContent-Type: text/plain\r\n\r\nA,C,256072691,2025621034,PS,10000,0,Patrick Star\r\nA,C,256072691,2025463767,PC,20000,0,Spongebob Squarepants\r\nA,C,021200339,381036789124,PC,30000,0,Krusty Krab\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SEPA Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_now\": 1\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"in-future-{{id}}.txt\"\r\nContent-Type: text/plain\r\n\r\nSEPA,C,bankidcode,IBAN,bankname,GB,10000,sepa-credit-1,Bill,GB,custcode,bankdescriptor\r\nSEPA,C,bankidcode,IBAN,bankname,GB,20000,sepa-credit-2,Steve,CA,custcode,bankdescriptor\r\nSEPA,C,bankidcode,IBAN,bankname,CA,30000,sepa-credit-3,Ryan,CA,custcode,bankdescriptor\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BACS Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_now\": 1\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"in-future-{{id}}.txt\"\r\nContent-Type: text/plain\r\n\r\nBACS,C,sortcd,acctNbr1,GB,10000,bacs-credit-1,Bill,GB,custcode,bankdescriptor\r\nBACS,C,sortcd,acctNbr3,CA,20000,bacs-credit-2,Claude,CA,custcode,bankdescriptor\r\nBACS,C,sortcd,acctNbr3,CA,30000,bacs-credit-3,Harry,CA,custcode,bankdescriptor\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Credit Card Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_date\": 20200101\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"in-future-{{id}}.txt\"\r\nContent-Type: text/plain\r\n\r\nC,P,,4030000010001234,0619,1000,reference_01,Daffy Duck,daffy@example.com,0\r\nC,P,,4030000010001234,0520,2000,reference_01,Bugs Bunny,bugs@example.com,0\r\nC,P,,4030000010001234,0421,3000,reference_01,Porky Pig,porky@example.com,0\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "EFT Batch (profile)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"postman.clearEnvironmentVariable(\"id\");",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"batchId\", jsonData.batch_id);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"id\", Math.round(Math.random() * 8888) + 1111);",
+									"",
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"batch_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/batchpayments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=CHEESE",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "FileType",
+								"value": "STD",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--CHEESE\r\nContent-Disposition: form-data; name=\"criteria\"\r\nContent-Type: application/json\r\n\r\n{\r\n    \"process_now\": 1\r\n}\r\n--CHEESE\r\nContent-Disposition: form-data; name=\"testdata\"; filename=\"in-future-{{id}}.txt\"\r\nContent-Type: text/plain\r\n\r\nE,C,,,,10000,,,{{payment_passcode}},dynamic descriptor\r\n--CHEESE--\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batch Payment Report",
+			"description": "",
+			"item": [
+				{
+					"name": "Generate Report - EFT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchPaymentsEFT</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>JSON</rptFormat>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - BatchSettlement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchSettlement</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>JSON</rptFormat>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - EFT (XML)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchPaymentsEFT</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<sessionSource>external</sessionSource>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>XML</rptFormat>\r\n<rptFromDateTime>2012-03-03 00:00:00</rptFromDateTime>\r\n<rptToDateTime>2019-03-03 23:59:59</rptToDateTime>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - BACS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchPaymentsBACS</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<sessionSource>external</sessionSource>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>CSV</rptFormat>\r\n<rptFromDateTime>2012-03-03 00:00:00</rptFromDateTime>\r\n<rptToDateTime>2019-03-03 23:59:59</rptToDateTime>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - SEPA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchPaymentsSEPA</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<sessionSource>external</sessionSource>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>CSV</rptFormat>\r\n<rptFromDateTime>2012-03-03 00:00:00</rptFromDateTime>\r\n<rptToDateTime>2019-03-03 23:59:59</rptToDateTime>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - ACH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{querystring_url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>2.0</rptVersion>\r\n<serviceName>BatchPaymentsACH</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<sessionSource>external</sessionSource>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>JSON</rptFormat>\r\n<rptFromDateTime>2012-03-03 00:00:00</rptFromDateTime>\r\n<rptToDateTime>2019-03-03 23:59:59</rptToDateTime>\r\n<rptFilterBy1>batch_id</rptFilterBy1>\r\n<rptOperationType1>EQ</rptOperationType1>\r\n<rptFilterValue1>{{batchId}}</rptFilterValue1>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Boarding",
+			"description": "",
+			"item": [
+				{
+					"name": "sepa-eur: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/sepa-eur/applications?state=in_progress",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "sepa-eur: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/sepa-eur/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\": \"ABC123\",\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Name\",\r\n    \"annual_sales\": 100000,\r\n    \"entity_type\": \"public_limited\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"legal_name\": \"Legal Name\",\r\n    \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"registration_number\": \"123456789\",\r\n    \"dba_name\": \"string\",\r\n    \"batch_settings\": {\r\n      \"frequency\": \"daily\",\r\n      \"average_amount\": 0,\r\n      \"maximum_amount\": 0\r\n    },\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"directors\": [\r\n      {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"percentage\": 100,\r\n        \"address\": {\r\n          \"address_line1\": \"123 Main Street\",\r\n          \"address_line2\": \"444\",\r\n          \"city\": \"Victoria\",\r\n          \"region\": \"BC\",\r\n          \"country\": \"CA\",\r\n          \"postal_code\": \"V1H W2Y\"\r\n        }\r\n      }\r\n    ],\r\n    \"bank_account\": {\r\n      \"owner_name\": \"John Doe\",\r\n      \"bank_name\": \"The Bank\",\r\n      \"swift_code\": \"ACMTCAMM\",\r\n      \"iban\": \"GB29 RBOS 6016 1331 9268 19\"\r\n    }\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "sepa-eur: Upload supporting documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/sepa-eur/applications/{{applicationId}}/documents",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \t\"name\": \"copy_id\",\r\n  \t\"type\": \"jpg\",\r\n  \t\"notes\": \"string\",\r\n  \t\"base64\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADQElEQVR42q2VSU9TURiGuzD6FxnFMJdJMEjAkADGGpQQN4isMIgbbCHMtEC7YkMCZR7KTJlbhstQtp/3+ZKDNw3EBW3y5vbcc87zfsM5rcvr9b70+XyN4+Pj0VAoZKVCsGDa7Feu3t7e5vn5ebm5uZFEIiG3t7fPEgxYMG32V9fExMQZE5Zlyfn5eUp0dXWlZjY77rJTSuAYj8dTplgsJjBhu4LBoEX0Z2dnTPxXZt3FxYVG63znFEzYrsnJSevy8lJOT0+dYhHPZAGjBPo8PDyUk5OTR9fBhK0GRMNCo+PjY43w7u4OIx2buevra5mZmZHPHo/86emh1mTiXIPY/8+Auh0dHSGdjB4ciM/rlZGRER2bEhJVJBKR99XVkpmeLvX19RLw+02ZDEMFEzanyCKlAxuKSDtmT/b390thQYE0NjTIwMCARKNRbdzPzk55k5MjbysqJC83V7KzsqSvrw9zjNivHJiw1YAoAaD9/X1NeXFxUUrcbsnMyJD8vDz50twsoWBQPtTVSXFRkZSXlUlFebkU5OdrRpsbG7K1tYXUAKYa2LfOwnV3d9dIU9ywN3R0dEhpSYm4i4vJRr+XlZYCd0rnPzY1iX1zZW9vT+Ah2GqA487OjlOaRTAUYjOZAMJAn8ky5qOjozRXqwBTDQKBgMULUnOKTFZXV+V3dzcmT8KZ40nz+Zkg8s3NTc0EthoA4yWLeDLe3t6mVIy1/kWFhY8a0KNfXV3Ch8zX19cfGGrg9/stO2JqTsQcLa64LC8vy9ramkxNTUlLS4tprGmujtPT0sTj8RC5nqKVlRWCVBOYsNUAR2CYTE9Py4/2dqmrrZWqykotgduG0VzKBJij+To7W763tellvL+/B06AcFQwHwxwZYEzgsHBQfnW2irvqqpoIsdR4TU1NdJuBxCenRU+NJUjvbS0pPudHDUYGxuzcGSBEeXhTtAoExUbzBmnJERNlOFw2Bg4pXtgqwEQFjnFHwZGNA4zwAhTMpybmzPwRwXzwQDQwsJCsjBBwJLFe9Y8KZhqYF+OBCmxKZWCCds1PDwcw9GknArBggmbP/1PnHsmTFmeIxiwYMLG4IWt2qGhoYidkpUKwYIJ+y90rW5HwS+CtQAAAABJRU5ErkJggg==\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "sepa-eur: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/sepa-eur/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "sepa-eur: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/sepa-eur/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "bacs-gbp: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/bacs-gbp/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "bacs-gbp: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/bacs-gbp/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\": \"ABC123\",\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Name\",\r\n    \"annual_sales\": 100000,\r\n    \"entity_type\": \"public_limited\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"legal_name\": \"Legal Name\",\r\n    \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"registration_number\": \"123456789\",\r\n    \"dba_name\": \"string\",\r\n    \"batch_settings\": {\r\n      \"frequency\": \"daily\",\r\n      \"average_amount\": 0,\r\n      \"maximum_amount\": 0\r\n    },\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"directors\": [\r\n      {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"percentage\": 100,\r\n        \"address\": {\r\n          \"address_line1\": \"123 Main Street\",\r\n          \"address_line2\": \"444\",\r\n          \"city\": \"Victoria\",\r\n          \"region\": \"BC\",\r\n          \"country\": \"CA\",\r\n          \"postal_code\": \"V1H W2Y\"\r\n        }\r\n      }\r\n    ],\r\n    \"bank_account\": {\r\n      \"owner_name\": \"John Doe\",\r\n      \"bank_name\": \"The Bank\",\r\n      \"sort_code\": \"90-00-17\",\r\n      \"account_number\": \"31926819\"\r\n    }\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "bacs-gbp: Upload supporting documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/bacs-gbp/applications/{{applicationId}}/documents",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \t\"name\": \"copy_id\",\r\n  \t\"type\": \"jpg\",\r\n  \t\"notes\": \"string\",\r\n  \t\"base64\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADQElEQVR42q2VSU9TURiGuzD6FxnFMJdJMEjAkADGGpQQN4isMIgbbCHMtEC7YkMCZR7KTJlbhstQtp/3+ZKDNw3EBW3y5vbcc87zfsM5rcvr9b70+XyN4+Pj0VAoZKVCsGDa7Feu3t7e5vn5ebm5uZFEIiG3t7fPEgxYMG32V9fExMQZE5Zlyfn5eUp0dXWlZjY77rJTSuAYj8dTplgsJjBhu4LBoEX0Z2dnTPxXZt3FxYVG63znFEzYrsnJSevy8lJOT0+dYhHPZAGjBPo8PDyUk5OTR9fBhK0GRMNCo+PjY43w7u4OIx2buevra5mZmZHPHo/86emh1mTiXIPY/8+Auh0dHSGdjB4ciM/rlZGRER2bEhJVJBKR99XVkpmeLvX19RLw+02ZDEMFEzanyCKlAxuKSDtmT/b390thQYE0NjTIwMCARKNRbdzPzk55k5MjbysqJC83V7KzsqSvrw9zjNivHJiw1YAoAaD9/X1NeXFxUUrcbsnMyJD8vDz50twsoWBQPtTVSXFRkZSXlUlFebkU5OdrRpsbG7K1tYXUAKYa2LfOwnV3d9dIU9ywN3R0dEhpSYm4i4vJRr+XlZYCd0rnPzY1iX1zZW9vT+Ah2GqA487OjlOaRTAUYjOZAMJAn8ky5qOjozRXqwBTDQKBgMULUnOKTFZXV+V3dzcmT8KZ40nz+Zkg8s3NTc0EthoA4yWLeDLe3t6mVIy1/kWFhY8a0KNfXV3Ch8zX19cfGGrg9/stO2JqTsQcLa64LC8vy9ramkxNTUlLS4tprGmujtPT0sTj8RC5nqKVlRWCVBOYsNUAR2CYTE9Py4/2dqmrrZWqykotgduG0VzKBJij+To7W763tellvL+/B06AcFQwHwxwZYEzgsHBQfnW2irvqqpoIsdR4TU1NdJuBxCenRU+NJUjvbS0pPudHDUYGxuzcGSBEeXhTtAoExUbzBmnJERNlOFw2Bg4pXtgqwEQFjnFHwZGNA4zwAhTMpybmzPwRwXzwQDQwsJCsjBBwJLFe9Y8KZhqYF+OBCmxKZWCCds1PDwcw9GknArBggmbP/1PnHsmTFmeIxiwYMLG4IWt2qGhoYidkpUKwYIJ+y90rW5HwS+CtQAAAABJRU5ErkJggg==\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "bacs-gbp: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/bacs-gbp/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "bacs-gbp: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/bacs-gbp/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ach-usd: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/ach-usd/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ach-usd: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/ach-usd/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\": \"ABC123\",\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Name\",\r\n    \"annual_sales\": 100000,\r\n    \"entity_type\": \"sole_proprietor\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"dba_name\": \"string\",\r\n    \"batch_settings\": {\r\n      \"frequency\": \"daily\",\r\n      \"average_amount\": 0,\r\n      \"maximum_amount\": 0\r\n    },\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"directors\": [\r\n      {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"percentage\": 100,\r\n        \"address\": {\r\n          \"address_line1\": \"123 Main Street\",\r\n          \"address_line2\": \"444\",\r\n          \"city\": \"Victoria\",\r\n          \"region\": \"BC\",\r\n          \"country\": \"CA\",\r\n          \"postal_code\": \"V1H W2Y\"\r\n        }\r\n      }\r\n    ],\r\n    \"bank_account\": {\r\n      \"owner_name\": \"John Doe\",\r\n      \"routing_number\": \"011103093\",\r\n      \"account_number\": \"0532013000\"\r\n    }\r\n  }\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ach-usd: Upload supporting documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/ach-usd/applications/{{applicationId}}/documents",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \t\"name\": \"copy_id\",\r\n  \t\"type\": \"jpg\",\r\n  \t\"notes\": \"string\",\r\n  \t\"base64\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADQElEQVR42q2VSU9TURiGuzD6FxnFMJdJMEjAkADGGpQQN4isMIgbbCHMtEC7YkMCZR7KTJlbhstQtp/3+ZKDNw3EBW3y5vbcc87zfsM5rcvr9b70+XyN4+Pj0VAoZKVCsGDa7Feu3t7e5vn5ebm5uZFEIiG3t7fPEgxYMG32V9fExMQZE5Zlyfn5eUp0dXWlZjY77rJTSuAYj8dTplgsJjBhu4LBoEX0Z2dnTPxXZt3FxYVG63znFEzYrsnJSevy8lJOT0+dYhHPZAGjBPo8PDyUk5OTR9fBhK0GRMNCo+PjY43w7u4OIx2buevra5mZmZHPHo/86emh1mTiXIPY/8+Auh0dHSGdjB4ciM/rlZGRER2bEhJVJBKR99XVkpmeLvX19RLw+02ZDEMFEzanyCKlAxuKSDtmT/b390thQYE0NjTIwMCARKNRbdzPzk55k5MjbysqJC83V7KzsqSvrw9zjNivHJiw1YAoAaD9/X1NeXFxUUrcbsnMyJD8vDz50twsoWBQPtTVSXFRkZSXlUlFebkU5OdrRpsbG7K1tYXUAKYa2LfOwnV3d9dIU9ywN3R0dEhpSYm4i4vJRr+XlZYCd0rnPzY1iX1zZW9vT+Ah2GqA487OjlOaRTAUYjOZAMJAn8ky5qOjozRXqwBTDQKBgMULUnOKTFZXV+V3dzcmT8KZ40nz+Zkg8s3NTc0EthoA4yWLeDLe3t6mVIy1/kWFhY8a0KNfXV3Ch8zX19cfGGrg9/stO2JqTsQcLa64LC8vy9ramkxNTUlLS4tprGmujtPT0sTj8RC5nqKVlRWCVBOYsNUAR2CYTE9Py4/2dqmrrZWqykotgduG0VzKBJij+To7W763tellvL+/B06AcFQwHwxwZYEzgsHBQfnW2irvqqpoIsdR4TU1NdJuBxCenRU+NJUjvbS0pPudHDUYGxuzcGSBEeXhTtAoExUbzBmnJERNlOFw2Bg4pXtgqwEQFjnFHwZGNA4zwAhTMpybmzPwRwXzwQDQwsJCsjBBwJLFe9Y8KZhqYF+OBCmxKZWCCds1PDwcw9GknArBggmbP/1PnHsmTFmeIxiwYMLG4IWt2qGhoYidkpUKwYIJ+y90rW5HwS+CtQAAAABJRU5ErkJggg==\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ach-usd: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/ach-usd/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ach-usd: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/ach-usd/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "eft-cad: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/eft-cad/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "eft-cad: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/eft-cad/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\": \"string\",\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Name\",\r\n    \"annual_sales\": 100000,\r\n    \"entity_type\": \"sole_proprietor\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"services_description\": \"services description...\",\r\n    \"dba_name\": \"string\",\r\n    \"batch_settings\": {\r\n      \"frequency\": \"daily\",\r\n      \"average_amount\": 0,\r\n      \"maximum_amount\": 0\r\n    },\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"directors\": [\r\n      {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"address\": {\r\n          \"address_line1\": \"123 Main Street\",\r\n          \"address_line2\": \"444\",\r\n          \"city\": \"Victoria\",\r\n          \"region\": \"BC\",\r\n          \"country\": \"CA\",\r\n          \"postal_code\": \"V1H W2Y\"\r\n        }\r\n      }\r\n    ],\r\n    \"bank_account\": {\r\n      \"currency\": \"CAD\",\r\n      \"owner_name\": \"John Doe\",\r\n      \"transit_number\": \"12345\",\r\n      \"institution_number\": \"567\",\r\n      \"account_number\": \"123456789123\"\r\n    }\r\n  }\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "eft-cad: Upload supporting documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/eft-cad/applications/{{applicationId}}/documents",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \t\"name\": \"copy_id\",\r\n  \t\"type\": \"jpg\",\r\n  \t\"notes\": \"string\",\r\n  \t\"base64\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADQElEQVR42q2VSU9TURiGuzD6FxnFMJdJMEjAkADGGpQQN4isMIgbbCHMtEC7YkMCZR7KTJlbhstQtp/3+ZKDNw3EBW3y5vbcc87zfsM5rcvr9b70+XyN4+Pj0VAoZKVCsGDa7Feu3t7e5vn5ebm5uZFEIiG3t7fPEgxYMG32V9fExMQZE5Zlyfn5eUp0dXWlZjY77rJTSuAYj8dTplgsJjBhu4LBoEX0Z2dnTPxXZt3FxYVG63znFEzYrsnJSevy8lJOT0+dYhHPZAGjBPo8PDyUk5OTR9fBhK0GRMNCo+PjY43w7u4OIx2buevra5mZmZHPHo/86emh1mTiXIPY/8+Auh0dHSGdjB4ciM/rlZGRER2bEhJVJBKR99XVkpmeLvX19RLw+02ZDEMFEzanyCKlAxuKSDtmT/b390thQYE0NjTIwMCARKNRbdzPzk55k5MjbysqJC83V7KzsqSvrw9zjNivHJiw1YAoAaD9/X1NeXFxUUrcbsnMyJD8vDz50twsoWBQPtTVSXFRkZSXlUlFebkU5OdrRpsbG7K1tYXUAKYa2LfOwnV3d9dIU9ywN3R0dEhpSYm4i4vJRr+XlZYCd0rnPzY1iX1zZW9vT+Ah2GqA487OjlOaRTAUYjOZAMJAn8ky5qOjozRXqwBTDQKBgMULUnOKTFZXV+V3dzcmT8KZ40nz+Zkg8s3NTc0EthoA4yWLeDLe3t6mVIy1/kWFhY8a0KNfXV3Ch8zX19cfGGrg9/stO2JqTsQcLa64LC8vy9ramkxNTUlLS4tprGmujtPT0sTj8RC5nqKVlRWCVBOYsNUAR2CYTE9Py4/2dqmrrZWqykotgduG0VzKBJij+To7W763tellvL+/B06AcFQwHwxwZYEzgsHBQfnW2irvqqpoIsdR4TU1NdJuBxCenRU+NJUjvbS0pPudHDUYGxuzcGSBEeXhTtAoExUbzBmnJERNlOFw2Bg4pXtgqwEQFjnFHwZGNA4zwAhTMpybmzPwRwXzwQDQwsJCsjBBwJLFe9Y8KZhqYF+OBCmxKZWCCds1PDwcw9GknArBggmbP/1PnHsmTFmeIxiwYMLG4IWt2qGhoYidkpUKwYIJ+y90rW5HwS+CtQAAAABJRU5ErkJggg==\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "eft-cad: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/eft-cad/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "etf-cad: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/eft-cad/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-cad: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-cad/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-cad: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-cad/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\":\"ABC123\",\r\n  \"applicant\":{\r\n    \"phone_number\":\"222-222-2222\",\r\n    \"date_of_birth\":\"2013-03-25T22:04:10.04399Z\",\r\n    \"email\":\"user@example.com\",\r\n    \"address\":{\r\n      \"address_line1\":\"123 Main Street\",\r\n      \"address_line2\":\"444\",\r\n      \"city\":\"Victoria\",\r\n      \"region\":\"BC\",\r\n      \"country\":\"CA\",\r\n      \"postal_code\":\"V1H W2Y\"\r\n    },\r\n    \"agreement\":{\r\n      \"name\":\"Terms and Conditions PSP.pdf\",\r\n      \"version\":\"1.0\",\r\n      \"timestamp\":\"2013-03-25T22:04:10.04399Z\"\r\n    }\r\n  },\r\n  \"business\":{\r\n    \"company_name\":\"Name\",\r\n    \"annual_sales\":100000,\r\n    \"merchant_category\":\"8641\",\r\n    \"entity_type\":\"partnership\",\r\n    \"website_url\":\"http://example.com\",\r\n    \"start_date\":\"2013-03-25T22:04:10.04399Z\",\r\n    \"business_number\":\"2342342545345\",\r\n    \"services_description\":\"clothes, jewellery, shoes, accessories\",\r\n    \"bank_account\":{\r\n      \"owner_name\":\"John Doe\",\r\n      \"transit_number\":\"69877\",\r\n      \"institution_number\":\"345\",\r\n      \"account_number\":\"3453\"\r\n    },\r\n    \"address\":{\r\n      \"address_line1\":\"123 Main Street\",\r\n      \"address_line2\":\"444\",\r\n      \"city\":\"Victoria\",\r\n      \"region\":\"BC\",\r\n      \"country\":\"CA\",\r\n      \"postal_code\":\"V1H W2Y\"\r\n    },\"owners\":[\r\n      {\r\n        \"first_name\":\"John\",\r\n        \"last_name\":\"Doe\",\r\n        \"date_of_birth\":\"2013-03-25T22:04:10.04399Z\",\r\n        \"address\":{\r\n          \"address_line1\":\"123 Main Street\",\r\n          \"address_line2\":\"444\",\r\n          \"city\":\"Victoria\",\r\n          \"region\":\"BC\",\r\n          \"country\":\"CA\",\r\n          \"postal_code\":\"V1H W2Y\"\r\n        }\r\n      },\r\n      {\r\n        \"first_name\":\"Jane\",\r\n        \"last_name\":\"Doe\",\r\n        \"date_of_birth\":\"2013-03-25T22:04:10.04399Z\",\r\n        \"address\":{\r\n          \"address_line1\":\"123 Main Street\",\r\n          \"address_line2\":\"444\",\r\n          \"city\":\"Victoria\",\r\n          \"region\":\"BC\",\r\n          \"country\":\"CA\",\r\n          \"postal_code\":\"V1H W2Y\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-cad: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-cad/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-cad: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-cad/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-usd: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-usd/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-usd: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-usd/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pricing_id\": \"string\",\r\n  \"applicant\": {\r\n    \"social_security_number\": \"037-46-1234\",\r\n    \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"citizenship\": \"CA\",\r\n    \"phone_number\": \"2222222\",\r\n    \"position\": \"owner\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main St\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Name\",\r\n    \"legal_name\": \"Legal Name\",\r\n    \"annual_sales\": 10000,\r\n    \"merchant_category\": \"7997\",\r\n    \"services_description\": \"services description...\",\r\n    \"federal_tax_id\": \"123456789\",\r\n    \"tin_type\": \"social_security\",\r\n    \"entity_type\": \"sole_proprietor\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"start_date\": \"2013-03-25T22:04:10.04399Z\",\r\n    \"average_amount\": 0,\r\n    \"average_delivery\": \"07\",\r\n    \"seasonal_sales\": \"1\",\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"owners\": [\r\n      {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"date_of_birth\": \"2013-03-25T22:04:10.04399Z\",\r\n        \"social_security_number\": \"037461234\",\r\n        \"phone_number\": \"2222222222\",\r\n        \"email\": \"jdoe@example.com\",\r\n        \"citizenship\": \"CA\",\r\n        \"percentage\": 100,\r\n        \"address\": {\r\n          \"address_line1\": \"123 Main St\",\r\n          \"address_line2\": \"444\",\r\n          \"city\": \"Victoria\",\r\n          \"region\": \"BC\",\r\n          \"country\": \"CA\",\r\n          \"postal_code\": \"V1H W2Y\"\r\n        }\r\n      }\r\n    ],\r\n    \"bank_account\": {\r\n      \"owner_name\": \"John Doe\",\r\n      \"routing_number\": \"123456789\",\r\n      \"account_number\": \"012345678901\"\r\n    }\r\n  }\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-usd: Upload supporting documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-usd/applications/{{applicationId}}/documents",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \t\"name\": \"id_applicant\",\r\n  \t\"type\": \"jpg\",\r\n  \t\"notes\": \"string\",\r\n  \t\"base64\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADQElEQVR42q2VSU9TURiGuzD6FxnFMJdJMEjAkADGGpQQN4isMIgbbCHMtEC7YkMCZR7KTJlbhstQtp/3+ZKDNw3EBW3y5vbcc87zfsM5rcvr9b70+XyN4+Pj0VAoZKVCsGDa7Feu3t7e5vn5ebm5uZFEIiG3t7fPEgxYMG32V9fExMQZE5Zlyfn5eUp0dXWlZjY77rJTSuAYj8dTplgsJjBhu4LBoEX0Z2dnTPxXZt3FxYVG63znFEzYrsnJSevy8lJOT0+dYhHPZAGjBPo8PDyUk5OTR9fBhK0GRMNCo+PjY43w7u4OIx2buevra5mZmZHPHo/86emh1mTiXIPY/8+Auh0dHSGdjB4ciM/rlZGRER2bEhJVJBKR99XVkpmeLvX19RLw+02ZDEMFEzanyCKlAxuKSDtmT/b390thQYE0NjTIwMCARKNRbdzPzk55k5MjbysqJC83V7KzsqSvrw9zjNivHJiw1YAoAaD9/X1NeXFxUUrcbsnMyJD8vDz50twsoWBQPtTVSXFRkZSXlUlFebkU5OdrRpsbG7K1tYXUAKYa2LfOwnV3d9dIU9ywN3R0dEhpSYm4i4vJRr+XlZYCd0rnPzY1iX1zZW9vT+Ah2GqA487OjlOaRTAUYjOZAMJAn8ky5qOjozRXqwBTDQKBgMULUnOKTFZXV+V3dzcmT8KZ40nz+Zkg8s3NTc0EthoA4yWLeDLe3t6mVIy1/kWFhY8a0KNfXV3Ch8zX19cfGGrg9/stO2JqTsQcLa64LC8vy9ramkxNTUlLS4tprGmujtPT0sTj8RC5nqKVlRWCVBOYsNUAR2CYTE9Py4/2dqmrrZWqykotgduG0VzKBJij+To7W763tellvL+/B06AcFQwHwxwZYEzgsHBQfnW2irvqqpoIsdR4TU1NdJuBxCenRU+NJUjvbS0pPudHDUYGxuzcGSBEeXhTtAoExUbzBmnJERNlOFw2Bg4pXtgqwEQFjnFHwZGNA4zwAhTMpybmzPwRwXzwQDQwsJCsjBBwJLFe9Y8KZhqYF+OBCmxKZWCCds1PDwcw9GknArBggmbP/1PnHsmTFmeIxiwYMLG4IWt2qGhoYidkpUKwYIJ+y90rW5HwS+CtQAAAABJRU5ErkJggg==\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-usd: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-usd/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "psp-usd: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/psp-usd/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-cdn: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-cdn/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-cdn: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-cdn/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Company Name\",\r\n    \"merchant_category\": \"5813\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"bank_account\": {\r\n      \"currency\": \"CAD\",\r\n      \"owner_name\": \"John Doe\",\r\n      \"transit_number\": \"12345\",\r\n      \"institution_number\": \"567\",\r\n      \"account_number\": \"123456789123\"\r\n    }\r\n  },\r\n  \"pricing_id\": \"123456\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-cdn: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-cdn/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-cdn: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-cdn/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-usa: Search applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-usa/applications?state=in_review",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-usa: Create partial application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if(responseCode.code === 201) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"applicationId\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-usa/applications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"phone_number\": \"222-222-2222\",\r\n    \"agreement\": {\r\n      \"name\": \"Terms and Conditions PSP.pdf\",\r\n      \"version\": \"1.0\",\r\n      \"personal_guarantee_accepted\": true,\r\n      \"timestamp\": \"2013-03-25T22:04:10.04399Z\"\r\n    },\r\n    \"email\": \"user@example.com\"\r\n  },\r\n  \"business\": {\r\n    \"company_name\": \"Company Name\",\r\n    \"merchant_category\": \"5813\",\r\n    \"website_url\": \"http://example.com\",\r\n    \"address\": {\r\n      \"address_line1\": \"123 Main Street\",\r\n      \"address_line2\": \"444\",\r\n      \"city\": \"Victoria\",\r\n      \"region\": \"BC\",\r\n      \"country\": \"CA\",\r\n      \"postal_code\": \"V1H W2Y\"\r\n    },\r\n    \"bank_account\": {\r\n      \"owner_name\": \"John Doe\",\r\n      \"account_number\": \"123456789123\",\r\n      \"routing_number\": \"123456789\"\r\n    }\r\n  },\r\n  \"pricing_id\": \"123456\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-usa: Update application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-usa/applications/{{applicationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applicant\": {\r\n    \"first_name\": \"First\",\r\n    \"last_name\": \"Last\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "gw-usa: Read application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{onboarding_url}}/v1/boarding/workflows/gw-usa/applications/{{applicationId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{onboarding_token}}",
+								"description": ""
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2016-08-18",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"description": "",
+			"item": [
+				{
+					"name": "Make Payment (raw card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for refund: ",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"card\",\r\n  \"card\":{\r\n    \"name\":\"John Doe\",\r\n      \"number\":\"4030000010001234\",\r\n      \"expiry_month\":\"02\",\r\n      \"expiry_year\":\"14\",\r\n       \"cvd\":\"123\"\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Return Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"    // increment order number to keep unique",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments/{{transId}}/returns",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"order_number\":{{currentOrderNumber}},\n  \"amount\": 0.01\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Payment (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for void: ",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":\"{{currentOrderNumber}}\",\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"token\",\r\n  \"token\": {\r\n    \"name\":\"John Doe\", \r\n    \"code\":\"{{tokenizedCC}}\",\r\n    \"complete\": true\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Void Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments/{{transId}}/void",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\":100.00\n}"
+						},
+						"description": "Void a transaction. It will cancel that transaction. \n\n*/payments/{transId}/void*"
+					},
+					"response": []
+				},
+				{
+					"name": "Make Pre-Auth (raw card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    ",
+									"    // transaction Id used for Complete Pre-Auth",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id); ",
+									"    ",
+									"    // increment order num to keep unique",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":{{currentOrderNumber}},\r\n     \"amount\":100.00,\r\n     \"payment_method\":\"card\",\r\n     \"card\":{\r\n      \"name\":\"John Doe\",\r\n        \"number\":\"5100000010001004\",\r\n        \"expiry_month\":\"02\",\r\n        \"expiry_year\":\"24\",\r\n        \"cvd\":\"123\",\r\n        \"complete\":false\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Pre-Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"    // increment order number to keep unique",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments/{{transId}}/completions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\":59.33\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments/{{transId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Payment (profile)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for refund:",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":\"{{currentOrderNumber}}\",\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"payment_profile\",\r\n  \"payment_profile\": { \r\n    \"customer_code\": \"{{profileId}}\", \r\n    \"card_id\": \"{{cardId}}\",\r\n    \"complete\": true\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Payment (token with partner auth)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for refund: ",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"partner_id\"] + \":\" + environment[\"partner_payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Sub-Merchant-Id",
+								"value": "{{merchant_id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":{{currentOrderNumber}},\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"card\",\r\n  \"card\":{\r\n    \"name\":\"John Doe\",\r\n      \"number\":\"5100000010001004\",\r\n      \"expiry_month\":\"02\",\r\n      \"expiry_year\":\"14\",\r\n       \"cvd\":\"123\"\r\n  },\r\n  \"billing\":{\r\n  \t\"postal_code\": \"v8r1a6\"\r\n  }\r\n  \r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Payment (profile with partner auth)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for refund: ",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"partner_id\"] + \":\" + environment[\"partner_payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Sub-Merchant-Id",
+								"value": "{{merchant_id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":{{currentOrderNumber}},\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"card\",\r\n  \"card\":{\r\n    \"name\":\"John Doe\",\r\n      \"number\":\"5100000010001004\",\r\n      \"expiry_month\":\"02\",\r\n      \"expiry_year\":\"14\",\r\n       \"cvd\":\"123\"\r\n  },\r\n  \"billing\":{\r\n  \t\"postal_code\": \"v8r1a6\"\r\n  }\r\n  \r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Pre Auth (profile)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for refund:",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":\"{{currentOrderNumber}}\",\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"payment_profile\",\r\n  \"payment_profile\": { \r\n    \"customer_code\": \"{{profileId}}\", \r\n    \"card_id\": \"{{cardId}}\",\r\n    \"complete\": false\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make Pre-Auth (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    // transaction id used for void: ",
+									"    postman.setEnvironmentVariable(\"transId\", jsonData.id);",
+									"    ",
+									"    // increment order num to keep unique: ",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									"}",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"payment_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/payments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order_number\":\"{{currentOrderNumber}}\",\r\n  \"amount\": 100.00,\r\n  \"payment_method\":\"token\",\r\n  \"token\": {\r\n    \"name\":\"Jo\", \r\n    \"code\":\"{{tokenizedCC}}\",\r\n    \"complete\": false\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Profile",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Profile (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profileId\", jsonData.customer_code);",
+									"}",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\":{  \r\n  \"name\":\"John Doe\",\r\n    \"code\":\"{{tokenizedCC}}\",\r\n  },\r\n  \"billing\": {\r\n      \"name\": \"Jon Doe\",\r\n         \"address_line1\": \"123 Main St.\",\r\n         \"address_line2\": \"\",\r\n         \"city\": \"victoria\",\r\n         \"province\": \"bc\",\r\n         \"country\": \"ca\",\r\n         \"postal_code\": \"V9B3Z4\",\r\n         \"phone_number\": \"25013312345\",\r\n         \"email_address\": \"jon@example.com\"\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete a payment profile using the profile ID, also known as the customer code. "
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile (raw card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profileId\", jsonData.customer_code);",
+									"}",
+									"",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"card\": {\r\n    \"name\": \"Jon Doe\",\r\n    \"number\": \"4030000010001234\",\r\n    \"expiry_month\": \"02\",\r\n    \"expiry_year\": \"18\",\r\n    \"cvd\": \"123\"\r\n  },\r\n  \"billing\": {\r\n      \"name\": \"Jon Doe\",\r\n         \"address_line1\": \"123 Main St.\",\r\n         \"address_line2\": \"\",\r\n         \"city\": \"victoria\",\r\n         \"province\": \"bc\",\r\n         \"country\": \"ca\",\r\n         \"postal_code\": \"V9B3Z4\",\r\n  }\r\n}"
+						},
+						"description": "Create a new payment profile using either a card or a Legato token. "
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Get a payment profile using the profile ID, also known as the Customer Code. "
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"billing\": {\r\n    \"name\": \"New Name\",\r\n  }\r\n}"
+						},
+						"description": "Update profile. "
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"cardId\", jsonData.card[0].card_id);",
+									"}",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Get all of the cards on the profile. "
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards/{{cardId}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete a card on the profile.     "
+					},
+					"response": []
+				},
+				{
+					"name": "Add Card (raw card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"card\": {\r\n    \"name\": \"Jon Doe\",\r\n    \"number\": \"4030000010001234\",\r\n    \"expiry_month\": \"02\",\r\n    \"expiry_year\": \"18\",\r\n    \"cvd\": \"123\"\r\n  }\r\n}"
+						},
+						"description": "Add a card to the profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Card (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\":{  \r\n    \"name\":\"John Doe\",\r\n    \"code\":\"{{tokenizedCC}}\",\r\n  }"
+						},
+						"description": "Add a card to the profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Card (raw card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards/{{cardId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"card\": {\r\n    \"name\": \"Jane Doe\",\r\n    \"number\": \"5100000020002000\",\r\n    \"expiry_month\": \"02\",\r\n    \"expiry_year\": \"18\",\r\n    \"cvd\": \"123\"\r\n  }\r\n}"
+						},
+						"description": "Update the details of a card on the profile. "
+					},
+					"response": []
+				},
+				{
+					"name": "Update Card (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles/{{profileId}}/cards/{{cardId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\":{  \r\n    \"name\":\"John Doe\",\r\n    \"code\":\"{{tokenizedCC}}\",\r\n  }"
+						},
+						"description": "Update the details of a card on the profile. "
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile (bank account)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var responseJson = xml2Json(responseBody).response;",
+									"",
+									"tests[\"Payment Profile created\"] = responseJson.responseCode === \"1\";",
+									"",
+									"if(responseJson.responseCode === \"1\") {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"profileId\", responseJson.customerCode);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/payment_profile.asp?merchantId={{merchant_id}}&passCode={{profile_passcode}}&serviceVersion=1.0&operationType=N&bankAccountType=CA&bankAccountHolder=John Doe&institutionNumber=123&branchNumber=12345&accountNumber=123456789&ordName=Rosanna+Sylvester&ordEmailAddress=joe@mydomain.com&ordPhoneNumber=2504722326&ordAddress1=123+Main+Street&ordCity=Victoria&ordPostalCode=V8T4M3&ordProvince=BC&ordCountry=CA",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"payment_profile.asp"
+							],
+							"query": [
+								{
+									"key": "merchantId",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passCode",
+									"value": "{{profile_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "serviceVersion",
+									"value": "1.0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "operationType",
+									"value": "N",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "bankAccountType",
+									"value": "CA",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "bankAccountHolder",
+									"value": "John Doe",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "institutionNumber",
+									"value": "123",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "branchNumber",
+									"value": "12345",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "accountNumber",
+									"value": "123456789",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordName",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordEmailAddress",
+									"value": "joe@mydomain.com",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPhoneNumber",
+									"value": "2504722326",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordAddress1",
+									"value": "123+Main+Street",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCity",
+									"value": "Victoria",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPostalCode",
+									"value": "V8T4M3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordProvince",
+									"value": "BC",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCountry",
+									"value": "CA",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile (custom profile id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var responseJson = xml2Json(responseBody).response;",
+									"",
+									"tests[\"Payment Profile created\"] = responseJson.responseCode === \"1\";",
+									"",
+									"if(responseJson.responseCode === \"1\") {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"profileId\", responseJson.customerCode);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/payment_profile.asp?merchantId={{merchant_id}}&passCode={{profile_passcode}}&serviceVersion=1.0&operationType=N&customerCode=maryfrom accounting",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"payment_profile.asp"
+							],
+							"query": [
+								{
+									"key": "merchantId",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passCode",
+									"value": "{{profile_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "serviceVersion",
+									"value": "1.0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "operationType",
+									"value": "N",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "customerCode",
+									"value": "maryfrom accounting",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile (token with card varification flag)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var responseJson = xml2Json(responseBody).response;",
+									"",
+									"tests[\"Payment Profile created\"] = responseJson.responseCode === \"1\";",
+									"",
+									"if(responseJson.responseCode === \"1\") {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"profileId\", responseJson.customerCode);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{url}}/scripts/payment_profile.asp?merchantId={{merchant_id}}&passCode={{profile_passcode}}&serviceVersion=1.0&operationType=N&trnCardOwner=Rosanna+Sylvester&ordAddress1=1407+Graymalkin+Lane&ordPostalCode=111111&singleUseToken={{tokenizedCC}}&cardValidation=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scripts",
+								"payment_profile.asp"
+							],
+							"query": [
+								{
+									"key": "merchantId",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passCode",
+									"value": "{{profile_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "serviceVersion",
+									"value": "1.0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "operationType",
+									"value": "N",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "bankAccountType",
+									"value": "CA",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "bankAccountHolder",
+									"value": "John Doe",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "institutionNumber",
+									"value": "123",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "branchNumber",
+									"value": "12345",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "accountNumber",
+									"value": "123456789",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "trnCardOwner",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordEmailAddress",
+									"value": "joe@mydomain.com",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "ordPhoneNumber",
+									"value": "2504722326",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "ordAddress1",
+									"value": "1407+Graymalkin+Lane",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCity",
+									"value": "Victoria",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "ordPostalCode",
+									"value": "111111",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordProvince",
+									"value": "BC",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "ordCountry",
+									"value": "CA",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "singleUseToken",
+									"value": "{{tokenizedCC}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "cardValidation",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile  (token with partner auth)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) { ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profileId\", jsonData.customer_code);",
+									"}",
+									"",
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"partner_id\"] + \":\" + environment[\"partner_profile_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/profiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Sub-Merchant-Id",
+								"value": "{{merchant_id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\":{  \r\n  \"name\":\"John Doe\",\r\n    \"code\":\"{{tokenizedCC}}\",\r\n  },\r\n  \"billing\": {\r\n      \"name\": \"Jon Doe\",\r\n         \"address_line1\": \"123 Main St.\",\r\n         \"address_line2\": \"\",\r\n         \"city\": \"victoria\",\r\n         \"province\": \"bc\",\r\n         \"country\": \"ca\",\r\n         \"postal_code\": \"V9B3Z4\",\r\n         \"phone_number\": \"25013312345\",\r\n         \"email_address\": \"jon@example.com\"\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recurring Payment",
+			"description": "",
+			"item": [
+				{
+					"name": "Modify recurring account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Body matches string\"] = responseBody.has(\"Request successful\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/recurring_billing.asp?serviceVersion=1.0&operationType=M&merchantId={{merchant_id}}&passCode={{recurring_passcode}}&rbAccountId={{recurringAccountId}}&amount=12.00",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"recurring_billing.asp"
+							],
+							"query": [
+								{
+									"key": "serviceVersion",
+									"value": "1.0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "operationType",
+									"value": "M",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "merchantId",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passCode",
+									"value": "{{recurring_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbAccountId",
+									"value": "{{recurringAccountId}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "amount",
+									"value": "12.00",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create recurring account (token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript",
+									"// to get the accountId so it can be modified",
+									"function getQueryVariable(response, variable) {",
+									"    var vars = response.split('&');",
+									"    for (var i = 0; i < vars.length; i++) {",
+									"        var pair = vars[i].split('=');",
+									"        if (decodeURIComponent(pair[0]) == variable) {",
+									"            return decodeURIComponent(pair[1]);",
+									"        }",
+									"    }",
+									"    console.log('Query variable %s not found', variable);",
+									"    return \"\";",
+									"}",
+									"",
+									"tests[\"Account creation approved\"] = responseBody.has(\"trnApproved=1\");",
+									"",
+									"if(responseBody.has(\"trnApproved=1\")) {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"recurringAccountId\", getQueryVariable(responseBody, \"rbAccountId\"));",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/process_transaction.asp?requestType=BACKEND&merchant_Id={{merchant_id}}&passcode={{payment_passcode}}&trnType=P&singleUseToken={{tokenizedCC}}&ordName=Rosanna+Sylvester&ordEmailAddress=joe@mydomain.com&ordAddress1=123+Main+Street&ordAddress2=Suite+202&ordCity=Victoria&ordProvince=BC&ordCountry=CA&ordPostalCode=V8T+4M3&ordPhoneNumber=2504722326&trnAmount=10&trnRecurring=1&rbBillingPeriod=D&rbBillingIncrement=30&trnCardOwner=Rosanna+Sylvester",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"process_transaction.asp"
+							],
+							"query": [
+								{
+									"key": "requestType",
+									"value": "BACKEND",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "merchant_Id",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passcode",
+									"value": "{{payment_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnType",
+									"value": "P",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "singleUseToken",
+									"value": "{{tokenizedCC}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordName",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordEmailAddress",
+									"value": "joe@mydomain.com",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordAddress1",
+									"value": "123+Main+Street",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordAddress2",
+									"value": "Suite+202",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCity",
+									"value": "Victoria",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordProvince",
+									"value": "BC",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCountry",
+									"value": "CA",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPostalCode",
+									"value": "V8T+4M3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPhoneNumber",
+									"value": "2504722326",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnAmount",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnRecurring",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingPeriod",
+									"value": "D",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingIncrement",
+									"value": "30",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnCardOwner",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create recurring account (profile)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript",
+									"// to get the accountId so it can be modified",
+									"function getQueryVariable(response, variable) {",
+									"    var vars = response.split('&');",
+									"    for (var i = 0; i < vars.length; i++) {",
+									"        var pair = vars[i].split('=');",
+									"        if (decodeURIComponent(pair[0]) == variable) {",
+									"            return decodeURIComponent(pair[1]);",
+									"        }",
+									"    }",
+									"    console.log('Query variable %s not found', variable);",
+									"    return \"\";",
+									"}",
+									"",
+									"tests[\"Account creation approved\"] = responseBody.has(\"trnApproved=1\");",
+									"",
+									"if(responseBody.has(\"trnApproved=1\")) {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"recurringAccountId\", getQueryVariable(responseBody, \"rbAccountId\"));",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/process_transaction.asp?requestType=BACKEND&merchant_Id={{merchant_id}}&passcode={{payment_passcode}}&trnType=P&customerCode={{profileId}}&trnAmount=10&trnRecurring=1&rbBillingPeriod=D&rbBillingIncrement=30",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"process_transaction.asp"
+							],
+							"query": [
+								{
+									"key": "requestType",
+									"value": "BACKEND",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "merchant_Id",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passcode",
+									"value": "{{payment_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnType",
+									"value": "P",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "customerCode",
+									"value": "{{profileId}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnAmount",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnRecurring",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingPeriod",
+									"value": "D",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingIncrement",
+									"value": "30",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Close recurring account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Body matches string\"] = responseBody.has(\"Request successful\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/recurring_billing.asp?serviceVersion=1.0&operationType=C&merchantId={{merchant_id}}&passCode={{recurring_passcode}}&rbAccountId={{recurringAccountId}}",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"recurring_billing.asp"
+							],
+							"query": [
+								{
+									"key": "serviceVersion",
+									"value": "1.0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "operationType",
+									"value": "C",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "merchantId",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passCode",
+									"value": "{{recurring_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbAccountId",
+									"value": "{{recurringAccountId}}",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create recurring account (token) copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript",
+									"// to get the accountId so it can be modified",
+									"function getQueryVariable(response, variable) {",
+									"    var vars = response.split('&');",
+									"    for (var i = 0; i < vars.length; i++) {",
+									"        var pair = vars[i].split('=');",
+									"        if (decodeURIComponent(pair[0]) == variable) {",
+									"            return decodeURIComponent(pair[1]);",
+									"        }",
+									"    }",
+									"    console.log('Query variable %s not found', variable);",
+									"    return \"\";",
+									"}",
+									"",
+									"tests[\"Account creation approved\"] = responseBody.has(\"trnApproved=1\");",
+									"",
+									"if(responseBody.has(\"trnApproved=1\")) {",
+									"",
+									"    // get the recurring account id for Modify",
+									"    postman.setEnvironmentVariable(\"recurringAccountId\", getQueryVariable(responseBody, \"rbAccountId\"));",
+									"}",
+									"",
+									"    postman.setEnvironmentVariable(\"currentOrderNumber\", parseInt(jsonData.order_number)+1);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{querystring_url}}/scripts/process_transaction.asp?requestType=BACKEND&merchant_Id={{merchant_id}}&passcode={{payment_passcode}}&trnType=P&singleUseToken={{tokenizedCC}}&ordName=Rosanna+Sylvester&ordEmailAddress=joe@mydomain.com&ordAddress1=123+Main+Street&ordAddress2=Suite+202&ordCity=Victoria&ordProvince=BC&ordCountry=CA&ordPostalCode=V8T+4M3&ordPhoneNumber=2504722326&trnAmount=10&trnRecurring=1&rbBillingPeriod=D&rbBillingIncrement=30&trnCardOwner=Rosanna+Sylvester&trnOrderNumber={{currentOrderNumber}}-1,",
+							"host": [
+								"{{querystring_url}}"
+							],
+							"path": [
+								"scripts",
+								"process_transaction.asp"
+							],
+							"query": [
+								{
+									"key": "requestType",
+									"value": "BACKEND",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "merchant_Id",
+									"value": "{{merchant_id}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "passcode",
+									"value": "{{payment_passcode}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnType",
+									"value": "P",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "singleUseToken",
+									"value": "{{tokenizedCC}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordName",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordEmailAddress",
+									"value": "joe@mydomain.com",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordAddress1",
+									"value": "123+Main+Street",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordAddress2",
+									"value": "Suite+202",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCity",
+									"value": "Victoria",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordProvince",
+									"value": "BC",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordCountry",
+									"value": "CA",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPostalCode",
+									"value": "V8T+4M3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "ordPhoneNumber",
+									"value": "2504722326",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnAmount",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnRecurring",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingPeriod",
+									"value": "D",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "rbBillingIncrement",
+									"value": "30",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnCardOwner",
+									"value": "Rosanna+Sylvester",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "trnOrderNumber",
+									"value": "{{currentOrderNumber}}-1,",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"description": "",
+			"item": [
+				{
+					"name": "Search Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"reporting_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/reports",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Search\",\r\n    \"start_date\": \"2017-01-01T01:01:03\",\r\n    \"end_date\": \"2018-06-05T16:05:00\",   \r\n    \"start_row\": \"1\",\r\n    \"end_row\": \"1\",\r\n    \"criteria\": [\r\n      {\r\n        \"field\": \"1\",\r\n          \"operator\": \"%3D\",\r\n          \"value\": \"{{transId}}\"\r\n      }\r\n    ]\r\n}"
+						},
+						"description": "Query for transactions using a date range and optional search criteria. "
+					},
+					"response": []
+				},
+				{
+					"name": "Search Query (minimal)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"reporting_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/reports",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"TransHistoryMinimal\",\r\n    \"start_date\": \"2017-01-01T01:01:03\",\r\n    \"end_date\": \"2018-06-05T16:05:00\",   \r\n    \"start_row\": \"1\",\r\n    \"end_row\": \"2\",\r\n    \"criteria\": [\r\n      {\r\n        \"field\": \"1\",\r\n          \"operator\": \"%3D\",\r\n          \"value\": \"10000105\"\r\n      }\r\n    ]\r\n}"
+						},
+						"description": "Query for transactions using a date range and optional search criteria. "
+					},
+					"response": []
+				},
+				{
+					"name": "Search Query copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"passcode_encoded\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var passcode_encoded = btoa(environment[\"merchant_id\"] + \":\" + environment[\"reporting_passcode\"]);",
+									"postman.setEnvironmentVariable(\"passcode_encoded\", passcode_encoded);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/reports",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Passcode {{passcode_encoded}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Search\",\r\n    \"start_date\": \"2017-07-01T01:01:03\",\r\n    \"end_date\": \"2017-07-30T16:05:00\",   \r\n    \"start_row\": \"1\",\r\n    \"end_row\": \"2\",\r\n    \"criteria\": [\r\n      {\r\n        \"field\": \"10\",\r\n          \"operator\": \"%3D\",\r\n          \"value\": \"1\"\r\n      }\r\n    ]\r\n}\r\n"
+						},
+						"description": "Query for transactions using a date range and optional search criteria. "
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report - BatchFile copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/scripts/reporting/report.aspx",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<request>\r\n<rptVersion>1.0</rptVersion>\r\n<serviceName>BatchFile</serviceName>\r\n<merchantId>{{merchant_id}}</merchantId>\r\n<passCode>{{reporting_passcode}}</passCode>\r\n<rptFormat>JSON</rptFormat>\r\n</request>"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Token",
+			"description": "",
+			"item": [
+				{
+					"name": "Tokenize Credit Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"tokenizedCC\", jsonData.token);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/scripts/tokenization/tokens",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"number\":\"4030000010001234\",\r\n  \"expiry_month\":\"06\",\r\n  \"expiry_year\":\"19\",\r\n  \"cvd\":\"123\"\r\n}"
+						},
+						"description": "Turn a credit card into a token using this service."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -2,11 +2,15 @@
   title: 'Payment APIs'
 - file: '/docs/references/onboarding_API/'
   title: 'Onboarding API'
+- file: '/docs/references/custom_checkout/'
+  title: 'Custom Checkout'
 - file: '/docs/references/payment_SDKs/'
   title: 'Payment SDKs'
+- file: '/docs/references/batch_payment/'
+  title: 'Batch Payment'
+- file: '/docs/references/recurring_payment/'
+  title: 'Recurring Payment'
 - file: '/docs/references/AVS/'
   title: 'Address Verification System (AVS)'
 - file: '/docs/references/risk_thresholds/'
   title: 'Risk Thresholds'
-
-

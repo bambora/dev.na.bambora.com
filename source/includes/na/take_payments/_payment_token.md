@@ -5,15 +5,15 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"token",
-    "order_number":"MyOrderId000011223344",
+    "order_number":"MyOrderId-01234",
     "amount":15.99,
     "token":{
-        "code":"gt7-0f2f20dd-777e-487e-b688-940b526172cd",
+        "code":"gt7-0f2f20dd-777e-487e-b688-940b...",
         "name":"John Doe",
         "complete":true
     }
@@ -22,7 +22,7 @@ curl https://api.na.bambora.com/v1/payments \
 
 ```javascript
 var tokenPayment = {
-  order_number: 'order123456abc',
+  order_number: 'order123456',
   amount:12.00,
   payment_method:"token",
   token:{
@@ -164,12 +164,12 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"token",
-    "order_number":"MyOrderId000011223355",
+    "order_number":"MyOrderId-01234",
     "amount":15.99,
     "token":{
         "code":"gt7-0f2f20dd-777e-487e-b688-940b526172cd",
@@ -186,9 +186,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments/{transId}/completions \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments/{transId}/completions
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "amount":9.33
 }'

@@ -32,6 +32,10 @@
   <span class="schema-body">
   <!-- schema properties -->
 
+  <% if schema_body.description %> 
+    <span class="property"><%= schema_body.description %></span>
+  <% end %>
+
   <% if schema_body.properties %>
   <% schema_body.properties.each do |prop| %>
 

@@ -24,13 +24,5 @@ class CustomMarkdown < Middleman::Renderers::MiddlemanRedcarpetHTML
     "</table>" \
     "</div>"
   end
-  
-  def header(text, level)
-    require 'securerandom'
-    num = SecureRandom.hex
-    anchor = text.downcase.gsub(' ', '-') + "-#{num}"
-
-    %(<h#{level} id="#{anchor}">#{text}</h#{level}>)
-  end
 
 end

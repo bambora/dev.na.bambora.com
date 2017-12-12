@@ -5,12 +5,12 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"cash",
-    "order_number":"MyOrderId000011223344",
+    "order_number":"MyOrderId-01234",
     "amount":15.00
 }'
 ```
@@ -98,12 +98,12 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "payment_method":"cheque",
-    "order_number":"MyOrderId000011223344",
+    "order_number":"MyOrderId-01234",
     "amount":15.00
 }'
 ```

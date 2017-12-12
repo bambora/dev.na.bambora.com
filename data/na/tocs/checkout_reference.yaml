@@ -1,0 +1,12 @@
+- file: /docs/guides/checkout/
+  title: Guide
+- file: /docs/references/checkout/
+  title: Link
+- file: /docs/references/checkout/redirect/
+  title: Redirect
+- file: /docs/references/checkout/bank/
+  title: Bank codes
+- file: /docs/references/checkout/misc/
+  title: Misc codes
+- file: /docs/references/checkout/test_cards/
+  title: Test cards

@@ -10,9 +10,9 @@ Set the Credit Card object’s “complete” value to true to complete a paymen
 # Definition
 # POST /v1/payments HTTP/1.1
 
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
    "order_number":"10000123",
    "amount":100.00,
@@ -210,9 +210,9 @@ The response objects will contain all of the relevant payment information as wel
 # Definition
 # POST /v1/payments HTTP/1.1
 
-curl https://api.na.bambora.com/v1/payments \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
    "order_number":"10000123",
    "amount":100.00,
@@ -235,9 +235,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments/{transId}/completions \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments/{transId}/completions
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "amount":59.33
 }'

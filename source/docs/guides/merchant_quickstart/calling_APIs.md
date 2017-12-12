@@ -21,11 +21,16 @@ We'll now go through the process of performing and validating a transaction usin
 
 We use the command-line tool cURL for all HTTP request examples in this guide. cURL allows you make API requests without a web application, just like you would with command prompts in Windows, or Terminal on Apple computers. You can read more on cURL <a href="https://help.zendesk.com/hc/en-us/articles/229136847-Installing-and-using-cURL">here</a>.
 
-### Optional: Postman
+### Postman
 
-For fans of of the Chrome app [Postman](https://www.getpostman.com), we offer a Collection of our requests and an environment [here](https://dev.na.bambora.com/resources/postman-collection.zip). Before you run any queries, you'll need to update the environment with your Merchant ID and passcodes.
+For fans of of the HTTP Client [Postman](https://www.getpostman.com), we offer a comprehensive <a href="../../../../resources/postman/Bambora.postman_collection.json" download>collection</a> of requests and an <a href="../../../../resources/postman/Bambora.postman_environment.json" download>environment</a>. The collection uses the pre and post request scripts to set authentication headers and record transaction IDs. Before you run any queries, you'll need to update the environment with your Merchant ID and passcodes.
 
 > Note: Most of your Postman queries containing variables are set to return the related variable: 'Get Token' will set the returned token in the environment.
+
+## Authorization
+With your Merchant ID in hand and your passcodes set, you're ready to combine them into the required Authorization header. You can use our encoder to create an authorisation header [here](../../../forms/encode_api_passcode/).
+
+`Authorization: Passcode Base64Encoded(merchant_id:passcode)`
 
 ## Create a transaction
 

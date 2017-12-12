@@ -5,9 +5,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments/{transId}/void \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments/{transId}/void
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "amount":14.30
 }'
@@ -62,9 +62,9 @@ Definition
 POST /v1/payments HTTP/1.1
 
 Request
-curl https://api.na.bambora.com/v1/payments/{transId}/returns \
--H "Authorization: Passcode MzAwMjAwNTc4OjRCYUQ4MkQ5MTk3YjRjYzRiNzBhMjIxOTExZUU5Zjcw" \
--H "Content-Type: application/json" \
+curl https://api.na.bambora.com/v1/payments/{transId}/returns
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
+-H "Content-Type: application/json"
 -d '{
     "amount":12.50
 }'
@@ -110,8 +110,8 @@ res, err := gateway.Payments().ReturnPayment(transactionId, 12.99)
 Definition
 POST /v1/payments/0/returns HTTP/1.1
 
-curl https://api.na.bambora.com/v1/payments/0/returns\
--H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" \
+curl https://api.na.bambora.com/v1/payments/0/returns
+-H "Authorization: Passcode MzAwMjAwNTc4OjRCYU..."
 -d '{
    "merchant_id":280001000,
    "order_number":"10000123",
