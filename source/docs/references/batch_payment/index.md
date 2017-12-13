@@ -77,8 +77,8 @@ For batches of ACH transactions, the API expects the following columns:
 - **Recipient Name** - Full name of the bank account holder
 - **Customer Code** - The 32-character customer code located in the Payment Profile. Do not populate bank account fields in the file when processing against a Payment Profile.
 - **Dynamic Descriptor** - By default the Bambora merchant company name will show on your customer's bank statement. You can override this default by populating the Dynamic Descriptor field.
-- **Standard Entry Code** - Leave black unless your account has SEC code permissions enabled.
-- **Entry Detail Addenda Record** - Leave black unless your account has SEC code permissions enabled.
+- **Standard Entry Code** - Leave blank unless your account has SEC code permissions enabled.
+- **Entry Detail Addenda Record** - Leave blank unless your account has SEC code permissions enabled.
 
 
 #### Credit card

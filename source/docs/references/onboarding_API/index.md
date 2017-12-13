@@ -39,6 +39,9 @@ The following workflows are currently supported:
 
 [Terms API Spec](./tac_v2016-08-18)
 
+#### December 11th, 2017
+* Update address description to specify ISO 3166-2 for region
+
 #### May 30th, 2017
 * New fields for GW-USA and GW-CDN
     * terminal.first_data_nashville_terminal.visa_debit_number

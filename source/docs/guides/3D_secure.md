@@ -149,7 +149,8 @@ Response
     "address_match": 0,
     "postal_result": 0,
     "cvd_result": 1,
-	"eci": 5
+    "eci": 5,
+    "cavv_result": 2
   },
   "links": [
     {
@@ -230,7 +231,8 @@ Response
     "address_match": 0,
     "postal_result": 0,
     "cvd_result": 1,
-	"eci": 5
+    "eci": 5,
+    "cavv_result": 2
   },
   "links": [
     {

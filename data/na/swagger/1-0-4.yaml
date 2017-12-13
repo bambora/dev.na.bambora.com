@@ -30,10 +30,10 @@ paths:
     post:
       summary: Make payment
       description: |
-        Make a payment using credit card, cash, cheque, profile, token, Apple Pay or Android Pay. Each payment type has its own json definition passed in the 
-        body. For all payments you have the standard Billing, Shipping, Comments, etc. fields that are optional. Only the amount is required along with the 
-        payment data for card, cash, cheque, profile, and token. You must change the payment&#95;method for each payment type. Credit Card - "card", 
-        Payment Profile - "payment&#95;profile", Legato Token - "token", Cash - "cash", Cheque - "cheque", Interac - "interac", Apple Pay - "apple&#95;pay", 
+        Make a payment using credit card, cash, cheque, profile, token, Apple Pay or Android Pay. Each payment type has its own json definition passed in the
+        body. For all payments you have the standard Billing, Shipping, Comments, etc. fields that are optional. Only the amount is required along with the
+        payment data for card, cash, cheque, profile, and token. You must change the payment&#95;method for each payment type. Credit Card - "card",
+        Payment Profile - "payment&#95;profile", Legato Token - "token", Cash - "cash", Cheque - "cheque", Interac - "interac", Apple Pay - "apple&#95;pay",
         Android Pay - "android&#95;pay".
       tags:
         - Payments
@@ -325,8 +325,8 @@ paths:
     put:
       summary: Update Profile
       description: |
-        Update an existing Payment Profile. For a single card profile supplying token or 
-        card data will work. For multi-card profiles you have to update the card data with 
+        Update an existing Payment Profile. For a single card profile supplying token or
+        card data will work. For multi-card profiles you have to update the card data with
         the update and delete card endpoints.
       tags:
         - Profiles
@@ -430,7 +430,7 @@ paths:
           description: The profile id. (aka CustomerCode)
           required: true
           type: string
-        - name: 
+        - name:
           in: body
           description: The card information that will be added to the profile.
           required: true
@@ -507,7 +507,7 @@ paths:
           required: true
           type: number
           format: integer
-        - name: 
+        - name:
           in: body
           description: The card information that will be updated on the profile.
           required: true
@@ -660,8 +660,8 @@ definitions:
       recurring_payment:
         type: boolean
         description: |
-          A recurring transaction is a transaction where a cardholder had provided permission to a merchant to 
-          periodically charge his/her account number for recurring goods or services. The recurring payment 
+          A recurring transaction is a transaction where a cardholder had provided permission to a merchant to
+          periodically charge his/her account number for recurring goods or services. The recurring payment
           indicator may be set for credit card based pre-auth, capture and purchase transactions.
       level2:
         $ref: '#/definitions/Level2'
@@ -982,7 +982,7 @@ definitions:
         type: string
         maxLength: 32
         description: 'Returned only for ''interac'' or 3D Secure payment requests. This value can be used as the {id} value when creating your ''continue'' endpoint URL.'
-      contents: 
+      contents:
         type: string
         description: 'Returned only for ''interac'' or 3D Secure payment requests. This should be embedded in the user''s browser client and this needs to be displayed to the customer to redirect them to the Interac login or 3D Secure processing page.'
       interac_online:
@@ -1013,8 +1013,10 @@ definitions:
       postal_result:
         type: integer
         description: 'Result of postal verification. 0 if the postal_code parameter does does not match the customers address records or if AVS was not processed for the transaction. 1 if the postal_code parameter matches the consumers address records at the issuing bank.'
-      avs:        
+      avs:
         $ref: '#/definitions/AvsResponse'
+      cavv_result:
+        $ref: '#/definitions/CavvResult'
   AvsResponse:
     properties:
       id:
@@ -1029,13 +1031,13 @@ definitions:
         description: 'Is true if the issuing bank has successfully processed an AVS check on the transaction. Is false if no AVS check was performed.'
   InteracOnlineResponse:
     description: 'Returned only in the final response from the ''continue'' endpoint.'
-    properties: 
+    properties:
       idebit_issconf:
         type: string
         description: 'A numeric confirmation code of the payment'
-      idebit_issname: 
+      idebit_issname:
         type: string
-        description: 'Name of the account holder''s financial institution' 
+        description: 'Name of the account holder''s financial institution'
   CardGetTransactionResponse:
     properties:
       card_type:
@@ -1063,6 +1065,8 @@ definitions:
         type: string
         maxLength: 2
         description: 'a 2 digit representation of the expiry year. For example 2016 is 16.'
+      cavv_result:
+        $ref: '#/definitions/CavvResult'
   Link:
     properties:
       ref:
@@ -1278,6 +1282,9 @@ definitions:
       trn_cvd_result:
         type: number
         format: integer
+      trn_cavv_result:
+        type: string
+        description: 3D Secure Code Result
       trn_card_expiry:
         type: string
       message_id:
@@ -1456,6 +1463,10 @@ definitions:
       function:
         type: string
         description: Will say DEF for the default card
+      name:
+        type: string
+        maxLength: 64
+        description: Card holder name.
       number:
         type: string
         maxLength: 20
@@ -1515,7 +1526,6 @@ definitions:
         type: string
         maxLength: 64
         description: Card holder name.
-        default: '5100000010001004'
       number:
         type: string
         maxLength: 20
@@ -1582,7 +1592,7 @@ definitions:
         type: string
       reference:
         type: string
-        description: Not used. Always returns an empty string. 
+        description: Not used. Always returns an empty string.
       details:
         type: array
         items:
@@ -1637,6 +1647,9 @@ definitions:
   CvdResult:
     type: integer
     description: 'Result of CVD verification. 1=CVD Match, 2=CVD Mismatch, 3=CVD Not Verified, 4=CVD Should have been present, 5=CVD Issuer unable to process request, 6=CVD Not Provided'
+  CavvResult:
+    type: string
+    description: 'Result code returned back from performing the 3D Secure Code validation.'
   Level2:
     description: "Level 2 processing is for B2B customers. Additional information can be provided, to the benefit of corporate/government/industrial customers, that includes a customer code & tax amounts."
     required:
