@@ -9,7 +9,7 @@ gem 'middleman-search', '~> 0.10.0'
 gem 'i18n'
 gem 'rouge', '~> 1.9.0'
 gem 'redcarpet', '~> 3.3.2'
-gem 'puma', '~> 3.12.2'
+gem 'puma', '~> 3.12.4'
 
 gem 'rake', '~> 10.4.2'
 gem 'therubyracer', '~> 0.12.2', platforms: :ruby
