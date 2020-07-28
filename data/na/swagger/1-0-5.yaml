@@ -491,7 +491,7 @@ paths:
           $ref: '#/responses/InternalServerError'
     put:
       summary: Update card
-      description: Update the details of a card on the profile.
+      description: Update the details of a card on the profile. This is a test!
       tags:
         - Profiles
       operationId: updateCard
